@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="titlescreen_main_title">C-Commerce:</string>
+    <string name="titlescreen_sub_title">Cosmic Capitalization</string>
+    <string name="titlescreen_start_game_button">Start Game</string>
+    <string name="titlescreen_credits_button">Credits</string>
+
+    <string name="spacescreen_title">Ship Status: Space Travel</string>
+    <string name="generic_back_button">Back</string>
+    <string name="tim_karagosian">Tim Karagosian</string>
+    <string name="matt_schafer">Matt Schafer</string>
+</resources>
