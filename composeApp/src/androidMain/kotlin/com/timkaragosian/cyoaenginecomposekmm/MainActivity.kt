@@ -16,7 +16,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             mMediaPlayer.start()
             App()
-            //this is a change
         }
     }
 }
