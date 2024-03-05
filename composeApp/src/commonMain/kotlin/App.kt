@@ -15,11 +15,13 @@ fun App() {
          * THIS IS THE TO DO LIST IN ORDER FOR THIS ENGINE'S COMPLETION TO BECOME C-COMMERCE:
          *      - Implement Decompose library for Navigation and ViewModel use: https://www.youtube.com/watch?v=g4XSWQ7QT8g
          *          - Definition of Done:
-         *              - Title Screen Buttons load Space Screen and Credit Screens
-         *              - Credit Screen back to Title Screen
+         *              - Title Screen Buttons load Space Screen (fade) and Credit Screens (slide)
+         *              - Credit Screen back to Title Screen (slide)
          *      - Space Screen loads a endless "game" of 1 of 5 random events where a decision must be made and a result is loaded before more decisions must be made
          *          - Definition of Done:
          *              - The above is achieved all programatically in the commonMain Kotlin as the model for MVVM pattern
+         *              - Buttons are reflexive in enabling and disabling and possibly animate in and out
+         *              - Images and text animate in and out as well
          *      - Implement SQL Delight to house the data to be loaded in the game and queries for the events: https://www.youtube.com/watch?v=1w-LTUm_iDE&t=4491s, https://github.com/UR-Prospects-LLC/draftcard-mobile/blob/add_sqldelight/composeApp/build.gradle.kts
          *          - Definition of Done:
          *              - Events are driven from the SQL Delight database rather than programatically from Kotlin
@@ -44,10 +46,27 @@ fun App() {
          *              - The player should then be able to endlessly begin the quest again
          *      - Implement Simple UI Style
          *          - Definition of Done:
+         *              - Implement animations
+         *              - Update Visuals to have a consistent style
+         *              - Integrate the story into the visuals as much as possible
+         *              - Style with appropriate colors
          *      - Polish Gameplay and Story
          *          - Definition of Done:
+         *              - Immerse the player in the game
+         *                  - Make them feel in control and lead them into wanting to know more about THEIR story
+         *                  - Make it feel it is representing THEM
+         *              - Increase variety of events
+         *              - Multiple "Good", "Bad", and "Neutral" endings
+         *              - Create an adventure time limit to complete quests
+         *              - First launch of game is just like selecting start game
          *      - Begin Testing for Viability and Feedback
          *          - Definition of Done:
+         *              - Test for stability and bugs as much as can be
+         *              - Allow others to beta test and give feedback
+         *              - Develop Unit Tests to ensure everything is working as expected
+         *              - Expand Unit Tests as bugs are found
+         *              - Collect Feedback suggestions to evaluate
+         *              - Allow multiple kinds of gamers to try for varitey of feedback
          */
     }
 }
