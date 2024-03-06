@@ -1,16 +1,34 @@
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slide
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
+import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import ui.navigation.RootComponent
 
 import ui.screens.CYOAGameApp
+import ui.screens.ScreenA
+import ui.screens.ScreenB
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 @Preview
-fun App() {
+fun App(root: RootComponent) {
     MaterialTheme {
-        CYOAGameApp()
+        //CYOAGameApp()
+        val childStack by root.childStack.subscribeAsState()
+        Children(
+            stack = childStack,
+            animation = stackAnimation(slide())
+        ){
+            child ->
+            when(val instance = child.instance){
+                is RootComponent.Child.ScreenA -> ScreenA(instance.component)
+                is RootComponent.Child.ScreenB -> ScreenB(instance.component)
+            }
+        }
         /**
          * THIS IS THE TO DO LIST IN ORDER FOR THIS ENGINE'S COMPLETION TO BECOME C-COMMERCE:
          *      - Implement Decompose library for Navigation and ViewModel use: https://www.youtube.com/watch?v=g4XSWQ7QT8g

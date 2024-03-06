@@ -7,15 +7,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.arkivanov.decompose.retainedComponent
+import ui.navigation.RootComponent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mMediaPlayer = MediaPlayer.create(this, R.raw.observingthestar)
+        val root = retainedComponent{
+            RootComponent(it)
+        }
 
         setContent {
             mMediaPlayer.start()
-            App()
+            App(root)
         }
     }
 }
@@ -23,5 +28,4 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-    App()
 }
