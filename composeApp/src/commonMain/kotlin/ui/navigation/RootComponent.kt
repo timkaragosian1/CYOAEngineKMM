@@ -7,8 +7,10 @@ import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.pushNew
 import kotlinx.serialization.Serializable
+import ui.components.CreditsScreenComponent
 import ui.components.ScreenAComponent
 import ui.components.ScreenBComponent
+import ui.components.TitleScreenComponent
 
 class RootComponent(
     componentContext: ComponentContext
@@ -17,7 +19,7 @@ class RootComponent(
     val childStack = childStack(
         source = navigation,
         serializer = Configuration.serializer(),
-        initialConfiguration = Configuration.ScreenA,
+        initialConfiguration = Configuration.TitleScreen,
         handleBackButton = true,
         childFactory = ::createChild
     )
@@ -45,12 +47,32 @@ class RootComponent(
                     }
                 )
             )
+
+            Configuration.TitleScreen -> Child.TitleScreen(
+                    TitleScreenComponent(
+                        componentContext = context,
+                        onNavigateToCreditsScreen = {
+                            navigation.pushNew(Configuration.CreditsScreen)
+                        },
+                        onNavigateToGameScreen = {}
+                    ),
+                )
+            Configuration.CreditsScreen -> Child.CreditsScreen(
+                CreditsScreenComponent(
+                    componentContext = context,
+                    onNavigateBackToTitleScreen = {
+                        navigation.pop()
+                    }
+                ),
+            )
         }
     }
 
     sealed class Child {
         data class ScreenA(val component: ScreenAComponent):Child()
         data class ScreenB(val component: ScreenBComponent):Child()
+        data class TitleScreen(val component: TitleScreenComponent):Child()
+        data class CreditsScreen(val component: CreditsScreenComponent):Child()
     }
 
     @Serializable
@@ -60,5 +82,11 @@ class RootComponent(
 
         @Serializable
         data class ScreenB(val text:String): Configuration() //data class allows data to be passed in, not sure anything needs to be data class at this time
+
+        @Serializable
+        data object TitleScreen: Configuration() // data object doesn't take anything in, title screen candidate
+
+        @Serializable
+        data object CreditsScreen: Configuration() // data object doesn't take anything in, title screen candidate
     }
 }

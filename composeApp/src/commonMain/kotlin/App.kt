@@ -9,8 +9,10 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import ui.navigation.RootComponent
 
 import ui.screens.CYOAGameApp
+import ui.screens.CreditsScreen
 import ui.screens.ScreenA
 import ui.screens.ScreenB
+import ui.screens.TitleScreen
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
@@ -27,6 +29,8 @@ fun App(root: RootComponent) {
             when(val instance = child.instance){
                 is RootComponent.Child.ScreenA -> ScreenA(instance.component)
                 is RootComponent.Child.ScreenB -> ScreenB(instance.component)
+                is RootComponent.Child.CreditsScreen -> CreditsScreen(instance.component)
+                is RootComponent.Child.TitleScreen -> TitleScreen(instance.component)
             }
         }
         /**

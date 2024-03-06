@@ -34,9 +34,12 @@ import cyoaenginekmm.composeapp.generated.resources.titlescreen_sub_title
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import ui.components.CreditsScreenComponent
+import ui.components.CreditsScreenEvent
+import ui.components.TitleScreenEvent
 
 @Composable
-fun CreditsScreen() {
+fun CreditsScreen(component: CreditsScreenComponent) {
     Box (
 
         modifier = Modifier
@@ -94,7 +97,9 @@ fun CreditsScreen() {
                 modifier = Modifier.padding(10.dp, bottom = 25.dp)
             )
             Button(
-                onClick = {},
+                onClick = {
+                    component.onEvent(CreditsScreenEvent.ClickBackToTitleScreenButton)
+                },
                 modifier = Modifier.padding(5.dp)
             ){
                 Text(text = stringResource(Res.string.generic_back_button))

@@ -30,9 +30,12 @@ import cyoaenginekmm.composeapp.generated.resources.titlescreen_sub_title
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import ui.components.ScreenAEvent
+import ui.components.TitleScreenComponent
+import ui.components.TitleScreenEvent
 
 @Composable
-fun TitleScreen() {
+fun TitleScreen(component: TitleScreenComponent) {
     Box (modifier = Modifier
         .fillMaxSize()
         .paint(
@@ -65,13 +68,17 @@ fun TitleScreen() {
                 contentDescription = null
             )
             Button(
-                onClick = {},
+                onClick = {
+                    component.onEvent(TitleScreenEvent.ClickStartGameButton)
+                },
                 modifier = Modifier.padding(5.dp)
             ){
                 Text(text = stringResource(Res.string.titlescreen_start_game_button))
             }
             Button(
-                onClick = {},
+                onClick = {
+                    component.onEvent(TitleScreenEvent.ClickCreditsButton)
+                },
                 modifier = Modifier.padding(5.dp)
             ){
                 Text(text = stringResource(Res.string.titlescreen_credits_button))

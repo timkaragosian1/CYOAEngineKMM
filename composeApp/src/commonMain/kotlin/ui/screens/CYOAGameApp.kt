@@ -9,6 +9,6 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 @Composable
 fun CYOAGameApp() {
     Surface(){
-        TitleScreen()
+        //TitleScreen()
     }
 }
