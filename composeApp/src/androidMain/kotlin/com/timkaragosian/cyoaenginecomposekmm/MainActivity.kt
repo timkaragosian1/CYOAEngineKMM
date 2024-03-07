@@ -14,6 +14,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mMediaPlayer = MediaPlayer.create(this, R.raw.observingthestar)
+        mMediaPlayer.setOnPreparedListener {
+                mp -> mp.isLooping = true
+        }
+
         val root = retainedComponent{
             RootComponent(it)
         }

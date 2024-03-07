@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
@@ -30,10 +31,32 @@ import cyoaenginekmm.composeapp.generated.resources.titlescreen_main_title
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
+import ui.components.GameSpaceScreenComponent
+import ui.components.GameSpaceScreenEvent
+import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun GameSpaceScreen() {
+fun GameSpaceScreen(component: GameSpaceScreenComponent) {
+    /**
+     * These are the planned features to include:
+     *
+     * - BUTTON/MESSAGE FLEXIBILITY
+     *      If there are additional messages beyond the first, then button 6 should be "NEXT"
+     *      "NEXT" Button loads the next message
+     *      If there is no further additional messages, then load the button names as normal
+     * - BUTTONS LOAD NEXT EVENT
+     *      - Will need a function to give me the the conclusion messaging of the decision
+     *      - After the messages are complete, the "NEXT" Button changes to "Continue Adventure"
+     *      - "Continue Adventure" picks a random event to load for the player
+     */
+
+    val titleText by component.titleText.subscribeAsState()
+    val eventStartMessage1Text by component.eventStartMessage1Text.subscribeAsState()
+
+    val button1Text by component.button1Text.subscribeAsState()
+
+
     Box (modifier = Modifier
         .fillMaxSize()
         .paint(
@@ -50,23 +73,9 @@ fun GameSpaceScreen() {
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 25.sp,
-                text = stringResource(Res.string.spacescreen_title),
+                text = titleText,
                 modifier = Modifier.padding(20.dp)
             )
-            Row {
-                Button(
-                    onClick = {},
-                    modifier = Modifier.padding(5.dp)
-                ){
-                    Text(text = "Button 1")
-                }
-                Button(
-                    onClick = {},
-                    modifier = Modifier.padding(5.dp)
-                ){
-                    Text(text = "Button 2")
-                }
-            }
             Image(
                 modifier = Modifier.padding(20.dp),
                 painter = painterResource(Res.drawable.rocket),
@@ -76,21 +85,61 @@ fun GameSpaceScreen() {
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
-                text = "This is where the main text goes that tells you the story",
+                text = eventStartMessage1Text,
                 modifier = Modifier.padding(20.dp)
             )
             Row {
                 Button(
-                    onClick = {},
+                    onClick = {
+                        component.onEvent(GameSpaceScreenEvent.ClickButton1)
+                              },
                     modifier = Modifier.padding(5.dp)
                 ){
-                    Text(text = "Button 3")
+                    Text(text = button1Text)
                 }
                 Button(
-                    onClick = {},
+                    onClick = {
+                        component.onEvent(GameSpaceScreenEvent.ClickButton2)
+                    },
                     modifier = Modifier.padding(5.dp)
                 ){
-                    Text(text = "Button 4")
+                    Text(text = component.button2Text.value)
+                }
+            }
+            Row {
+                Button(
+                    onClick = {
+                        component.onEvent(GameSpaceScreenEvent.ClickButton3)
+                    },
+                    modifier = Modifier.padding(5.dp)
+                ){
+                    Text(text = component.button3Text.value)
+                }
+                Button(
+                    onClick = {
+                        component.onEvent(GameSpaceScreenEvent.ClickButton4)
+                    },
+                    modifier = Modifier.padding(5.dp)
+                ){
+                    Text(text = component.button4Text.value)
+                }
+            }
+            Row {
+                Button(
+                    onClick = {
+                        component.onEvent(GameSpaceScreenEvent.ClickButton5)
+                    },
+                    modifier = Modifier.padding(5.dp)
+                ){
+                    Text(text = component.button5Text.value)
+                }
+                Button(
+                    onClick = {
+                        component.onEvent(GameSpaceScreenEvent.ClickButton6)
+                    },
+                    modifier = Modifier.padding(5.dp)
+                ){
+                    Text(text = component.button6Text.value)
                 }
             }
         }

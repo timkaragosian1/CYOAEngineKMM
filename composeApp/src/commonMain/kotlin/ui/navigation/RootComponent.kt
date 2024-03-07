@@ -6,11 +6,12 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.pushNew
+import data.models.SpaceEvents
 import kotlinx.serialization.Serializable
 import ui.components.CreditsScreenComponent
-import ui.components.ScreenAComponent
-import ui.components.ScreenBComponent
+import ui.components.GameSpaceScreenComponent
 import ui.components.TitleScreenComponent
+import ui.screens.GameSpaceScreen
 
 class RootComponent(
     componentContext: ComponentContext
@@ -29,35 +30,18 @@ class RootComponent(
         context: ComponentContext
     ): Child {
         return when(config){
-            Configuration.ScreenA -> Child.ScreenA(
-                ScreenAComponent(
-                    componentContext = context,
-                    onNavigateToScreenB = { text ->
-                        navigation.pushNew(Configuration.ScreenB(text))
-                    }
-                ),
-
-            )
-            is Configuration.ScreenB -> Child.ScreenB(
-                ScreenBComponent(
-                    text = config.text,
-                    componentContext = context,
-                    onGoBack = {
-                        navigation.pop()
-                    }
-                )
-            )
-
             Configuration.TitleScreen -> Child.TitleScreen(
                     TitleScreenComponent(
                         componentContext = context,
                         onNavigateToCreditsScreen = {
                             navigation.pushNew(Configuration.CreditsScreen)
                         },
-                        onNavigateToGameScreen = {}
+                        onNavigateToGameScreen = {
+                            navigation.pushNew(Configuration.GameSpaceScreen)
+                        }
                     ),
                 )
-            Configuration.CreditsScreen -> Child.CreditsScreen(
+            is Configuration.CreditsScreen -> Child.CreditsScreen(
                 CreditsScreenComponent(
                     componentContext = context,
                     onNavigateBackToTitleScreen = {
@@ -65,28 +49,39 @@ class RootComponent(
                     }
                 ),
             )
+            is Configuration.GameSpaceScreen -> Child.GameSpaceScreen(
+                GameSpaceScreenComponent(
+                    componentContext = context,
+                    onClickButton1 = {
+                    },
+                    onClickButton2 = {
+                        navigation.pop()
+                    },
+                    onClickButton3 = {
+                    },
+                    onClickButton4 = {},
+                    onClickButton5 = {},
+                    onClickButton6 = {}
+                )
+            )
         }
     }
 
     sealed class Child {
-        data class ScreenA(val component: ScreenAComponent):Child()
-        data class ScreenB(val component: ScreenBComponent):Child()
         data class TitleScreen(val component: TitleScreenComponent):Child()
         data class CreditsScreen(val component: CreditsScreenComponent):Child()
+        data class GameSpaceScreen(val component: GameSpaceScreenComponent):Child()
     }
 
     @Serializable
     sealed class Configuration {
         @Serializable
-        data object ScreenA: Configuration() // data object doesn't take anything in, title screen candidate
+        data object TitleScreen: Configuration()
 
         @Serializable
-        data class ScreenB(val text:String): Configuration() //data class allows data to be passed in, not sure anything needs to be data class at this time
+        data object CreditsScreen: Configuration()
 
         @Serializable
-        data object TitleScreen: Configuration() // data object doesn't take anything in, title screen candidate
-
-        @Serializable
-        data object CreditsScreen: Configuration() // data object doesn't take anything in, title screen candidate
+        data object GameSpaceScreen: Configuration()
     }
 }

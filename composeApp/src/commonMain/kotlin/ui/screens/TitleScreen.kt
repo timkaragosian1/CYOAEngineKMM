@@ -30,7 +30,6 @@ import cyoaenginekmm.composeapp.generated.resources.titlescreen_sub_title
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import ui.components.ScreenAEvent
 import ui.components.TitleScreenComponent
 import ui.components.TitleScreenEvent
 

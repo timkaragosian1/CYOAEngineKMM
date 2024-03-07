@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -38,10 +40,10 @@ import ui.components.CreditsScreenComponent
 import ui.components.CreditsScreenEvent
 import ui.components.TitleScreenEvent
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun CreditsScreen(component: CreditsScreenComponent) {
     Box (
-
         modifier = Modifier
         .fillMaxSize()
         .paint(
@@ -50,50 +52,162 @@ fun CreditsScreen(component: CreditsScreenComponent) {
         )
     ) {
         Column (
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
+
         ){
             Text(
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
-                fontSize = 50.sp,
+                fontSize = 40.sp,
                 text = "Credits",
                 modifier = Modifier.padding(top = 25.dp)
             )
+
             Text(
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
-                fontSize = 30.sp,
+                fontSize = 20.sp,
                 text = "Made By",
                 modifier = Modifier.padding(10.dp)
             )
             Text(
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
+                fontSize = 14.sp,
                 text = stringResource(Res.string.tim_karagosian),
                 modifier = Modifier.padding(10.dp, bottom = 25.dp)
             )
+
             Text(
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
-                fontSize = 30.sp,
+                fontSize = 20.sp,
                 text = "Story By",
                 modifier = Modifier.padding(10.dp)
             )
             Text(
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
+                fontSize = 14.sp,
                 text = stringResource(Res.string.tim_karagosian),
                 modifier = Modifier.padding(10.dp)
             )
             Text(
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
+                fontSize = 14.sp,
                 text = stringResource(Res.string.matt_schafer),
+                modifier = Modifier.padding(10.dp, bottom = 25.dp)
+            )
+
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                text = "Graphics By",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp, bottom = 25.dp)
+            )
+
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                text = "SFX By",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp, bottom = 25.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
+                text = "Graphics By",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
+                modifier = Modifier.padding(10.dp)
+            )
+            Text(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp,
+                text = "Some Person",
                 modifier = Modifier.padding(10.dp, bottom = 25.dp)
             )
             Button(

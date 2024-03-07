@@ -8,10 +8,8 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import ui.navigation.RootComponent
 
-import ui.screens.CYOAGameApp
 import ui.screens.CreditsScreen
-import ui.screens.ScreenA
-import ui.screens.ScreenB
+import ui.screens.GameSpaceScreen
 import ui.screens.TitleScreen
 
 @OptIn(ExperimentalResourceApi::class)
@@ -19,7 +17,6 @@ import ui.screens.TitleScreen
 @Preview
 fun App(root: RootComponent) {
     MaterialTheme {
-        //CYOAGameApp()
         val childStack by root.childStack.subscribeAsState()
         Children(
             stack = childStack,
@@ -27,10 +24,9 @@ fun App(root: RootComponent) {
         ){
             child ->
             when(val instance = child.instance){
-                is RootComponent.Child.ScreenA -> ScreenA(instance.component)
-                is RootComponent.Child.ScreenB -> ScreenB(instance.component)
                 is RootComponent.Child.CreditsScreen -> CreditsScreen(instance.component)
                 is RootComponent.Child.TitleScreen -> TitleScreen(instance.component)
+                is RootComponent.Child.GameSpaceScreen -> GameSpaceScreen(instance.component)
             }
         }
         /**
