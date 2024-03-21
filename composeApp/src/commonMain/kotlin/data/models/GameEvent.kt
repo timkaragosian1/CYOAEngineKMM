@@ -1,21 +1,19 @@
+@file:OptIn(ExperimentalResourceApi::class)
+
 package data.models
 
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+
 data class GameEvent(
-    var eventName: String,
     var eventId: Int,
+    var eventName: String,
+
     var eventLocation: String,
+    var gameStatus: String,
 
-    var eventPreDecisionMessage1: String,
-    var eventPreDecisionMessage2: String,
-    var eventPreDecisionMessage3: String,
-    var eventPreDecisionMessage4: String,
-    var eventPreDecisionMessage5: String,
-
-    var preDecisionImage1: Int,
-    var preDecisionImage2: Int,
-    var preDecisionImage3: Int,
-    var preDecisionImage4: Int,
-    var preDecisionImage5: Int,
+    var eventMessage: String,
+    var eventImage: DrawableResource,
 
     var eventDecision1: EventDecision,
     var eventDecision2: EventDecision,

@@ -3,6 +3,7 @@
 package ui.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cyoaenginekmm.composeapp.generated.resources.Res
+import cyoaenginekmm.composeapp.generated.resources.SpaceBackground1
+import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
+import cyoaenginekmm.composeapp.generated.resources.red_rocket_hole_do_nothing
 import cyoaenginekmm.composeapp.generated.resources.rocket
 import cyoaenginekmm.composeapp.generated.resources.spacefield_a_000
 import cyoaenginekmm.composeapp.generated.resources.titlescreen_credits_button
@@ -37,8 +41,7 @@ import ui.components.TitleScreenEvent
 fun TitleScreen(component: TitleScreenComponent) {
     Box (modifier = Modifier
         .fillMaxSize()
-        .paint(
-            painter = painterResource(Res.drawable.spacefield_a_000),
+        .paint(painter = painterResource(Res.drawable.SpaceBackground1),
             contentScale = ContentScale.FillBounds
         )
     ) {
@@ -62,9 +65,11 @@ fun TitleScreen(component: TitleScreenComponent) {
                 modifier = Modifier.padding(10.dp, bottom = 25.dp)
             )
             Image(
-                modifier = Modifier.padding(25.dp),
-                painter = painterResource(Res.drawable.rocket),
-                contentDescription = null
+                modifier = Modifier.padding(15.dp)
+                    .fillMaxWidth(),
+                painter = painterResource(Res.drawable.red_rocket_hole_do_nothing),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds
             )
             Button(
                 onClick = {

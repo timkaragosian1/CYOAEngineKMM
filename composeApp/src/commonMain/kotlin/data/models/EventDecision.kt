@@ -1,24 +1,17 @@
+@file:OptIn(ExperimentalResourceApi::class)
+
 package data.models
 
 import androidx.compose.ui.graphics.ImageBitmap
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 data class EventDecision(
-    var decisionId: Int,
+    var decisionButtonId: Int,
     var decisionName: String,
-    var decisionText: String,
-    var onDecisionSelected: () -> Unit,
-
-    var postDecisionMessage1: String,
-    var postDecisionMessage2: String,
-    var postDecisionMessage3: String,
-    var postDecisionMessage4: String,
-    var postDecisionMessage5: String,
-
-    var postDecisionImage1: Int,
-    var postDecisionImage2: Int,
-    var postDecisionImage3: Int,
-    var postDecisionImage4: Int,
-    var postDecisionImage5: Int
+    var buttonText: String,
+    var nextEventId: Int,
+    var enabled: Boolean,
 )

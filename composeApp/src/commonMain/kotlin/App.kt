@@ -9,7 +9,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 import ui.navigation.RootComponent
 
 import ui.screens.CreditsScreen
-import ui.screens.GameSpaceScreen
+import ui.screens.GameScreen
 import ui.screens.TitleScreen
 
 @OptIn(ExperimentalResourceApi::class)
@@ -26,24 +26,21 @@ fun App(root: RootComponent) {
             when(val instance = child.instance){
                 is RootComponent.Child.CreditsScreen -> CreditsScreen(instance.component)
                 is RootComponent.Child.TitleScreen -> TitleScreen(instance.component)
-                is RootComponent.Child.GameSpaceScreen -> GameSpaceScreen(instance.component)
+                is RootComponent.Child.GameSpaceScreen -> GameScreen(instance.component)
             }
         }
         /**
          * THIS IS THE TO DO LIST IN ORDER FOR THIS ENGINE'S COMPLETION TO BECOME C-COMMERCE:
-         *      - Implement Decompose library for Navigation and ViewModel use: https://www.youtube.com/watch?v=g4XSWQ7QT8g
-         *          - Definition of Done:
-         *              - Title Screen Buttons load Space Screen (fade) and Credit Screens (slide)
-         *              - Credit Screen back to Title Screen (slide)
+         *      - Fix Up UI
+         *          - Fixed, but flexible setup
+         *          - Use Pixelart Images
+         *          - Many-to-1 Child-Parent relationship with notes and images screens
+         *      -
          *      - Space Screen loads a endless "game" of 1 of 5 random events where a decision must be made and a result is loaded before more decisions must be made
          *          - Definition of Done:
          *              - The above is achieved all programatically in the commonMain Kotlin as the model for MVVM pattern
          *              - Buttons are reflexive in enabling and disabling and possibly animate in and out
          *              - Images and text animate in and out as well
-         *      - Implement SQL Delight to house the data to be loaded in the game and queries for the events: https://www.youtube.com/watch?v=1w-LTUm_iDE&t=4491s, https://github.com/UR-Prospects-LLC/draftcard-mobile/blob/add_sqldelight/composeApp/build.gradle.kts
-         *          - Definition of Done:
-         *              - Events are driven from the SQL Delight database rather than programatically from Kotlin
-         *              - The DB is a major part of the model with an interface for queries called in the ViewModel
          *      - Figure out Main Quests
          *          - Definition of Done:
          *              - Main Quests follow a path in the game

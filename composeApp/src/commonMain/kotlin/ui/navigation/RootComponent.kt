@@ -1,17 +1,17 @@
+@file:OptIn(ExperimentalResourceApi::class)
+
 package ui.navigation
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
-import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.pushNew
-import data.models.SpaceEvents
 import kotlinx.serialization.Serializable
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 import ui.components.CreditsScreenComponent
 import ui.components.GameSpaceScreenComponent
 import ui.components.TitleScreenComponent
-import ui.screens.GameSpaceScreen
 
 class RootComponent(
     componentContext: ComponentContext
@@ -61,7 +61,8 @@ class RootComponent(
                     },
                     onClickButton4 = {},
                     onClickButton5 = {},
-                    onClickButton6 = {}
+                    onClickButton6 = {},
+                    onClickStatusButton = {}
                 )
             )
         }
