@@ -8,12 +8,19 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 data class GameEvent(
     var eventId: Int,
     var eventName: String,
-
     var eventLocation: String,
-    var gameStatus: String,
-
+    var eventType: String,
     var eventMessage: String,
     var eventImage: DrawableResource,
+
+    var gameStatusChange: String?,
+    var gameCrewStatusChange: Int?,
+    var gameShipHullChange: Int?,
+    var gameShipEnginesChange: Int?,
+    var gameShipSensorsChange:Int?,
+    var gameShipDestinationChange:String?,
+    var gameTimeChange:Double?,
+    var gameCompanyFinancesChange: Long?,
 
     var eventDecision1: EventDecision,
     var eventDecision2: EventDecision,

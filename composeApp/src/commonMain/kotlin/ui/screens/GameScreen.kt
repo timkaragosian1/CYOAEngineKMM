@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -27,8 +28,11 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
@@ -46,13 +50,21 @@ fun GameScreen(component: GameSpaceScreenComponent) {
     val eventMessage by component.eventMessage.subscribeAsState()
     val eventImage by component.eventImage.subscribeAsState()
     val button1Text by component.button1Text.subscribeAsState()
-    val button2Text by component.button1Text.subscribeAsState()
-    val button3Text by component.button1Text.subscribeAsState()
-    val button4Text by component.button1Text.subscribeAsState()
-    val button5Text by component.button1Text.subscribeAsState()
+    val button2Text by component.button2Text.subscribeAsState()
+    val button3Text by component.button3Text.subscribeAsState()
+    val button4Text by component.button4Text.subscribeAsState()
+    val button5Text by component.button5Text.subscribeAsState()
     val button6Text by component.button6Text.subscribeAsState()
 
     val companyFinances by component.companyFinances.subscribeAsState()
+    val gameShipCrewCondition by component.gameCrewStatus.subscribeAsState()
+    val gameShipHullCondition by component.gameShipHull.subscribeAsState()
+    val gameShipEngineCondition by component.gameShipEngines.subscribeAsState()
+    val gameShipSensorsCondition by component.gameShipSensors.subscribeAsState()
+    val gameShipDestination by component.gameShipDestination.subscribeAsState()
+    val gameTime by component.gameTime.subscribeAsState()
+    val gameStatus by component.gameStatus.subscribeAsState()
+
 
     Box (modifier = Modifier
         .fillMaxSize()
@@ -66,7 +78,16 @@ fun GameScreen(component: GameSpaceScreenComponent) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            GameScreenImageRow(painterResource(eventImage), companyFinances)
+            GameScreenImageRow(
+                painterResource(eventImage),
+                companyFinances,
+                gameShipCrewCondition,
+                gameShipHullCondition,
+                gameShipEngineCondition,
+                gameShipSensorsCondition,
+                gameShipDestination,
+                gameTime
+                )
             GameScreenTextStatusRow(eventMessage)
             GameScreenDecisionButtonsRow(
                 component,
@@ -82,79 +103,212 @@ fun GameScreen(component: GameSpaceScreenComponent) {
 }
 
 @Composable
-fun GameScreenImageRow(painter: Painter, companyFinances: Double) {
+fun GameScreenImageRow(
+    painter: Painter,
+    companyFinances: Long,
+    gameShipCrewCondition:Int,
+    gameShipHullCondition:Int,
+    gameShipEngineCondition:Int,
+    gameShipSensorsCondition:Int,
+    gameShipDestination:String,
+    gameTime:Double
+    ) {
 
     Column(
         modifier = Modifier
             .fillMaxHeight(.38f)
             .fillMaxWidth()
+            .padding(horizontal = 5.dp)
             .clip(shape = RoundedCornerShape(30.dp, 30.dp, 30.dp, 30.dp))
-            .background(Color.hsv(244f, .5f, .5f, .6f))
+            .background(Color.hsv(244f, .5f, .4f, .70f))
     ) {
-        Text(text = "$$companyFinances",
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.Bold,
-            color = Color.Green,
+        Row (
             modifier = Modifier
                 .fillMaxHeight(.1f)
                 .fillMaxWidth()
                 .padding(top = 2.dp)
                 .clip(shape = RoundedCornerShape(30.dp, 30.dp, 30.dp, 30.dp))
-                .background(Color.hsv(244f, .5f, .5f, .6f))
-        )
+                .background(Color.hsv(244f, .5f, .3f, .6f))
+        ){
+            Text(text = "$",
+                textAlign = TextAlign.Right,
+                fontWeight = FontWeight.Black,
+                fontSize = 20.sp,
+                color = Color.Green,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(.15f)
+            )
+            Text(text = "$companyFinances",
+                textAlign = TextAlign.Right,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                letterSpacing = 3.sp,
+                color = Color.Green,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(.70f)
+            )
+            Text(text = ".00",
+                textAlign = TextAlign.Left,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
+                letterSpacing = 3.sp,
+                color = Color.Green,
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .padding(end = 50.dp)
+            )
+        }
         Row(
             modifier = Modifier
                 .fillMaxHeight()
                 .fillMaxWidth()
-                .padding(vertical = 5.dp, horizontal = 5.dp)
+                .padding(vertical = 5.dp, horizontal = 2.dp)
                 )
          {
-            Column (modifier = Modifier.fillMaxWidth(.15f)){
+            Column (
+                modifier = Modifier.fillMaxWidth(.2f),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Spacer(modifier = Modifier.height(25.dp))
                 Text(
-                    text = "Crew:",
-                    modifier = Modifier,
-                    Color.White,
-                    textAlign = TextAlign.Center
+                    text = "CREW",
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 20.sp,
+                    //style = TextStyle(textDecoration = TextDecoration.Underline),
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    color = Color.White
+                )
+                getStatusTextView(gameShipCrewCondition)
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = "TIME",
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 20.sp,
+                    //style = TextStyle(textDecoration = TextDecoration.Underline),
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    color = Color.White
                 )
                 Text(
-                    text = "Time:",
-                            modifier = Modifier,
-                    Color.White,
-                    textAlign = TextAlign.Center
+                    text = gameTime.toString(),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    color = Color.Green
                 )
-                Text(text = "Dest:",
-                    modifier = Modifier,
-                    Color.White,
-                    textAlign = TextAlign.Center
+                Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = "DEST",
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 20.sp,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    color = Color.White
                 )
-                Text(text = "Hull:",
-                    modifier = Modifier,
-                    Color.White,
-                    textAlign = TextAlign.Center
-                )
-                Text(text = "Engines:",
-                    modifier = Modifier,
-                    Color.White,
-                    textAlign = TextAlign.Center
-                )
-                Text(text = "Sensors:",
-                    modifier = Modifier,
-                    Color.White,
-                    textAlign = TextAlign.Center
+                Text(
+                    text = gameShipDestination,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    color = Color.LightGray
                 )
             }
             Image(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .fillMaxWidth(.85f)
-                    .padding(3.dp),
+                    .fillMaxWidth(.78f)
+                    .padding(1.dp),
                 painter = painter,
                 contentScale = ContentScale.FillHeight,
                 contentDescription = null
             )
-            Spacer(modifier = Modifier.fillMaxWidth())
+             Column (modifier = Modifier.fillMaxWidth(),
+                 horizontalAlignment = Alignment.CenterHorizontally
+             ){
+                 Spacer(modifier = Modifier.height(25.dp))
+                 Text(
+                     text = "HULL",
+                     fontWeight = FontWeight.ExtraBold,
+                     fontSize = 20.sp,
+                     //style = TextStyle(textDecoration = TextDecoration.Underline),
+                     modifier = Modifier.fillMaxWidth(),
+                     textAlign = TextAlign.Center,
+                     color = Color.White
+                 )
+                 getStatusTextView(gameShipHullCondition)
+                 Spacer(modifier = Modifier.height(10.dp))
+                 Text(
+                     text = "ENGI",
+                     fontWeight = FontWeight.ExtraBold,
+                     fontSize = 20.sp,
+                     //style = TextStyle(textDecoration = TextDecoration.Underline),
+                     modifier = Modifier.fillMaxWidth(),
+                     textAlign = TextAlign.Center,
+                     color = Color.White
+                 )
+                 getStatusTextView(gameShipEngineCondition)
+                 Spacer(modifier = Modifier.height(10.dp))
+                 Text(
+                     text = "SENS",
+                     fontWeight = FontWeight.ExtraBold,
+                     fontSize = 20.sp,
+                     //style = TextStyle(textDecoration = TextDecoration.Underline),
+                     modifier = Modifier.fillMaxWidth(),
+                     textAlign = TextAlign.Center,
+                     color = Color.White
+                 )
+                 getStatusTextView(gameShipSensorsCondition)
+             }
         }
     }
+}
+
+@Composable
+fun getStatusTextView(gameShipCrewCondition: Int) {
+    return Text(
+        text =
+        if (gameShipCrewCondition==1){
+            "CRIT"
+        } else if (gameShipCrewCondition==2){
+            "POOR"
+        } else if (gameShipCrewCondition==3){
+            "NORM"
+        } else if (gameShipCrewCondition==4){
+            "GOOD"
+        } else if (gameShipCrewCondition==5){
+            "GREA"
+        } else if (gameShipCrewCondition==6){
+            "OPTI"
+        } else {
+            "UNKN"
+        },
+        color =
+        if (gameShipCrewCondition==1){
+            Color.Red
+        } else if (gameShipCrewCondition==2){
+            Color.Yellow
+        } else if (gameShipCrewCondition==3){
+            Color.Black
+        } else if (gameShipCrewCondition==4){
+            Color.Green
+        } else if (gameShipCrewCondition==5){
+            Color.Blue
+        } else if (gameShipCrewCondition==6){
+            Color.Cyan
+        } else {
+            Color.LightGray
+        },
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+        modifier = Modifier.fillMaxWidth(),
+        textAlign = TextAlign.Center,
+    )
 }
 
 @Composable
@@ -175,29 +329,12 @@ fun GameScreenTextStatusRow(eventMessage: String) {
             ) {
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth(.75f)
+                        .fillMaxWidth()
                         .fillMaxHeight()
                         .padding(vertical = 2.dp, horizontal = 7.dp),
                     color = Color.White,
                     text = eventMessage
                 )
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(2.5.dp)
-                        .clip(shape = RoundedCornerShape(15.dp, 15.dp, 15.dp, 15.dp))
-                    ,
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.hsv(80f,0f,1f,.85f)),
-                    onClick = {}
-                ) {
-                    Text(modifier = Modifier,
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Black,
-                        color = Color.hsv(244f,1f,.7f,1f),
-                        fontSize = 12.sp,
-                        text = "Company Status")
-                }
             }
         }
     }

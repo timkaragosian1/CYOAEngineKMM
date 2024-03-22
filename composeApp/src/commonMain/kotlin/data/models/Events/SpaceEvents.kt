@@ -10,25 +10,28 @@ import cyoaenginekmm.composeapp.generated.resources.red_rocket_impact
 import data.models.EventDecision
 import data.models.GameEvent
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import ui.components.GameSpaceScreenComponent
 
 class SpaceEvents {
-    fun getEventFromId(nextEventId: MutableValue<Int>): GameEvent {
+    fun getEventFromId(nextEventId: MutableValue<Int>, component: GameSpaceScreenComponent): GameEvent {
         when (nextEventId.value) {
             -1 -> return getRandomSpaceEvent()
-            0 -> return getStartingSpaceEvent1()
+            0 -> return getStartingSpaceEvent1(component)
             1 -> return getStartingSpaceEvent2()
             2 -> return getStartingSpaceEvent3()
             3 -> return getStartingSpaceEvent4()
+            4 -> return StartGameEvents().startShipBuilder()
+            53 -> return StartGameEvents().getExceptionShipChosen1()
+            54 -> return StartGameEvents().getExceptionShipChosen2()
         }
-        return getStartingSpaceEvent1()
+        return getStartingSpaceEvent1(component)
     }
 
-    fun getStartingSpaceEvent1(): GameEvent {
+    fun getStartingSpaceEvent1(component: GameSpaceScreenComponent): GameEvent {
         return GameEvent(
             eventName = "Start of Game",
             eventId = 0,
             eventLocation = "earth",
-            gameStatus = "gamestart",
             eventImage = Res.drawable.red_rocket_art1,
             eventMessage = "This is the first screen to start with",
             eventDecision1 = EventDecision(
@@ -72,7 +75,16 @@ class SpaceEvents {
                 nextEventId = 1,
                 enabled = true,
                 buttonText = "NEXT"
-            )
+            ),
+            eventType = "gamestatuschange",
+            gameCompanyFinancesChange = null,
+            gameTimeChange = null,
+            gameShipDestinationChange = null,
+            gameShipEnginesChange = null,
+            gameShipSensorsChange = null,
+            gameShipHullChange = null,
+            gameCrewStatusChange = null,
+            gameStatusChange = "gamestart",
         )
     }
 
@@ -81,7 +93,6 @@ class SpaceEvents {
             eventName = "Start of Game",
             eventId = 0,
             eventLocation = "earth",
-            gameStatus = "gamestart",
             eventImage = Res.drawable.red_rocket_art2,
             eventMessage = "This is the second screen to start with",
             eventDecision1 = EventDecision(
@@ -125,7 +136,16 @@ class SpaceEvents {
                 nextEventId = 2,
                 enabled = true,
                 buttonText = "NEXT"
-            )
+            ),
+            eventType = "",
+            gameCompanyFinancesChange = null,
+            gameTimeChange = null,
+            gameShipDestinationChange = null,
+            gameShipEnginesChange = null,
+            gameShipSensorsChange = null,
+            gameShipHullChange = null,
+            gameCrewStatusChange = null,
+            gameStatusChange = null,
         )
     }
 
@@ -134,7 +154,6 @@ class SpaceEvents {
             eventName = "Start of Game",
             eventId = 0,
             eventLocation = "earth",
-            gameStatus = "gamestart",
             eventImage = Res.drawable.red_rocket_art2,
             eventMessage = "This is the third screen to start with",
             eventDecision1 = EventDecision(
@@ -178,7 +197,16 @@ class SpaceEvents {
                 nextEventId = 3,
                 enabled = true,
                 buttonText = "NEXT"
-            )
+            ),
+            eventType = "",
+            gameCompanyFinancesChange = null,
+            gameTimeChange = null,
+            gameShipDestinationChange = null,
+            gameShipEnginesChange = null,
+            gameShipSensorsChange = null,
+            gameShipHullChange = null,
+            gameCrewStatusChange = null,
+            gameStatusChange = null,
         )
     }
 
@@ -187,7 +215,6 @@ class SpaceEvents {
             eventName = "Start of Game",
             eventId = 0,
             eventLocation = "earth",
-            gameStatus = "gamestart",
             eventImage = Res.drawable.red_rocket_art1,
             eventMessage = "This is the fourth screen to start with",
             eventDecision1 = EventDecision(
@@ -228,10 +255,19 @@ class SpaceEvents {
             eventDecision6 = EventDecision(
                 decisionButtonId = 6,
                 decisionName = "Button 6",
-                nextEventId = 5,
+                nextEventId = 4,
                 enabled = true,
                 buttonText = "NEXT"
-            )
+            ),
+            eventType = "",
+            gameCompanyFinancesChange = null,
+            gameTimeChange = null,
+            gameShipDestinationChange = null,
+            gameShipEnginesChange = null,
+            gameShipSensorsChange = null,
+            gameShipHullChange = null,
+            gameCrewStatusChange = null,
+            gameStatusChange = null,
         )
     }
 
@@ -240,7 +276,6 @@ class SpaceEvents {
             eventName = "Start of Game",
             eventId = 0,
             eventLocation = "earth",
-            gameStatus = "gamestart",
             eventImage = Res.drawable.red_rocket_impact,
             eventMessage = "This is the first screen to start with",
             eventDecision1 = EventDecision(
@@ -284,7 +319,16 @@ class SpaceEvents {
                 nextEventId = 1,
                 enabled = true,
                 buttonText = "NEXT"
-            )
+            ),
+            eventType = "",
+            gameCompanyFinancesChange = null,
+            gameTimeChange = null,
+            gameShipDestinationChange = null,
+            gameShipEnginesChange = null,
+            gameShipSensorsChange = null,
+            gameShipHullChange = null,
+            gameCrewStatusChange = null,
+            gameStatusChange = null,
         )
     }
 }

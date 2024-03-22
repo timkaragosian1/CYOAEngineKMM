@@ -1,5 +1,6 @@
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
@@ -20,7 +21,8 @@ fun App(root: RootComponent) {
         val childStack by root.childStack.subscribeAsState()
         Children(
             stack = childStack,
-            animation = stackAnimation(slide())
+            animation = stackAnimation(slide()),
+            modifier = Modifier
         ){
             child ->
             when(val instance = child.instance){

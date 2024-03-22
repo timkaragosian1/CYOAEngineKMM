@@ -7,5 +7,4 @@ sealed interface GameScreenEvent {
     data object ClickButton4: GameScreenEvent
     data object ClickButton5: GameScreenEvent
     data object ClickButton6: GameScreenEvent
-    data object ClickStatusButton: GameScreenEvent
 }

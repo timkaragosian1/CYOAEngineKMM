@@ -1,8 +1,9 @@
-@file:OptIn(ExperimentalResourceApi::class)
+@file:OptIn(ExperimentalResourceApi::class, ExperimentalDecomposeApi::class)
 
 package ui.navigation
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
@@ -52,17 +53,16 @@ class RootComponent(
             is Configuration.GameSpaceScreen -> Child.GameSpaceScreen(
                 GameSpaceScreenComponent(
                     componentContext = context,
-                    onClickButton1 = {
-                    },
-                    onClickButton2 = {
-                        navigation.pop()
-                    },
-                    onClickButton3 = {
-                    },
+                    onClickButton1 = {},
+                    onClickButton2 = {},
+                    onClickButton3 = {},
                     onClickButton4 = {},
                     onClickButton5 = {},
-                    onClickButton6 = {},
-                    onClickStatusButton = {}
+                    onClickButton6 = {
+                        if(false){
+                            navigation.pop()
+                        }
+                    }
                 )
             )
         }

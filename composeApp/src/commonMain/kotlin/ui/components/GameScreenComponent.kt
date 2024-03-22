@@ -1,10 +1,11 @@
 @file:OptIn(ExperimentalResourceApi::class, ExperimentalResourceApi::class,
-    ExperimentalResourceApi::class
+    ExperimentalResourceApi::class, ExperimentalResourceApi::class, ExperimentalResourceApi::class
 )
 
 package ui.components
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.router.children.ChildNavState
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import cyoaenginekmm.composeapp.generated.resources.Res
@@ -23,7 +24,6 @@ class GameSpaceScreenComponent(
     private val onClickButton4: () -> Unit,
     private val onClickButton5: () -> Unit,
     private val onClickButton6: () -> Unit,
-    private val onClickStatusButton: () -> Unit
     ): ComponentContext by componentContext {
     private var _eventMessage = MutableValue("Welcome to cCommerce!")
     var eventMessage:Value<String> = _eventMessage
@@ -70,17 +70,38 @@ class GameSpaceScreenComponent(
     private var _button6NextEvent = MutableValue(0)
     var button6NextEvent:Value<Int> = _button6NextEvent
 
-    private var _companyFinances = MutableValue(5000000000.00)
-    var companyFinances: Value<Double> = _companyFinances
+    private var _companyFinances = MutableValue(10000000000)
+    var companyFinances: Value<Long> = _companyFinances
 
-    private var _eventStatus = MutableValue("gamestart")
-    var eventStatus:Value<String> = _eventStatus
+    private var _eventType = MutableValue("gamestart")
+    var eventType:Value<String> = _eventType
 
     private var _eventLocation = MutableValue("")
     var eventLocation:Value<String> = _eventLocation
 
-private var _nextEvent = MutableValue(0)
+    private var _nextEvent = MutableValue(0)
     var nextEvent:Value<Int> = _nextEvent
+
+    var _gameStatus = MutableValue("start")
+    var gameStatus: Value<String> = _gameStatus
+
+    var _gameCrewStatus = MutableValue(0)
+    var gameCrewStatus: Value<Int> = _gameCrewStatus
+
+    var _gameShipHull = MutableValue(0)
+    var gameShipHull: Value<Int> = _gameShipHull
+
+    var _gameShipSensors = MutableValue(0)
+    var gameShipSensors: Value<Int> = _gameShipSensors
+
+    var _gameShipEngines = MutableValue(0)
+    var gameShipEngines: Value<Int> = _gameShipEngines
+
+    var _gameShipDestination = MutableValue("UNKN")
+    var gameShipDestination: Value<String> = _gameShipDestination
+
+    var _gameTime = MutableValue(20.0)
+    var gameTime: Value<Double> = _gameTime
 
     fun updateNextEvent(nextEvent:Int){
         _nextEvent.value = nextEvent
@@ -89,37 +110,12 @@ private var _nextEvent = MutableValue(0)
     fun onEvent(event:GameScreenEvent, nextEvent: Int){
         _nextEvent.value = nextEvent
         when(event){
-            GameScreenEvent.ClickStatusButton->{
-                handleNextEvent(
-                    _eventMessage,
-                    _eventImage,
-                    _button1Text,
-                    _button2Text,
-                    _button3Text,
-                    _button4Text,
-                    _button5Text,
-                    _button6Text,
-                    _button1Enabled,
-                    _button2Enabled,
-                    _button3Enabled,
-                    _button4Enabled,
-                    _button5Enabled,
-                    _button6Enabled,
-                    _button1NextEvent,
-                    _button2NextEvent,
-                    _button3NextEvent,
-                    _button4NextEvent,
-                    _button5NextEvent,
-                    _button6NextEvent,
-                    _nextEvent,
-                    _companyFinances
-                    )
-                onClickStatusButton()
-            }
             GameScreenEvent.ClickButton1 -> {
                 handleNextEvent(
                     _eventMessage,
                     _eventImage,
+                    _eventType,
+                    _eventLocation,
                     _button1Text,
                     _button2Text,
                     _button3Text,
@@ -139,7 +135,14 @@ private var _nextEvent = MutableValue(0)
                     _button5NextEvent,
                     _button6NextEvent,
                     _nextEvent,
-                    _companyFinances
+                    _companyFinances,
+                    _gameStatus,
+                    _gameCrewStatus,
+                    _gameTime,
+                    _gameShipHull,
+                    _gameShipEngines,
+                    _gameShipSensors,
+                    this
                 )
                 onClickButton1()
             }
@@ -147,6 +150,8 @@ private var _nextEvent = MutableValue(0)
                 handleNextEvent(
                     _eventMessage,
                     _eventImage,
+                    _eventType,
+                    _eventLocation,
                     _button1Text,
                     _button2Text,
                     _button3Text,
@@ -166,7 +171,14 @@ private var _nextEvent = MutableValue(0)
                     _button5NextEvent,
                     _button6NextEvent,
                     _nextEvent,
-                    _companyFinances
+                    _companyFinances,
+                    _gameStatus,
+                    _gameCrewStatus,
+                    _gameTime,
+                    _gameShipHull,
+                    _gameShipEngines,
+                    _gameShipSensors,
+                    this
                 )
                 onClickButton2()
             }
@@ -174,6 +186,8 @@ private var _nextEvent = MutableValue(0)
                 handleNextEvent(
                     _eventMessage,
                     _eventImage,
+                    _eventType,
+                    _eventType,
                     _button1Text,
                     _button2Text,
                     _button3Text,
@@ -193,7 +207,14 @@ private var _nextEvent = MutableValue(0)
                     _button5NextEvent,
                     _button6NextEvent,
                     _nextEvent,
-                    _companyFinances
+                    _companyFinances,
+                    _gameStatus,
+                    _gameCrewStatus,
+                    _gameTime,
+                    _gameShipHull,
+                    _gameShipEngines,
+                    _gameShipSensors,
+                    this
                 )
                     onClickButton3()
             }
@@ -201,6 +222,8 @@ private var _nextEvent = MutableValue(0)
                 handleNextEvent(
                     _eventMessage,
                     _eventImage,
+                    _eventType,
+                    _eventLocation,
                     _button1Text,
                     _button2Text,
                     _button3Text,
@@ -220,7 +243,14 @@ private var _nextEvent = MutableValue(0)
                     _button5NextEvent,
                     _button6NextEvent,
                     _nextEvent,
-                    _companyFinances
+                    _companyFinances,
+                    _gameStatus,
+                    _gameCrewStatus,
+                    _gameTime,
+                    _gameShipHull,
+                    _gameShipEngines,
+                    _gameShipSensors,
+                    this
                 )
                 onClickButton4()
             }
@@ -228,6 +258,8 @@ private var _nextEvent = MutableValue(0)
                 handleNextEvent(
                     _eventMessage,
                     _eventImage,
+                    _eventType,
+                    _eventLocation,
                     _button1Text,
                     _button2Text,
                     _button3Text,
@@ -247,7 +279,14 @@ private var _nextEvent = MutableValue(0)
                     _button5NextEvent,
                     _button6NextEvent,
                     _nextEvent,
-                    _companyFinances
+                    _companyFinances,
+                    _gameStatus,
+                    _gameCrewStatus,
+                    _gameTime,
+                    _gameShipHull,
+                    _gameShipEngines,
+                    _gameShipSensors,
+                    this
                 )
                 onClickButton5()
             }
@@ -255,6 +294,8 @@ private var _nextEvent = MutableValue(0)
                 handleNextEvent(
                     _eventMessage,
                     _eventImage,
+                    _eventType,
+                    _eventLocation,
                     _button1Text,
                     _button2Text,
                     _button3Text,
@@ -274,8 +315,16 @@ private var _nextEvent = MutableValue(0)
                     _button5NextEvent,
                     _button6NextEvent,
                     _nextEvent,
-                    _companyFinances
+                    _companyFinances,
+                    _gameStatus,
+                    _gameCrewStatus,
+                    _gameTime,
+                    _gameShipHull,
+                    _gameShipEngines,
+                    _gameShipSensors,
+                    this
                 )
+
                 onClickButton6()
             }
         }
@@ -286,6 +335,8 @@ fun setupSpaceEventUI(
     spaceEvent: GameEvent,
     eventMessage: MutableValue<String>,
     eventImage: MutableValue<DrawableResource>,
+    eventType: MutableValue<String>,
+    eventLocation: MutableValue<String>,
     button1Text: MutableValue<String>,
     button2Text: MutableValue<String>,
     button3Text: MutableValue<String>,
@@ -304,10 +355,18 @@ fun setupSpaceEventUI(
     button4NextEvent: MutableValue<Int>,
     button5NextEvent: MutableValue<Int>,
     button6NextEvent: MutableValue<Int>,
-    companyFinances: MutableValue<Double>
+    companyFinances: MutableValue<Long>,
+    gameStatus: MutableValue<String>,
+    gameCrewStatus: MutableValue<Int>,
+    gameTime: MutableValue<Double>,
+    gameShipHull: MutableValue<Int>,
+    gameShipEngines: MutableValue<Int>,
+    gameShipSensors: MutableValue<Int>,
 ) {
     eventMessage.value = spaceEvent.eventMessage
     eventImage.value = spaceEvent.eventImage
+    eventType.value = spaceEvent.eventType
+    eventLocation.value = spaceEvent.eventLocation
     button1Text.value = spaceEvent.eventDecision1.buttonText
     button2Text.value = spaceEvent.eventDecision2.buttonText
     button3Text.value = spaceEvent.eventDecision3.buttonText
@@ -326,54 +385,138 @@ fun setupSpaceEventUI(
     button4NextEvent.value = spaceEvent.eventDecision4.nextEventId
     button5NextEvent.value = spaceEvent.eventDecision5.nextEventId
     button6NextEvent.value = spaceEvent.eventDecision6.nextEventId
+
+    if (spaceEvent.eventType.equals("change_stats")) {
+        if (!spaceEvent.gameStatusChange.isNullOrEmpty()) {
+            gameStatus.value = spaceEvent.gameStatusChange.orEmpty()
+        }
+
+        if (spaceEvent.gameCompanyFinancesChange != null) {
+            companyFinances.value = spaceEvent.gameCompanyFinancesChange!! + companyFinances.value
+        }
+
+        if (spaceEvent.gameCrewStatusChange != null) {
+            gameCrewStatus.value = spaceEvent.gameCrewStatusChange!! + gameCrewStatus.value
+        }
+
+        if (spaceEvent.gameShipHullChange != null) {
+            gameShipHull.value = spaceEvent.gameShipHullChange!! + gameShipHull.value
+        }
+
+        if (spaceEvent.gameShipEnginesChange != null) {
+            gameShipEngines.value = spaceEvent.gameShipEnginesChange!! + gameShipEngines.value
+        }
+
+        if (spaceEvent.gameShipSensorsChange != null) {
+            gameShipSensors.value = spaceEvent.gameShipSensorsChange!! + gameShipSensors.value
+        }
+
+        if (spaceEvent.gameTimeChange != null) {
+            gameTime.value = gameTime.value - spaceEvent.gameTimeChange!!
+        } else {
+            gameTime.value = gameTime.value - 0.5
+        }
+    }
+
+    if (spaceEvent.eventType.equals("gamestatuschange_ThisWillNeverHappenNow")) {
+        if (!spaceEvent.gameStatusChange.isNullOrEmpty()) {
+            gameStatus.value = spaceEvent.gameStatusChange.orEmpty()
+            if (spaceEvent.gameStatusChange.equals("gamerestart")) {
+                eventMessage.value = "Welcome to cCommerce!"
+                eventImage.value = Res.drawable.red_rocket_art1
+                eventType.value = "gamestart"
+                eventLocation.value = "earth"
+                button1Text.value = ""
+                button2Text.value = ""
+                button3Text.value = ""
+                button4Text.value = ""
+                button5Text.value = ""
+                button6Text.value = "Next"
+                button1Enabled.value = false
+                button2Enabled.value = false
+                button3Enabled.value = false
+                button4Enabled.value = false
+                button5Enabled.value = false
+                button6Enabled.value = false
+                button1NextEvent.value = 0
+                button2NextEvent.value = 0
+                button3NextEvent.value = 0
+                button4NextEvent.value = 0
+                button5NextEvent.value = 0
+                button6NextEvent.value = 0
+                gameTime.value = 20.0
+                companyFinances.value = 10000000000
+                gameShipHull.value = 0
+                gameShipEngines.value = 0
+                gameShipSensors.value = 0
+            }
+        }
+    }
 }
 
 fun handleNextEvent(
-    eventMessage: MutableValue<String>,
-    eventImage: MutableValue<DrawableResource>,
-    button1Text: MutableValue<String>,
-    button2Text: MutableValue<String>,
-    button3Text: MutableValue<String>,
-    button4Text: MutableValue<String>,
-    button5Text: MutableValue<String>,
-    button6Text: MutableValue<String>,
-    button1Enabled: MutableValue<Boolean>,
-    button2Enabled: MutableValue<Boolean>,
-    button3Enabled: MutableValue<Boolean>,
-    button4Enabled: MutableValue<Boolean>,
-    button5Enabled: MutableValue<Boolean>,
-    button6Enabled: MutableValue<Boolean>,
-    button1NextEvent: MutableValue<Int>,
-    button2NextEvent: MutableValue<Int>,
-    button3NextEvent: MutableValue<Int>,
-    button4NextEvent: MutableValue<Int>,
-    button5NextEvent: MutableValue<Int>,
-    button6NextEvent: MutableValue<Int>,
-    nextEvent:MutableValue<Int>,
-    companyFinances: MutableValue<Double>
+eventMessage: MutableValue<String>,
+eventImage: MutableValue<DrawableResource>,
+eventType: MutableValue<String>,
+eventLocation: MutableValue<String>,
+button1Text: MutableValue<String>,
+button2Text: MutableValue<String>,
+button3Text: MutableValue<String>,
+button4Text: MutableValue<String>,
+button5Text: MutableValue<String>,
+button6Text: MutableValue<String>,
+button1Enabled: MutableValue<Boolean>,
+button2Enabled: MutableValue<Boolean>,
+button3Enabled: MutableValue<Boolean>,
+button4Enabled: MutableValue<Boolean>,
+button5Enabled: MutableValue<Boolean>,
+button6Enabled: MutableValue<Boolean>,
+button1NextEvent: MutableValue<Int>,
+button2NextEvent: MutableValue<Int>,
+button3NextEvent: MutableValue<Int>,
+button4NextEvent: MutableValue<Int>,
+button5NextEvent: MutableValue<Int>,
+button6NextEvent: MutableValue<Int>,
+nextEvent:MutableValue<Int>,
+companyFinances: MutableValue<Long>,
+gameStatus: MutableValue<String>,
+gameCrewStatus: MutableValue<Int>,
+gameTime: MutableValue<Double>,
+gameShipHull: MutableValue<Int>,
+gameShipEngines: MutableValue<Int>,
+gameShipSensors: MutableValue<Int>,
+component: GameSpaceScreenComponent
 ) {
-    setupSpaceEventUI(
-        SpaceEvents().getEventFromId(nextEvent),
-        eventMessage,
-        eventImage,
-        button1Text,
-        button2Text,
-        button3Text,
-        button4Text,
-        button5Text,
-        button6Text,
-        button1Enabled,
-    button2Enabled,
-    button3Enabled,
-    button4Enabled,
-    button5Enabled,
-    button6Enabled,
-        button1NextEvent,
-        button2NextEvent,
-        button3NextEvent,
-        button4NextEvent,
-        button5NextEvent,
-        button6NextEvent,
-        companyFinances
-    )
+setupSpaceEventUI(
+    SpaceEvents().getEventFromId(nextEvent, component),
+    eventMessage,
+    eventImage,
+    eventType,
+    eventLocation,
+    button1Text,
+    button2Text,
+    button3Text,
+    button4Text,
+    button5Text,
+    button6Text,
+    button1Enabled,
+button2Enabled,
+button3Enabled,
+button4Enabled,
+button5Enabled,
+button6Enabled,
+    button1NextEvent,
+    button2NextEvent,
+    button3NextEvent,
+    button4NextEvent,
+    button5NextEvent,
+    button6NextEvent,
+    companyFinances,
+    gameStatus,
+    gameCrewStatus,
+    gameTime,
+    gameShipHull,
+    gameShipEngines,
+    gameShipSensors,
+)
 }
