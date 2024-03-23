@@ -13,7 +13,7 @@ import ui.navigation.RootComponent
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val mMediaPlayer = MediaPlayer.create(this, R.raw.observingthestar)
+        val mMediaPlayer = MediaPlayer.create(this, R.raw.ccommerce_game_audio_mvp)
         mMediaPlayer.setOnPreparedListener {
                 mp -> mp.isLooping = true
         }

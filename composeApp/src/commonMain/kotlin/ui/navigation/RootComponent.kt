@@ -10,9 +10,9 @@ import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.pushNew
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.CreditsScreenComponent
-import ui.components.GameSpaceScreenComponent
-import ui.components.TitleScreenComponent
+import ui.components.ViewModels.CreditsScreenComponent
+import ui.components.ViewModels.GameSpaceScreenComponent
+import ui.components.ViewModels.TitleScreenComponent
 
 class RootComponent(
     componentContext: ComponentContext

@@ -3,8 +3,12 @@
 package data.models.Events
 
 import cyoaenginekmm.composeapp.generated.resources.Res
+import cyoaenginekmm.composeapp.generated.resources.building_rocket1
+import cyoaenginekmm.composeapp.generated.resources.considering_rockets
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_hole_repair
+import cyoaenginekmm.composeapp.generated.resources.rocket_blueprint
+import cyoaenginekmm.composeapp.generated.resources.rocket_built
 import cyoaenginekmm.composeapp.generated.resources.spr_stars01
 import data.models.EventDecision
 import data.models.GameEvent
@@ -52,7 +56,7 @@ class StartGameEvents {
         return GameEvent(
             eventId = 50,
             eventMessage = "From the blueprint, there are a few ways to craft the ship with varying costs and benefits. As CEO, choose which you think is best from these options.",
-            eventImage = Res.drawable.red_rocket_hole_repair,
+            eventImage = Res.drawable.considering_rockets,
             eventLocation = "earth",
             eventName = "Choose Initial Ship Build",
             eventType = "decision",
@@ -118,7 +122,7 @@ class StartGameEvents {
             eventId = 50,
             eventMessage = "You have logically chosen that even though there is a high cost, there is also a high benefit along with it.\n" +
                     "You want a sturdy vessel to travel the stars with.",
-            eventImage = Res.drawable.red_rocket_hole_repair,
+            eventImage = Res.drawable.building_rocket1,
             eventLocation = "earth",
             eventName = "Choose Initial Ship Build",
             eventType = "story",
@@ -184,7 +188,7 @@ class StartGameEvents {
             eventId = 54,
             eventMessage = "Your ship is built with the best Hull, Sensors, and Engines earth currently has to offer.\n" +
                     "You shouldn't need to invest any more into it for awhile.",
-            eventImage = Res.drawable.red_rocket_hole_repair,
+            eventImage = Res.drawable.rocket_built,
             eventLocation = "earth",
             eventName = "Choose Initial Ship Build",
             eventType = "change_stats",

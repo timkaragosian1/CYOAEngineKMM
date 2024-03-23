@@ -29,7 +29,7 @@ struct ContentView: View {
 func playSound(){
      
        //getting the resource path
-       let resourcePath = Bundle.main.url(forResource: "ObservingTheStar", withExtension: "mp3")
+       let resourcePath = Bundle.main.url(forResource: "ccommerce_game_audio_mvp", withExtension: "mp3")
        
        do{
            //initializing the audio player with the resource path

@@ -2,7 +2,6 @@
 
 package ui.screens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,25 +19,18 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.generic_back_button
 import cyoaenginekmm.composeapp.generated.resources.matt_schafer
-import cyoaenginekmm.composeapp.generated.resources.rocket
 import cyoaenginekmm.composeapp.generated.resources.spacefield_a_000
 import cyoaenginekmm.composeapp.generated.resources.tim_karagosian
-import cyoaenginekmm.composeapp.generated.resources.titlescreen_credits_button
-import cyoaenginekmm.composeapp.generated.resources.titlescreen_main_title
-import cyoaenginekmm.composeapp.generated.resources.titlescreen_start_game_button
-import cyoaenginekmm.composeapp.generated.resources.titlescreen_sub_title
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import ui.components.CreditsScreenComponent
+import ui.components.ViewModels.CreditsScreenComponent
 import ui.components.CreditsScreenEvent
-import ui.components.TitleScreenEvent
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
