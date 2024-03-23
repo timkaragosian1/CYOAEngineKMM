@@ -15,15 +15,15 @@ struct ComposeView: UIViewControllerRepresentable {
 
 struct ContentView: View {
     var body: some View {
+        @UIApplicationDelegateAdaptor var appDelegate: AppDelegate
         VStack{
-                  
-                    Text("Wind Chime is playing").fontWeight(.heavy)
-                }
-                .onAppear(perform: playSound)
-        
-        ComposeView()
-                .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
+            VStack{
+                ComposeView()
+                    .ignoresSafeArea(.keyboard)
+            }.onAppear(perform:playSound)
+        }
     }
+         // Compose has own keyboard handler
 }
 
 func playSound(){
@@ -47,4 +47,5 @@ func playSound(){
          //error handling
            print(error.localizedDescription)
        }
-   }
+}
+
