@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -20,14 +21,14 @@ import cyoaenginekmm.composeapp.generated.resources.generic_money_bkg1
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ui.components.GameScreen.GameScreenDecisionButtonsRow
-import ui.components.ViewModels.GameSpaceScreenComponent
+import ui.components.ViewModels.GameScreenComponent
 import ui.components.GameScreen.GameScreenImageStatusRow
 import ui.components.GameScreen.GameScreenTextRow
 
 var eventMessageNumber: Int = 0
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun GameScreen(component: GameSpaceScreenComponent) {
+fun GameScreen(component: GameScreenComponent) {
     val eventMessage by component.eventMessage.subscribeAsState()
     val eventImage by component.eventImage.subscribeAsState()
     val button1Text by component.button1Text.subscribeAsState()
@@ -45,7 +46,6 @@ fun GameScreen(component: GameSpaceScreenComponent) {
     val gameShipDestination by component.gameShipDestination.subscribeAsState()
     val gameTime by component.gameTime.subscribeAsState()
     val gameStatus by component.gameStatus.subscribeAsState()
-
 
     Box (modifier = Modifier
         .fillMaxSize()

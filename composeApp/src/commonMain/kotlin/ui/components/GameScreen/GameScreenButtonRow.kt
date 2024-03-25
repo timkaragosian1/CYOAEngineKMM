@@ -22,12 +22,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.ViewModels.GameSpaceScreenComponent
+import ui.components.ViewModels.GameScreenComponent
 
 
 @Composable
 fun GameScreenDecisionButtonsRow(
-    component: GameSpaceScreenComponent,
+    component: GameScreenComponent,
     button1Text:String,
     button2Text:String,
     button3Text:String,
@@ -63,14 +63,15 @@ fun GameScreenDecisionButtonsRow(
                         component.button1NextEvent.value)} ,
                     button1Text,
                     .5f,
-                    component.button1Enabled.value)
+                    component.button1Enabled.value,
+                )
                 DecisionButton(
                     { component.onEvent(
                         GameScreenEvent.ClickButton2,
                         component.button2NextEvent.value)
                     }
                     ,button2Text, 1f,
-                    component.button2Enabled.value
+                    component.button2Enabled.value,
                 )
             }
             Row(
@@ -83,21 +84,22 @@ fun GameScreenDecisionButtonsRow(
                     {
                         component.onEvent(
                             GameScreenEvent.ClickButton3,
-                            component.button3NextEvent.value)
+                            component.button3NextEvent.value,
+                        )
                     },
                     button3Text,
                     .5f,
-                    component.button3Enabled.value
+                    component.button3Enabled.value,
                 )
                 DecisionButton(
                     { component.onEvent(
                         GameScreenEvent.ClickButton4,
-                        component.button4NextEvent.value
+                        component.button4NextEvent.value,
                     )
                     } ,
                     button4Text,
                     1f,
-                    component.button4Enabled.value
+                    component.button4Enabled.value,
                 )
             }
 
@@ -115,7 +117,7 @@ fun GameScreenDecisionButtonsRow(
                     } ,
                     button5Text,
                     .5f,
-                    component.button5Enabled.value
+                    component.button5Enabled.value,
                 )
                 DecisionButton(
                     { component.onEvent(
@@ -124,7 +126,7 @@ fun GameScreenDecisionButtonsRow(
                     } ,
                     button6Text,
                     1f,
-                    component.button6Enabled.value
+                    component.button6Enabled.value,
                 )
             }
         }

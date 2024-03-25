@@ -11,6 +11,7 @@ import ui.navigation.RootComponent
 
 import ui.screens.CreditsScreen
 import ui.screens.GameScreen
+import ui.screens.NamesSelectScreen
 import ui.screens.TitleScreen
 
 @OptIn(ExperimentalResourceApi::class)
@@ -28,7 +29,8 @@ fun App(root: RootComponent) {
             when(val instance = child.instance){
                 is RootComponent.Child.CreditsScreen -> CreditsScreen(instance.component)
                 is RootComponent.Child.TitleScreen -> TitleScreen(instance.component)
-                is RootComponent.Child.GameSpaceScreen -> GameScreen(instance.component)
+                is RootComponent.Child.GameScreen -> GameScreen(instance.component)
+                is RootComponent.Child.NamesSelectScreen -> NamesSelectScreen(instance.component)
             }
         }
         /**

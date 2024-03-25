@@ -9,7 +9,7 @@ import data.models.Events.SpaceEvents
 import data.models.GameEvent
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.ViewModels.GameSpaceScreenComponent
+import ui.components.ViewModels.GameScreenComponent
 
 class GameScreenComponentEventController {
     fun setupSpaceEventUI(
@@ -166,7 +166,7 @@ class GameScreenComponentEventController {
         gameShipHull: MutableValue<Int>,
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
-        component: GameSpaceScreenComponent
+        component: GameScreenComponent
     ) {
         setupSpaceEventUI(
             SpaceEvents().getEventFromId(nextEvent, component),

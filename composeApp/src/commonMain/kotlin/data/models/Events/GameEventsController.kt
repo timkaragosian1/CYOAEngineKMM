@@ -7,20 +7,15 @@ import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.earth_resources_limited
 import cyoaenginekmm.composeapp.generated.resources.new_celestial_market
 import cyoaenginekmm.composeapp.generated.resources.penic_device
-import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
-import cyoaenginekmm.composeapp.generated.resources.red_rocket_art2
-import cyoaenginekmm.composeapp.generated.resources.red_rocket_hole_repair
-import cyoaenginekmm.composeapp.generated.resources.red_rocket_impact
 import cyoaenginekmm.composeapp.generated.resources.rocket_blueprint
-import cyoaenginekmm.composeapp.generated.resources.startinggame
 import cyoaenginekmm.composeapp.generated.resources.usa_resource_company
 import data.models.EventDecision
 import data.models.GameEvent
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.ViewModels.GameSpaceScreenComponent
+import ui.components.ViewModels.GameScreenComponent
 
 class SpaceEvents {
-    fun getEventFromId(nextEventId: MutableValue<Int>, component: GameSpaceScreenComponent): GameEvent {
+    fun getEventFromId(nextEventId: MutableValue<Int>, component: GameScreenComponent): GameEvent {
         when (nextEventId.value) {
             -1 -> return getStartingGameEvent(component)
             0 -> return getStartingGameEvent(component)
@@ -28,14 +23,14 @@ class SpaceEvents {
             2 -> return getStartingSpaceEvent3()
             3 -> return getStartingSpaceEvent4()
             4 -> return getStartingSpaceEvent5()
-            5 -> return StartGameEvents().startShipBuilder()
-            53 -> return StartGameEvents().getExceptionShipChosen1()
-            54 -> return StartGameEvents().getExceptionShipChosen2()
+            5 -> return BuildShipEvents().startShipBuilder()
+            53 -> return BuildShipEvents().getExceptionShipChosen1()
+            54 -> return BuildShipEvents().getExceptionShipChosen2()
         }
         return getStartingGameEvent(component)
     }
 
-    fun getStartingGameEvent(component: GameSpaceScreenComponent): GameEvent {
+    fun getStartingGameEvent(component: GameScreenComponent): GameEvent {
         return GameEvent(
             eventName = "Start of Game",
             eventId = 0,

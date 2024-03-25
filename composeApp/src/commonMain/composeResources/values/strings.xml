@@ -5,8 +5,18 @@
     <string name="titlescreen_start_game_button">Start Game</string>
     <string name="titlescreen_credits_button">Credits</string>
 
+    <string name="nameselectscreen_submit_button">Sign In</string>
+    <string name="nameselectscreen_title_text">P.E.N.I.C.</string>
+    <string name="nameselectscreen_subtitle_text">User Sign In</string>
+    <string name="nameselectscreen_ceo_firstname">CEO First Name</string>
+    <string name="nameselectscreen_ceo_last_name">CEO Last Name</string>
+    <string name="nameselectscreen_company_name">Company Name</string>
+
+    <string name="gamescreencomponent_eventtype_gamestart">Company Name</string>
+
     <string name="spacescreen_title">Ship Status: Space Travel</string>
     <string name="generic_back_button">Back</string>
     <string name="tim_karagosian">Tim Karagosian</string>
     <string name="matt_schafer">Matt Schafer</string>
+    <string name="blank"></string>
 </resources>

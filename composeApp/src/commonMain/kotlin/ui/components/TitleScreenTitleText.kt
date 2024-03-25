@@ -56,7 +56,7 @@ fun TitleScreenTitleText() {
         color = Color.White,
         fontWeight = FontWeight.Bold,
         fontSize = 30.sp,
-        text = stringResource( Res.string.titlescreen_sub_title),
+        text = stringResource(Res.string.titlescreen_sub_title),
         style = TextStyle(
             fontSize = 40.sp,
             shadow = Shadow(

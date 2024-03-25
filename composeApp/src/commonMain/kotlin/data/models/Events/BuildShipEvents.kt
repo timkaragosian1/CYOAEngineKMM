@@ -5,53 +5,12 @@ package data.models.Events
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.building_rocket1
 import cyoaenginekmm.composeapp.generated.resources.considering_rockets
-import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
-import cyoaenginekmm.composeapp.generated.resources.red_rocket_hole_repair
-import cyoaenginekmm.composeapp.generated.resources.rocket_blueprint
 import cyoaenginekmm.composeapp.generated.resources.rocket_built
-import cyoaenginekmm.composeapp.generated.resources.spr_stars01
 import data.models.EventDecision
 import data.models.GameEvent
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 
-class StartGameEvents {
-    /**
-     * 1. Asks about what company makes and asks about company's rise to power through CEO
-     * 2. Facial Scan complete
-     * 3. This is a PENIC (Personal Efforless Network Instant Communication) device to give you company and Ship status.
-     * 4. Device is for quick decisions and communications. You are the CEO and must remain at the company HQ in America.
-     * 5. With you at the helm, your first order of business is leading the company to space to save the planet
-     * 6. Earth is almost exhausted of natural resources and must take to the stars to continue to thrive, survive, and profit!
-     * 6. Your company has been offered a government contract to gather resources from the local celestial planets over the next 20 years!
-     * 7. You are provided a flexible blueprint made from the best minds globally. You immediately begin contracting engineers to build it.
-     * 8.
-     *
-     * Stats to track:
-     *      - Company Finances: Int
-     *
-     *      - Ship hull: 1/2/3/4/5
-     *      - Ship engines: 1/2/3/4/5
-     *      - Ship sensors: 1/2/3/4/5
-     *
-     *      - Crew condition: 1/2/3/4/5
-     *      - Time Left: Double (years)
-     *      -
-     * Types of Conditions:
-     *      1 = Critical
-     *      2 = Poor
-     *      3 = Normal
-     *      4 = Good
-     *      5 = Optimal
-     *
-     * Each event series should:
-     *      - Tell Story
-     *      - Allow decisions
-     *      - Calculate result based on stats
-     *      - Handle Stat Changes
-     *      - Check for end game conditions
-     *      - Navigate to next event path properly
-     */
-
+class BuildShipEvents {
     fun startShipBuilder():GameEvent{
         return GameEvent(
             eventId = 50,
@@ -149,14 +108,14 @@ class StartGameEvents {
                 decisionName = "Satisfactory Ship Build",
                 decisionButtonId = 2,
                 buttonText = "Satisfactory Build Quality\n$5 Billion",
-                nextEventId = 53,
+                nextEventId = 55,
                 enabled = false,
             ),
             eventDecision3 = EventDecision(
                 decisionName = "Inexpensive Ship Build",
                 decisionButtonId = 3,
                 buttonText = "Inexpensive, Not Quality\n$3 Billion",
-                nextEventId = 53,
+                nextEventId = 58,
                 enabled = false,
             ),
             eventDecision4 = EventDecision(

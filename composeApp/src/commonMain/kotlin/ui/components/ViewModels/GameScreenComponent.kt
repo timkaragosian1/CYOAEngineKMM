@@ -8,14 +8,17 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import cyoaenginekmm.composeapp.generated.resources.Res
+import cyoaenginekmm.composeapp.generated.resources.blank
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.getString
+import org.jetbrains.compose.resources.stringResource
 import ui.components.GameScreen.GameScreenComponentEventController
 import ui.components.GameScreen.GameScreenEvent
 
 @ExperimentalResourceApi
-class GameSpaceScreenComponent(
+class GameScreenComponent(
     componentContext: ComponentContext,
     private val onClickButton1: () -> Unit,
     private val onClickButton2: () -> Unit,
@@ -23,12 +26,17 @@ class GameSpaceScreenComponent(
     private val onClickButton4: () -> Unit,
     private val onClickButton5: () -> Unit,
     private val onClickButton6: () -> Unit,
-    ): ComponentContext by componentContext {
+    private val gameCEOFirstname:String,
+    private val gameCEOLastname:String,
+    private val gameCompanyName: String,
+    private val initEventType: String,
+    private val onNavigateBackToTitleScreen: () -> Unit
+): ComponentContext by componentContext {
     private var _eventMessage = MutableValue("Welcome new user! Please press the ID Scan Sign In button to continue.")
     var eventMessage:Value<String> = _eventMessage
     private var _eventImage = MutableValue(Res.drawable.red_rocket_art1)
     var eventImage: Value<DrawableResource> = _eventImage
-    private var _eventType = MutableValue("gamestart")
+    private var _eventType = MutableValue(initEventType)
     var eventType:Value<String> = _eventType
     private var _eventLocation = MutableValue("")
     var eventLocation:Value<String> = _eventLocation
@@ -89,11 +97,24 @@ class GameSpaceScreenComponent(
     var gameShipEngines: Value<Int> = _gameShipEngines
     var _gameShipDestination = MutableValue("UNKN")
     var gameShipDestination: Value<String> = _gameShipDestination
-    var _gameTime = MutableValue(20.0)
+    var _gameTime = MutableValue(50.0)
     var gameTime: Value<Double> = _gameTime
+
+    var _ceoFirstname = MutableValue(gameCEOFirstname)
+    var ceoFirstname:Value<String> = _ceoFirstname
+
+    var _ceoLastname = MutableValue(gameCEOLastname)
+    var ceoLastname:Value<String> = _ceoLastname
+
+    var _companyName = MutableValue(gameCompanyName)
+    var companyName:Value<String> = _companyName
 
     fun updateNextEvent(nextEvent:Int){
         _nextEvent.value = nextEvent
+    }
+
+    fun handleGameOver() {
+        onNavigateBackToTitleScreen()
     }
 
     fun onEvent(event: GameScreenEvent, nextEvent: Int){

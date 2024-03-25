@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.SpaceBackground1
 import cyoaenginekmm.composeapp.generated.resources.open_screen_bkg
+import cyoaenginekmm.composeapp.generated.resources.open_screen_bkg1
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_hole_do_nothing
 import cyoaenginekmm.composeapp.generated.resources.titlescreen_credits_button
 import cyoaenginekmm.composeapp.generated.resources.titlescreen_main_title
@@ -52,7 +53,7 @@ import ui.components.TitleScreenTitleText
 fun TitleScreen(component: TitleScreenComponent) {
     Box (modifier = Modifier
         .fillMaxSize()
-        .paint(painter = painterResource(Res.drawable.open_screen_bkg),
+        .paint(painter = painterResource(Res.drawable.open_screen_bkg1),
             contentScale = ContentScale.FillBounds
         )
     ) {
