@@ -3,6 +3,7 @@ package ui.components.ViewModels
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
+import ui.components.NameSelectScreen.NamesScreenValues
 import ui.components.NameSelectScreen.NamesSelectScreenEvent
 import ui.navigation.RootComponent
 
@@ -34,6 +35,18 @@ class NamesSelectScreenComponent(
                 NamesSelectScreenEvent.ClickSubmitNamesButton -> onNavigateToGameScreen()
             }
         }
+    }
+
+    fun getRandomFirstName(){
+        _gameCEOFirstname.value = NamesScreenValues().getRandomFirstName()
+    }
+
+    fun getRandomLastName(){
+        _gameCEOLastname.value = NamesScreenValues().getRandomLastName()
+    }
+
+    fun getRandomCompanyName(){
+        _gameCompanyName.value = NamesScreenValues().getRandomCompanyName()
     }
 
     fun setCEOFirstname (ceoFirstname:String){

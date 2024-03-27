@@ -3,6 +3,7 @@
 package ui.components.NameSelectScreen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import cyoaenginekmm.composeapp.generated.resources.Res
+import cyoaenginekmm.composeapp.generated.resources.getRandomName
 import cyoaenginekmm.composeapp.generated.resources.nameselectscreen_ceo_firstname
 import cyoaenginekmm.composeapp.generated.resources.nameselectscreen_ceo_last_name
 import cyoaenginekmm.composeapp.generated.resources.nameselectscreen_company_name
@@ -87,41 +89,26 @@ class NameSelectScreenUIComponents {
         gameCEOLastname:String,
         gameCompanyName:String
     ) {
-
-        TextField(
-            value = gameCEOFirstname,
-            onValueChange = {
-                if (it.length <= 10) {
-                    component.setCEOFirstname(it)
-                }},
-            label = { Text(stringResource(Res.string.nameselectscreen_ceo_firstname)) },
-            textStyle = TextStyle.Default.copy(fontSize = gameFontSizes.normal),
-            modifier = Modifier
-                .clip(shape = gameShapes.barelyRoundedRectange)
-                .background(gameColors.NamesButtonRed)
+        getNamesScreenTextInputRow(
+                hintValue = stringResource(Res.string.nameselectscreen_ceo_firstname),
+                attachedString = gameCEOFirstname,
+                component,
+            { component.getRandomFirstName() },
+            "first"
         )
-        TextField(
-            value = gameCEOLastname,
-            onValueChange = {
-                if (it.length <= 15) {
-                    component.setCEOLastname(it)
-                }},
-            textStyle = TextStyle.Default.copy(fontSize = gameFontSizes.normalLarge),
-            label = { Text(stringResource(Res.string.nameselectscreen_ceo_last_name)) },
-            modifier = Modifier
-                .clip(shape = gameShapes.barelyRoundedRectange)
-                .background(gameColors.NamesButtonRed)
+        getNamesScreenTextInputRow(
+            hintValue = stringResource(Res.string.nameselectscreen_ceo_last_name),
+            attachedString = gameCEOLastname,
+            component,
+            { component.getRandomLastName() },
+            "last"
         )
-        TextField(
-            value = gameCompanyName,
-            onValueChange = {
-                if (it.length <= 20) {
-                    component.setCompanyName(it)
-                }},            textStyle = TextStyle.Default.copy(fontSize = gameFontSizes.large),
-            label = { Text(stringResource(Res.string.nameselectscreen_company_name)) },
-            modifier = Modifier
-                .clip(shape = gameShapes.barelyRoundedRectange)
-                .background(gameColors.NamesButtonRed)
+        getNamesScreenTextInputRow(
+            hintValue = stringResource(Res.string.nameselectscreen_company_name),
+            attachedString = gameCompanyName,
+            component,
+            { component.getRandomCompanyName() },
+            "company"
         )
         Spacer(modifier = Modifier.fillMaxHeight(.15f))
         Button(
@@ -140,6 +127,56 @@ class NameSelectScreenUIComponents {
                 textAlign = TextAlign.Center,
                 fontSize = gameFontSizes.normalLarge,
                 color = Color.White
+            )
+        }
+    }
+
+    @Composable
+    fun getNamesScreenTextInputRow(hintValue: String, attachedString: String, component: NamesSelectScreenComponent, onClick: () -> Unit, buttonType: String) {
+        Row (
+            modifier = Modifier
+                .clip(shape = gameShapes.barelyRoundedRectange)
+                .background(gameColors.MilkyBackgroundGray)
+                .fillMaxWidth(.94f)
+        ) {
+            getNamesScreenTextFieldInput(hintValue, attachedString, component, buttonType)
+            getRandomChoiceButton(onClick)
+        }
+    }
+
+    @Composable
+    fun getNamesScreenTextFieldInput(hintValue:String, attachedString:String, component: NamesSelectScreenComponent, buttonType:String) {
+        TextField(
+            value = attachedString,
+            onValueChange = {
+                if (it.length <= 10 && buttonType.equals("first")) {
+                    component.setCEOFirstname(it)
+                } else if (it.length <= 15 && buttonType.equals("last")) {
+                    component.setCEOLastname(it)
+                } else if (it.length <= 25 && buttonType.equals("company")) {
+                    component.setCompanyName(it)
+                } },
+            label = { Text(hintValue) },
+            textStyle = TextStyle.Default.copy(fontSize = gameFontSizes.normal),
+            modifier = Modifier.fillMaxWidth(.75f)
+        )
+    }
+
+    @Composable
+    fun getRandomChoiceButton(onClick:()->Unit) {
+        Button(
+            onClick = onClick,
+            modifier = Modifier
+                .fillMaxWidth(.9f),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = gameColors.TextWhite
+            )
+        ) {
+            Text(
+                text = stringResource(Res.string.getRandomName),
+                textAlign = TextAlign.Center,
+                fontSize = 10.sp,//gameFontSizes.default,
+                color = Color.Black
             )
         }
     }

@@ -23,6 +23,7 @@
     <string name="creditsscreen_tim_karagosian">Tim Karagosian</string>
     <string name="creditsscreen_matt_schafer">Matt Schafer</string>
     <string name="creditsscreen_unknown_person">Unknown Person</string>
+    <string name="getRandomName">Random</string>
 
     <string name="spacescreen_title">Ship Status: Space Travel</string>
     <string name="generic_back_button_text">Back</string>

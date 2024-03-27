@@ -11,7 +11,7 @@ data class GameColors (
     val StoryTextBackgroundRed:Color = Color.hsv(5f, .7f, .3f, .9f),
     val StoryTextBackgroundShadow:Color = Color.hsv(10f, .1f, .1f, .5f),
     val GameButtonBlue:Color = Color.hsv(244f,1f,.5f,.9f),
-    val NamesButtonRed:Color = Color.hsv(244f, .0f, .95f, .65f),
+    val MilkyBackgroundGray:Color = Color.hsv(244f, .0f, .95f, .65f),
 
     val Purple:Color = Color.hsv(288f, .67f, .99f),
     val BlackShadowScreen:Color = Color.hsv(0f,0f,.12f,.7f),
