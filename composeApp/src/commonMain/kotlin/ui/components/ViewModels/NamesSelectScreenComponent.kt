@@ -3,8 +3,7 @@ package ui.components.ViewModels
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import ui.components.NamesSelectScreenEvent
-import ui.components.TitleScreenEvent
+import ui.components.NameSelectScreen.NamesSelectScreenEvent
 import ui.navigation.RootComponent
 
 class NamesSelectScreenComponent(

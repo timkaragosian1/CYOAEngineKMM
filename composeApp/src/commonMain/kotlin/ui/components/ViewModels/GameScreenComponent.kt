@@ -1,5 +1,4 @@
-@file:OptIn(ExperimentalResourceApi::class, ExperimentalResourceApi::class,
-    ExperimentalResourceApi::class, ExperimentalResourceApi::class, ExperimentalResourceApi::class
+@file:OptIn(ExperimentalResourceApi::class
 )
 
 package ui.components.ViewModels
@@ -7,20 +6,14 @@ package ui.components.ViewModels
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import cyoaenginekmm.composeapp.generated.resources.Res
-import cyoaenginekmm.composeapp.generated.resources.blank
-import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.getString
-import org.jetbrains.compose.resources.stringResource
 import ui.components.GameScreen.GameScreenComponentEventController
 import ui.components.GameScreen.GameScreenEvent
 
 @ExperimentalResourceApi
 class GameScreenComponent(
     componentContext: ComponentContext,
-    private val initEventType: String,
     private val gameEventMessage:String,
     private val gameEventImage: DrawableResource,
     private val gameEventType:String,
@@ -63,11 +56,11 @@ class GameScreenComponent(
     private val onClickButton6: () -> Unit,
     private val onNavigateBackToTitleScreen: () -> Unit
 ): ComponentContext by componentContext {
-    private var _eventMessage = MutableValue("Welcome new user! Please press the ID Scan Sign In button to continue.")
+    private var _eventMessage = MutableValue(gameEventMessage)
     var eventMessage:Value<String> = _eventMessage
-    private var _eventImage = MutableValue(Res.drawable.red_rocket_art1)
+    private var _eventImage = MutableValue(gameEventImage)
     var eventImage: Value<DrawableResource> = _eventImage
-    private var _eventType = MutableValue(initEventType)
+    private var _eventType = MutableValue(gameEventType)
     var eventType:Value<String> = _eventType
     private var _eventLocation = MutableValue(gameEventLocation)
     var eventLocation:Value<String> = _eventLocation

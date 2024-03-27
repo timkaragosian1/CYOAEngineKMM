@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalResourceApi::class)
 
-package ui.components
+package ui.components.TitleScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer

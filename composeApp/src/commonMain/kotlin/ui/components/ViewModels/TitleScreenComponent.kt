@@ -1,7 +1,7 @@
 package ui.components.ViewModels
 
 import com.arkivanov.decompose.ComponentContext
-import ui.components.TitleScreenEvent
+import ui.components.TitleScreen.TitleScreenEvent
 
 class TitleScreenComponent(
     componentContext: ComponentContext,

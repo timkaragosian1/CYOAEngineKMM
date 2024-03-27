@@ -100,7 +100,6 @@ class RootComponent(
             is Configuration.GameSpaceScreen -> Child.GameScreen(
                 GameScreenComponent(
                     componentContext = context,
-                    initEventType = gameEventType,
                     gameEventType = gameEventType,
                     gameEventMessage = gameEventMessage,
                     gameEventImage = gameEventImage,

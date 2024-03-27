@@ -1,50 +1,49 @@
 package ui.components.GameScreen
 
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
+import ui.Values.GameColors
+import ui.Values.GameDimensions
+import ui.Values.GameFontSizes
+import ui.Values.GameShapes
 
 @Composable
 fun GameScreenTextRow(eventMessage: String) {
-
-
+    val gameColors = GameColors()
+    val gameShapes = GameShapes()
+    val gameDimensions = GameDimensions()
+    val gameFontSizes = GameFontSizes()
 
     //Text Screen Row
     Row(modifier = Modifier
         .fillMaxHeight(.27f)
         .fillMaxWidth()
-        .padding(top = 5.dp, start = 5.dp, end = 5.dp)
-        .clip(shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp))
-        .background(Color.hsv(10f,.1f,.1f,.5f))
+        .padding(top = gameDimensions.small, start = gameDimensions.small, end = gameDimensions.small)
+        .clip(shape = gameShapes.smallRoundedRectangle)
+        .background(gameColors.StoryTextBackgroundShadow)
     ) {
         Column {
             Row (modifier = Modifier
                 .padding(3.dp)
-                .clip(shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp))
-                .background(Color.hsv(5f,.7f,.3f,.9f))
+                .clip(shape = gameShapes.smallRoundedRectangle)
+                .background(gameColors.StoryTextBackgroundRed)
             ) {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
-                        .padding(vertical = 2.dp, horizontal = 7.dp),
-                    color = Color.White,
+                        .padding(vertical = gameDimensions.default, horizontal = gameDimensions.normal),
+                    fontSize = gameFontSizes.normal,
+                    color = gameColors.TextWhite,
                     text = eventMessage
                 )
             }

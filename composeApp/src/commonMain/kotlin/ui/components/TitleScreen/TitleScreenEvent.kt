@@ -1,4 +1,4 @@
-package ui.components
+package ui.components.TitleScreen
 
 sealed interface TitleScreenEvent {
     data object ClickCreditsButton: TitleScreenEvent

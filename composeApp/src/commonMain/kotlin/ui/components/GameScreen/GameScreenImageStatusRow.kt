@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,7 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
- @Composable
+import ui.Values.GameColors
+import ui.Values.GameDimensions
+import ui.Values.GameFontSizes
+import ui.Values.GameShapes
+
+@Composable
     fun GameScreenImageStatusRow(
         painter: Painter,
         companyFinances: Long,
@@ -33,27 +37,30 @@ import androidx.compose.ui.unit.sp
         gameShipDestination:String,
         gameTime:Double
     ) {
-
+        val gameColors = GameColors()
+        val gameShapes = GameShapes()
+        val gameDimensions = GameDimensions()
+        val gameFontSizes = GameFontSizes()
         Column(
             modifier = Modifier
                 .fillMaxHeight(.38f)
                 .fillMaxWidth()
-                .padding(horizontal = 5.dp)
-                .clip(shape = RoundedCornerShape(30.dp, 30.dp, 30.dp, 30.dp))
-                .background(Color.hsv(244f, .5f, .4f, .70f))
+                .padding(horizontal = gameDimensions.small)
+                .clip(shape = gameShapes.extraRoundedRectangle)
+                .background(gameColors.ImageStatusScreen)
         ) {
             Row (
                 modifier = Modifier
                     .fillMaxHeight(.1f)
                     .fillMaxWidth()
-                    .padding(top = 2.dp)
-                    .clip(shape = RoundedCornerShape(30.dp, 30.dp, 30.dp, 30.dp))
-                    .background(Color.hsv(244f, .5f, .3f, .6f))
+                    .padding(top = gameDimensions.default)
+                    .clip(shape = gameShapes.extraRoundedRectangle)
+                    .background(gameColors.FinancialHeader)
             ){
                 Text(text = "$",
                     textAlign = TextAlign.Right,
                     fontWeight = FontWeight.Black,
-                    fontSize = 20.sp,
+                    fontSize = gameFontSizes.large,
                     color = Color.Green,
                     modifier = Modifier
                         .fillMaxHeight()
@@ -62,7 +69,7 @@ import androidx.compose.ui.unit.sp
                 Text(text = "$companyFinances",
                     textAlign = TextAlign.Right,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
+                    fontSize = gameFontSizes.normalLarge,
                     letterSpacing = 3.sp,
                     color = Color.Green,
                     modifier = Modifier
@@ -72,7 +79,7 @@ import androidx.compose.ui.unit.sp
                 Text(text = ".00",
                     textAlign = TextAlign.Left,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
+                    fontSize = gameFontSizes.normalLarge,
                     letterSpacing = 3.sp,
                     color = Color.Green,
                     modifier = Modifier
@@ -85,55 +92,55 @@ import androidx.compose.ui.unit.sp
                 modifier = Modifier
                     .fillMaxHeight()
                     .fillMaxWidth()
-                    .padding(vertical = 5.dp, horizontal = 2.dp)
+                    .padding(vertical = gameDimensions.small, horizontal = gameDimensions.default)
             )
             {
                 Column (
                     modifier = Modifier.fillMaxWidth(.2f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
-                    Spacer(modifier = Modifier.height(25.dp))
+                    Spacer(modifier = Modifier.height(gameDimensions.extraGiant))
                     Text(
                         text = "CREW",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 20.sp,
+                        fontSize = gameFontSizes.large,
                         //style = TextStyle(textDecoration = TextDecoration.Underline),
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = gameColors.TextWhite
                     )
-                    getGameStatusTextView(gameShipCrewCondition)
-                    Spacer(modifier = Modifier.height(10.dp))
+                    getGameStatusTextView(gameShipCrewCondition, gameColors, gameFontSizes)
+                    Spacer(modifier = Modifier.height(gameDimensions.large))
                     Text(
                         text = "TIME",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 20.sp,
+                        fontSize = gameFontSizes.large,
                         //style = TextStyle(textDecoration = TextDecoration.Underline),
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = gameColors.TextWhite
                     )
                     Text(
                         text = gameTime.toString(),
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp,
+                        fontSize = gameFontSizes.normal,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         color = Color.Green
                     )
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(gameDimensions.large))
                     Text(
                         text = "DEST",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 20.sp,
+                        fontSize = gameFontSizes.large,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = gameColors.TextWhite
                     )
                     Text(
                         text = gameShipDestination,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 16.sp,
+                        fontSize = gameFontSizes.normal,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
                         color = Color.LightGray
@@ -151,46 +158,46 @@ import androidx.compose.ui.unit.sp
                 Column (modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
-                    Spacer(modifier = Modifier.height(25.dp))
+                    Spacer(modifier = Modifier.height(gameDimensions.extraGiant))
                     Text(
                         text = "HULL",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 20.sp,
+                        fontSize = gameFontSizes.large,
                         //style = TextStyle(textDecoration = TextDecoration.Underline),
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = gameColors.TextWhite
                     )
-                    getGameStatusTextView(gameShipHullCondition)
-                    Spacer(modifier = Modifier.height(10.dp))
+                    getGameStatusTextView(gameShipHullCondition, gameColors, gameFontSizes)
+                    Spacer(modifier = Modifier.height(gameDimensions.large))
                     Text(
                         text = "ENGI",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 20.sp,
+                        fontSize = gameFontSizes.large,
                         //style = TextStyle(textDecoration = TextDecoration.Underline),
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = gameColors.TextWhite
                     )
-                    getGameStatusTextView(gameShipEngineCondition)
-                    Spacer(modifier = Modifier.height(10.dp))
+                    getGameStatusTextView(gameShipEngineCondition, gameColors, gameFontSizes)
+                    Spacer(modifier = Modifier.height(gameDimensions.large))
                     Text(
                         text = "SENS",
                         fontWeight = FontWeight.ExtraBold,
-                        fontSize = 20.sp,
+                        fontSize = gameFontSizes.large,
                         //style = TextStyle(textDecoration = TextDecoration.Underline),
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
-                        color = Color.White
+                        color = gameColors.TextWhite
                     )
-                    getGameStatusTextView(gameShipSensorsCondition)
+                    getGameStatusTextView(gameShipSensorsCondition, gameColors, gameFontSizes)
                 }
             }
         }
     }
 
     @Composable
-    fun getGameStatusTextView(gameShipCrewCondition: Int) {
+    fun getGameStatusTextView(gameShipCrewCondition: Int, gameColors:GameColors, gameFontSizes:GameFontSizes) {
         return Text(
             text =
             if (gameShipCrewCondition==1){
@@ -214,18 +221,18 @@ import androidx.compose.ui.unit.sp
             } else if (gameShipCrewCondition==2){
                 Color.Yellow
             } else if (gameShipCrewCondition==3){
-                Color.Black
+                gameColors.Orange
             } else if (gameShipCrewCondition==4){
                 Color.Green
             } else if (gameShipCrewCondition==5){
                 Color.Blue
             } else if (gameShipCrewCondition==6){
-                Color.Cyan
+                gameColors.Purple
             } else {
                 Color.LightGray
             },
             fontWeight = FontWeight.Bold,
-            fontSize = 16.sp,
+            fontSize = gameFontSizes.normal,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
         )

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -18,10 +17,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import ui.Values.GameColors
+import ui.Values.GameDimensions
+import ui.Values.GameFontSizes
+import ui.Values.GameShapes
 import ui.components.ViewModels.GameScreenComponent
 
 
@@ -35,13 +36,18 @@ fun GameScreenDecisionButtonsRow(
     button5Text:String,
     button6Text:String,
 ) {
+    val gameDimensions = GameDimensions()
+    val gameColors = GameColors()
+    val gameShapes = GameShapes()
+    val gameFontSizes = GameFontSizes()
+
     //Buttons Screen Row
     Row(modifier = Modifier
         .fillMaxHeight(.92f)
         .fillMaxWidth()
-        .padding(top = 10.dp, bottom = 5.dp, start = 5.dp, end = 5.dp)
-        .clip(shape = RoundedCornerShape(20.dp, 20.dp, 20.dp, 20.dp))
-        .background(Color.hsv(0f,0f,.12f,.7f))
+        .padding(top = gameDimensions.large, bottom = gameDimensions.small, start = gameDimensions.small, end = gameDimensions.small)
+        .clip(shape = gameShapes.normalRoundedRectangle)
+        .background(gameColors.BlackShadowScreen)
         ,
         horizontalArrangement = Arrangement.Center,
     ) {
@@ -54,7 +60,7 @@ fun GameScreenDecisionButtonsRow(
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
-                    .padding(top = 2.5.dp)
+                    .padding(top = gameDimensions.default)
                     .fillMaxHeight(.333f)
             ) {
                 DecisionButton(
@@ -64,6 +70,10 @@ fun GameScreenDecisionButtonsRow(
                     button1Text,
                     .5f,
                     component.button1Enabled.value,
+                    gameDimensions,
+                    gameShapes,
+                    gameColors,
+                    gameFontSizes
                 )
                 DecisionButton(
                     { component.onEvent(
@@ -72,12 +82,16 @@ fun GameScreenDecisionButtonsRow(
                     }
                     ,button2Text, 1f,
                     component.button2Enabled.value,
+                    gameDimensions,
+                    gameShapes,
+                    gameColors,
+                    gameFontSizes
                 )
             }
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
-                    .padding(top = 2.5.dp)
+                    .padding(top = gameDimensions.default)
                     .fillMaxHeight(.5f)
             ) {
                 DecisionButton(
@@ -90,6 +104,10 @@ fun GameScreenDecisionButtonsRow(
                     button3Text,
                     .5f,
                     component.button3Enabled.value,
+                    gameDimensions,
+                    gameShapes,
+                    gameColors,
+                    gameFontSizes
                 )
                 DecisionButton(
                     { component.onEvent(
@@ -100,13 +118,17 @@ fun GameScreenDecisionButtonsRow(
                     button4Text,
                     1f,
                     component.button4Enabled.value,
+                    gameDimensions,
+                    gameShapes,
+                    gameColors,
+                    gameFontSizes
                 )
             }
 
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
-                    .padding(top = 2.5.dp)
+                    .padding(top = gameDimensions.default)
                     .fillMaxHeight()
             ) {
                 DecisionButton(
@@ -118,6 +140,10 @@ fun GameScreenDecisionButtonsRow(
                     button5Text,
                     .5f,
                     component.button5Enabled.value,
+                    gameDimensions,
+                    gameShapes,
+                    gameColors,
+                    gameFontSizes
                 )
                 DecisionButton(
                     { component.onEvent(
@@ -127,6 +153,10 @@ fun GameScreenDecisionButtonsRow(
                     button6Text,
                     1f,
                     component.button6Enabled.value,
+                    gameDimensions,
+                    gameShapes,
+                    gameColors,
+                    gameFontSizes
                 )
             }
         }
@@ -134,12 +164,21 @@ fun GameScreenDecisionButtonsRow(
 }
 
 @Composable
-fun DecisionButton(onClick: () -> Unit, text:String, widthFraction:Float, enabled:Boolean) {
+fun DecisionButton(
+    onClick: () -> Unit,
+    text:String,
+    widthFraction:Float,
+    enabled:Boolean,
+    gameDimensions: GameDimensions,
+    gameShapes: GameShapes,
+    gameColors: GameColors,
+    gameFontSizes: GameFontSizes
+) {
     Button(modifier = Modifier
         .fillMaxWidth(widthFraction)
         .fillMaxHeight(.95f)
-        .padding(top = 2.5.dp, start = 5.dp, end = 5.dp)
-        .clip(shape = RoundedCornerShape(15.dp, 15.dp, 15.dp, 15.dp))
+        .padding(top = gameDimensions.default, start = gameDimensions.small, end = gameDimensions.small)
+        .clip(shape = gameShapes.semiSmallRoundedRectangle)
         .alpha(
             if (enabled){
                 1f
@@ -148,7 +187,7 @@ fun DecisionButton(onClick: () -> Unit, text:String, widthFraction:Float, enable
             }
         )
         ,
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color.hsv(244f,1f,.5f,.9f)),
+        colors = ButtonDefaults.buttonColors(backgroundColor = gameColors.GameButtonBlue),
         onClick = if (enabled) {
             onClick
         } else {
@@ -157,7 +196,8 @@ fun DecisionButton(onClick: () -> Unit, text:String, widthFraction:Float, enable
     ) {
         Text(
             textAlign = TextAlign.Center,
-            color = Color.White,
+            fontSize = gameFontSizes.normal,
+            color = gameColors.TextWhite,
             text = if (enabled) {
                 text
             } else {

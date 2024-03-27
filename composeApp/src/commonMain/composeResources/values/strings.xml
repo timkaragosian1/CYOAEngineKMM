@@ -12,11 +12,19 @@
     <string name="nameselectscreen_ceo_last_name">CEO Last Name</string>
     <string name="nameselectscreen_company_name">Company Name</string>
 
-    <string name="gamescreencomponent_eventtype_gamestart">Company Name</string>
+    <string name="gamescreencomponent_eventtype_gamestart">gamestart</string>
+
+    <string name="creditsscreen_title">Game Credits</string>
+    <string name="creditsscreen_made_by">Made by</string>
+    <string name="creditsscreen_images_by">Images by</string>
+    <string name="creditsscreen_music_by">Music by</string>
+    <string name="creditsscreen_story_by">Story by</string>
+    <string name="creditsscreen_sfx_by">SFX by</string>
+    <string name="creditsscreen_tim_karagosian">Tim Karagosian</string>
+    <string name="creditsscreen_matt_schafer">Matt Schafer</string>
+    <string name="creditsscreen_unknown_person">Unknown Person</string>
 
     <string name="spacescreen_title">Ship Status: Space Travel</string>
-    <string name="generic_back_button">Back</string>
-    <string name="tim_karagosian">Tim Karagosian</string>
-    <string name="matt_schafer">Matt Schafer</string>
+    <string name="generic_back_button_text">Back</string>
     <string name="blank"></string>
 </resources>
