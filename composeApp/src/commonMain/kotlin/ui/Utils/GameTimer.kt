@@ -26,7 +26,7 @@ class GameTimer(val updateInterface: (Int) -> Unit) {
                 callback(it)
                 delay(delayMillis)
             }
-            callback(repeatTimes)
+            //callback(repeatTimes)
         }
     }
 
