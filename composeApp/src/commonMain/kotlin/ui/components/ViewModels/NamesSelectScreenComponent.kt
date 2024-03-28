@@ -9,7 +9,7 @@ import ui.navigation.RootComponent
 
 class NamesSelectScreenComponent(
     componentContext: ComponentContext,
-    private val onNavigateToGameScreen: () -> Unit,
+    private val onNavigateToFacialScanScreen: () -> Unit,
     val rootComponent: RootComponent
 ): ComponentContext by componentContext {
 
@@ -32,7 +32,7 @@ class NamesSelectScreenComponent(
                 gameCompanyName.value
             )
             when(event){
-                NamesSelectScreenEvent.ClickSubmitNamesButton -> onNavigateToGameScreen()
+                NamesSelectScreenEvent.ClickSubmitNamesButton -> onNavigateToFacialScanScreen()
             }
         }
     }

@@ -39,7 +39,7 @@ class NamesScreenValues {
 
         lastNameList.add("Holden")
         lastNameList.add("Reynolds")
-        lastNameList.add("Pickard")
+        lastNameList.add("Picard")
         lastNameList.add("Burton")
         lastNameList.add("Kirk")
         lastNameList.add("Connor")
@@ -76,7 +76,6 @@ class NamesScreenValues {
     }
 
     fun getListCompanyLastNames():ArrayList<String>{
-        //LLC, Inc, Corp, Ltd
         var companyLastNameList = ArrayList<String>()
 
         companyLastNameList.add("LLC")

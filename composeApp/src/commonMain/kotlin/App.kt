@@ -1,15 +1,19 @@
+
+
+import androidx.compose.animation.core.tween
 import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
-import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slide
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import ui.navigation.RootComponent
-
 import ui.screens.CreditsScreen
+import ui.screens.FacialScanScreen
 import ui.screens.GameScreen
 import ui.screens.NamesSelectScreen
 import ui.screens.TitleScreen
@@ -22,7 +26,7 @@ fun App(root: RootComponent) {
         val childStack by root.childStack.subscribeAsState()
         Children(
             stack = childStack,
-            animation = stackAnimation(slide()),
+            animation = stackAnimation(fade(tween(1000))),
             modifier = Modifier
         ){
             child ->
@@ -31,6 +35,7 @@ fun App(root: RootComponent) {
                 is RootComponent.Child.TitleScreen -> TitleScreen(instance.component)
                 is RootComponent.Child.GameScreen -> GameScreen(instance.component)
                 is RootComponent.Child.NamesSelectScreen -> NamesSelectScreen(instance.component)
+                is RootComponent.Child.FacialScanScreen -> FacialScanScreen(instance.component)
             }
         }
         /**

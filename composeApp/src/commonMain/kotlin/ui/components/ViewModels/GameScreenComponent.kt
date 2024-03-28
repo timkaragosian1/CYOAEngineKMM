@@ -132,6 +132,9 @@ class GameScreenComponent(
     var _companyName = MutableValue(gameCompanyName)
     var companyName:Value<String> = _companyName
 
+    var _crewSpecialAbilities = MutableValue(ArrayList<String>())
+    var crewSpecialAbilities:Value<ArrayList<String>> = _crewSpecialAbilities
+
     fun updateNextEvent(nextEvent:Int){
         _nextEvent.value = nextEvent
     }

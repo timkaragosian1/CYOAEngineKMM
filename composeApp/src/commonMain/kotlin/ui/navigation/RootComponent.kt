@@ -4,22 +4,17 @@ package ui.navigation
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.ExperimentalDecomposeApi
-import com.arkivanov.decompose.childContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.pushNew
-import com.arkivanov.decompose.value.MutableValue
-import com.arkivanov.decompose.value.Value
 import cyoaenginekmm.composeapp.generated.resources.Res
-import cyoaenginekmm.composeapp.generated.resources.gamescreencomponent_eventtype_gamestart
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.getString
-import org.jetbrains.compose.resources.stringResource
 import ui.components.ViewModels.CreditsScreenComponent
+import ui.components.ViewModels.FacialScanComponent
 import ui.components.ViewModels.GameScreenComponent
 import ui.components.ViewModels.NamesSelectScreenComponent
 import ui.components.ViewModels.TitleScreenComponent
@@ -147,13 +142,22 @@ class RootComponent(
                 ),
             )
 
-            Configuration.NamesSelectScreen -> Child.NamesSelectScreen(
+            is Configuration.NamesSelectScreen -> Child.NamesSelectScreen(
                 NamesSelectScreenComponent(
+                    componentContext = context,
+                    onNavigateToFacialScanScreen = {
+                        navigation.pushNew(Configuration.FacialScanScreen)
+                    },
+                    this
+                ),
+            )
+
+            is Configuration.FacialScanScreen -> Child.FacialScanScreen(
+                FacialScanComponent(
                     componentContext = context,
                     onNavigateToGameScreen = {
                         navigation.pushNew(Configuration.GameSpaceScreen)
                     },
-                    this
                 ),
             )
         }
@@ -281,6 +285,7 @@ class RootComponent(
         data class CreditsScreen(val component: CreditsScreenComponent):Child()
         data class GameScreen(val component: GameScreenComponent):Child()
         data class NamesSelectScreen(val component: NamesSelectScreenComponent):Child()
+        data class FacialScanScreen(val component: FacialScanComponent):Child()
     }
 
     @Serializable
@@ -296,5 +301,8 @@ class RootComponent(
 
         @Serializable
         data object GameSpaceScreen: Configuration()
+
+        @Serializable
+        data object FacialScanScreen: Configuration()
     }
 }
