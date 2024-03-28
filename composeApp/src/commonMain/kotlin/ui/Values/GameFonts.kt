@@ -12,5 +12,7 @@ data class GameFontSizes(
     val normal:TextUnit = 16.sp,
     val normalLarge:TextUnit = 18.sp,
     val large:TextUnit = 20.sp,
-)
+    val giant:TextUnit = 50.sp,
+    val extraGiant:TextUnit = 60.sp,
+    )
 

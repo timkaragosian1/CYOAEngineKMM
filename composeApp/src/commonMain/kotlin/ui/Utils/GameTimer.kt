@@ -23,8 +23,8 @@ class GameTimer(val updateInterface: (Int) -> Unit) {
         val callback = updateInterface
         timer = CoroutineScope(EmptyCoroutineContext).launch {
             repeat(repeatTimes) {
-                callback(it)
                 delay(delayMillis)
+                callback(it)
             }
             //callback(repeatTimes)
         }

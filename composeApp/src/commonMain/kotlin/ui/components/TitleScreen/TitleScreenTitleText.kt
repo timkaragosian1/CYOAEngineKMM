@@ -27,7 +27,6 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TitleScreenTitleText() {
-    val offset = Offset(4.0f, 4.0f)
     Spacer(modifier = Modifier.fillMaxHeight(.05f))
     Text(
         modifier = Modifier
@@ -42,7 +41,7 @@ fun TitleScreenTitleText() {
         style = TextStyle(
             fontSize = 60.sp,
             shadow = Shadow(
-                color = Color.Black, offset = offset, blurRadius = 8f
+                color = Color.Black, offset = Offset(4.0f,4.0f), blurRadius = 8f
             )
         )
     )
@@ -60,7 +59,7 @@ fun TitleScreenTitleText() {
         style = TextStyle(
             fontSize = 40.sp,
             shadow = Shadow(
-                color = Color.Black, offset = offset , blurRadius = 8f
+                color = Color.Black, offset = Offset(4.0f,4.0f) , blurRadius = 8f
             )
         )
     )

@@ -79,7 +79,7 @@ class RootComponent(
                             navigation.pushNew(Configuration.CreditsScreen)
                         },
                         onNavigateToNamesGameStartScreen = {
-                            resetGameData()
+                            setCEOAndCompanyNames("","","")
                             navigation.pushNew(Configuration.NamesSelectScreen)
                         }
                     ),
@@ -146,6 +146,42 @@ class RootComponent(
                 NamesSelectScreenComponent(
                     componentContext = context,
                     onNavigateToFacialScanScreen = {
+                        setGameScreenData(
+                            eventMessage = "Welcome $gameCeoFirstname $gameCeoLastName, you are the new CEO of $gameCompanyName. You have come into power at a very exciting time!",
+                            eventImage = Res.drawable.red_rocket_art1,
+                            eventType = "gamestart",
+                            eventLocation = "earth",
+                            nextEvent = 1,
+                            button1Text = "",
+                            button2Text = "",
+                            button3Text = "",
+                            button4Text = "",
+                            button5Text = "",
+                            button6Text = "NEXT",
+                            button1Enabled = false,
+                            button2Enabled = false,
+                            button3Enabled = false,
+                            button4Enabled = false,
+                            button5Enabled = false,
+                            button6Enabled = true,
+                            button1NextEvent = 0,
+                            button2NextEvent = 0,
+                            button3NextEvent = 0,
+                            button4NextEvent = 0,
+                            button5NextEvent = 0,
+                            button6NextEvent = 0,
+                            shipCrewStatus = 0,
+                            shipEnginesStatus = 0,
+                            shipHullStatus = 0,
+                            shipSensorStatus = 0,
+                            gameTime = 50.0,
+                            gameStatus = "gamestart",
+                            companyFinances = 10000000000,
+                            destinationStatus = "UNKN",
+                            companyName = "",
+                            ceoFirstname = "",
+                            ceoLastName = ""
+                        )
                         navigation.pushNew(Configuration.FacialScanScreen)
                     },
                     this
@@ -161,46 +197,6 @@ class RootComponent(
                 ),
             )
         }
-    }
-
-    fun resetGameData(){
-        setCEOAndCompanyNames("","","")
-        setGameScreenData(
-            eventMessage = "Welcome new user. Fill this out better soon!",
-            eventImage = Res.drawable.red_rocket_art1,
-            eventType = "gamestart",
-            eventLocation = "earth",
-            nextEvent = 1,
-            button1Text = "",
-            button2Text = "",
-            button3Text = "",
-            button4Text = "",
-            button5Text = "",
-            button6Text = "NEXT",
-            button1Enabled = false,
-            button2Enabled = false,
-            button3Enabled = false,
-            button4Enabled = false,
-            button5Enabled = false,
-            button6Enabled = true,
-            button1NextEvent = 0,
-            button2NextEvent = 0,
-            button3NextEvent = 0,
-            button4NextEvent = 0,
-            button5NextEvent = 0,
-            button6NextEvent = 0,
-            shipCrewStatus = 0,
-            shipEnginesStatus = 0,
-            shipHullStatus = 0,
-            shipSensorStatus = 0,
-            gameTime = 50.0,
-            gameStatus = "gamestart",
-            companyFinances = 10000000000,
-            destinationStatus = "UNKN",
-            companyName = "",
-            ceoFirstname = "",
-            ceoLastName = ""
-        )
     }
 
     fun setGameScreenData(

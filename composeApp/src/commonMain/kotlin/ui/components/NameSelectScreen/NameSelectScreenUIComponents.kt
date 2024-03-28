@@ -59,7 +59,7 @@ class NameSelectScreenUIComponents {
             style = TextStyle(
                 fontSize = 60.sp,
                 shadow = Shadow(
-                    color = Color.Black, offset = offset, blurRadius = 8f
+                    color = Color.Black, offset = offset, blurRadius = 8.0f
                 )
             )
         )
@@ -76,7 +76,7 @@ class NameSelectScreenUIComponents {
             style = TextStyle(
                 fontSize = 60.sp,
                 shadow = Shadow(
-                    color = Color.Black, offset = offset, blurRadius = 8f
+                    color = Color.Black, offset = offset, blurRadius = 8.0f
                 )
             )
         )

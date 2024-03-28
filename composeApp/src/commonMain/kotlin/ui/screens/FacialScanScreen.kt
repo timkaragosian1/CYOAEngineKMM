@@ -12,39 +12,64 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.facial_scan
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import ui.Utils.GameTimer
 import ui.Values.GameColors
 import ui.Values.GameFontSizes
 import ui.components.ViewModels.FacialScanComponent
+import kotlin.coroutines.EmptyCoroutineContext
 
-private var _bottomText = MutableValue("Please Wait")
+private var _bottom1Text = MutableValue("Please Wait")
+private var _bottom2Text = MutableValue("")
 @Composable
 fun FacialScanScreen(component: FacialScanComponent) {
     val gameFontSizes = GameFontSizes()
     val gameColors = GameColors()
 
-    var bottomText:Value<String> = _bottomText
+    var bottom1Text:Value<String> = _bottom1Text
+    var bottom2Text:Value<String> = _bottom2Text
 
-    GameTimer(
-        updateInterface = {_bottomText.value = bottomText.value + "."}
-    ).startRepeat(1500, 1)
 
-    GameTimer(
-        updateInterface = {component.onTimerEnd() }
-    ).startOnce(2000)
+    var timer = CoroutineScope(EmptyCoroutineContext).launch {
+        var count = 0
+        repeat(10) {
+            count++
+            delay(500)
+            if (_bottom1Text.value.length < 25) {
+                _bottom1Text.value = bottom1Text.value + "."
+            } else if (_bottom1Text.value.length == 25) {
+                _bottom1Text.value = bottom1Text.value + "COMPLETE!"
+                _bottom2Text.value = "Downloading User Data"
+            } else if (_bottom2Text.value.length < 32) {
+                _bottom2Text.value = bottom2Text.value + "."
+            } else if (_bottom2Text.value.length == 32) {
+                _bottom2Text.value = bottom2Text.value + "COMPLETE!"
+            } else {
+                delay(800)
 
+                component.onTimerEnd()
+            }
+        }
+    }
+
+    timer.start()
+
+    val brush = Brush.radialGradient(listOf(Color.Red, Color.Black))
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Red)
+            .background(brush),
     ){
         Column (
             modifier = Modifier
@@ -53,17 +78,27 @@ fun FacialScanScreen(component: FacialScanComponent) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                fontSize = gameFontSizes.large,
+                fontSize = 25.sp,
                 color = gameColors.TextWhite,
                 textAlign = TextAlign.Center,
                 text = "Facial Scan in Progress"
             )
             Image(
                 painter = painterResource(Res.drawable.facial_scan),
+                alpha = .15f,
                 contentDescription = null
             )
             Text(
-                text = _bottomText.value
+                text = _bottom1Text.value,
+                fontSize = gameFontSizes.normalLarge,
+                color = gameColors.TextWhite,
+                textAlign = TextAlign.Center,
+            )
+            Text(
+                text = _bottom2Text.value,
+                fontSize = gameFontSizes.normalLarge,
+                color = gameColors.TextWhite,
+                textAlign = TextAlign.Center,
             )
         }
     }
