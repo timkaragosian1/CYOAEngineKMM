@@ -9,8 +9,10 @@ import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.popTo
 import com.arkivanov.decompose.router.stack.pushNew
+import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
+import kotlinx.coroutines.delay
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -61,6 +63,8 @@ class RootComponent(
     private var gameScreenTime = 50.0
 
     private var namesScreenSubmitButtonEnabled = false
+    private var nameScreenProgressText1 = MutableValue("")
+    private var nameScreenProgressText2 = MutableValue("")
 
     var childStack = childStack(
         source = navigation,
@@ -201,7 +205,7 @@ class RootComponent(
                     componentContext = context,
                     onNavigateToGameScreen = {
                         navigation.pushNew(Configuration.GameSpaceScreen)
-                    },
+                    }
                 ),
             )
         }

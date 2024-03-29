@@ -57,6 +57,9 @@ fun FacialScanScreen(component: FacialScanComponent) {
                 _bottom2Text.value = bottom2Text.value + "COMPLETE!"
             } else {
                 delay(800)
+                _bottom1Text.value = "Please Wait"
+                _bottom2Text.value = ""
+
                 component.onTimerEnd()
             }
         }
