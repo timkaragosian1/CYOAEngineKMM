@@ -43,6 +43,7 @@ class NameSelectScreenUIComponents {
     val gameShapes = GameShapes()
     val gameDimensions = GameDimensions()
     val gameFontSizes = GameFontSizes()
+
     @Composable
     fun NameSelectScreenTitleText() {
         val offset = Offset(4.0f, 4.0f)
@@ -87,7 +88,8 @@ class NameSelectScreenUIComponents {
         component: NamesSelectScreenComponent,
         gameCEOFirstname:String,
         gameCEOLastname:String,
-        gameCompanyName:String
+        gameCompanyName:String,
+        isButtonEnabled: Boolean
     ) {
         getNamesScreenTextInputRow(
                 hintValue = stringResource(Res.string.nameselectscreen_ceo_firstname),
@@ -118,6 +120,7 @@ class NameSelectScreenUIComponents {
             modifier = Modifier
                 .fillMaxWidth(.5f)
                 .fillMaxHeight(.7f),
+            enabled = isButtonEnabled,
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = gameColors.GameButtonBlue
             )

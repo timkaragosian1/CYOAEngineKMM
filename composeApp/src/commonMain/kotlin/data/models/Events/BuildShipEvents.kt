@@ -42,7 +42,7 @@ class BuildShipEvents {
                 decisionName = "Satisfactory Ship Build",
                 decisionButtonId = 2,
                 buttonText = "Satisfactory Build Quality\n$5 Billion",
-                nextEventId = 53,
+                nextEventId = 55,
                 enabled = true,
             ),
             eventDecision3 = EventDecision(
@@ -78,7 +78,7 @@ class BuildShipEvents {
 
     fun getExceptionShipChosen1():GameEvent{
         return GameEvent(
-            eventId = 50,
+            eventId = 53,
             eventMessage = "You have logically chosen that even though there is a high cost, there is also a high benefit along with it.\n" +
                     "You want a sturdy vessel to travel the stars with.",
             eventImage = Res.drawable.building_rocket1,
@@ -96,25 +96,23 @@ class BuildShipEvents {
             gameCompanyFinancesChange = null,
 
             eventDecision1 = EventDecision(
-                decisionName = "Exceptional Ship Build",
+                decisionName = "",
                 decisionButtonId = 1,
-                buttonText = "Exceptional Quality\n" +
-                        " Team and Materials\n" +
-                        "(Cost: $7 Billion)",
+                buttonText = "",
                 nextEventId = 53,
                 enabled = false,
             ),
             eventDecision2 = EventDecision(
-                decisionName = "Satisfactory Ship Build",
+                decisionName = "",
                 decisionButtonId = 2,
-                buttonText = "Satisfactory Build Quality\n$5 Billion",
+                buttonText = "",
                 nextEventId = 55,
                 enabled = false,
             ),
             eventDecision3 = EventDecision(
-                decisionName = "Inexpensive Ship Build",
+                decisionName = "",
                 decisionButtonId = 3,
-                buttonText = "Inexpensive, Not Quality\n$3 Billion",
+                buttonText = "",
                 nextEventId = 58,
                 enabled = false,
             ),
@@ -202,6 +200,133 @@ class BuildShipEvents {
                 decisionName = "Continue",
                 decisionButtonId = 6,
                 buttonText = "Find Crews",
+                nextEventId = -1,
+                enabled = true,
+            ),
+        )
+    }
+
+    fun getSatisfactorynShipChosen1():GameEvent{
+        return GameEvent(
+            eventId = 55,
+            eventMessage = "You have decided that it's best to get a lot of value out of your ship and went with a Satisfactory option. The engineering team begins work right away.",
+            eventImage = Res.drawable.building_rocket1,
+            eventLocation = "earth",
+            eventName = "Choose Initial Ship Build",
+            eventType = "story",
+
+            gameStatusChange = null,
+            gameCrewStatusChange = null,
+            gameShipHullChange = null,
+            gameShipSensorsChange = null,
+            gameShipEnginesChange = null,
+            gameShipDestinationChange = null,
+            gameTimeChange = null,
+            gameCompanyFinancesChange = null,
+
+            eventDecision1 = EventDecision(
+                decisionName = "",
+                decisionButtonId = 1,
+                buttonText = "",
+                nextEventId = 53,
+                enabled = false,
+            ),
+            eventDecision2 = EventDecision(
+                decisionName = "",
+                decisionButtonId = 2,
+                buttonText = "",
+                nextEventId = 55,
+                enabled = false,
+            ),
+            eventDecision3 = EventDecision(
+                decisionName = "",
+                decisionButtonId = 3,
+                buttonText = "",
+                nextEventId = 58,
+                enabled = false,
+            ),
+            eventDecision4 = EventDecision(
+                decisionName = "Inactive",
+                decisionButtonId = 4,
+                buttonText = "",
+                nextEventId = -1,
+                enabled = false,
+            ),
+            eventDecision5 = EventDecision(
+                decisionName = "Inactive",
+                decisionButtonId = 5,
+                buttonText = "",
+                nextEventId = -1,
+                enabled = false,
+            ),
+            eventDecision6 = EventDecision(
+                decisionName = "Next",
+                decisionButtonId = 6,
+                buttonText = "Next",
+                nextEventId = 56,
+                enabled = true,
+            ),
+        )
+    }
+
+    fun getSatisfactorynShipChosen2():GameEvent{
+        return GameEvent(
+            eventId = 56,
+            eventMessage = "Your ship is built with a decent Hull, Sensors, and Engines earth.\n" +
+                    "You shouldn't need to invest any more into it unless something happens.",
+            eventImage = Res.drawable.rocket_built,
+            eventLocation = "earth",
+            eventName = "Choose Initial Ship Build",
+            eventType = "change_stats",
+
+            gameStatusChange = "ship_built",
+            gameCrewStatusChange = null,
+            gameShipHullChange = 3,
+            gameShipSensorsChange = 3,
+            gameShipEnginesChange = 3,
+            gameShipDestinationChange = null,
+            gameTimeChange = null,
+            gameCompanyFinancesChange = -5000000000,
+
+            eventDecision1 = EventDecision(
+                decisionName = "",
+                decisionButtonId = 1,
+                buttonText = "",
+                nextEventId = 53,
+                enabled = false,
+            ),
+            eventDecision2 = EventDecision(
+                decisionName = "",
+                decisionButtonId = 2,
+                buttonText = "",
+                nextEventId = 55,
+                enabled = false,
+            ),
+            eventDecision3 = EventDecision(
+                decisionName = "",
+                decisionButtonId = 3,
+                buttonText = "",
+                nextEventId = 58,
+                enabled = false,
+            ),
+            eventDecision4 = EventDecision(
+                decisionName = "Inactive",
+                decisionButtonId = 4,
+                buttonText = "",
+                nextEventId = -1,
+                enabled = false,
+            ),
+            eventDecision5 = EventDecision(
+                decisionName = "Inactive",
+                decisionButtonId = 5,
+                buttonText = "",
+                nextEventId = -1,
+                enabled = false,
+            ),
+            eventDecision6 = EventDecision(
+                decisionName = "Next",
+                decisionButtonId = 6,
+                buttonText = "Next",
                 nextEventId = -1,
                 enabled = true,
             ),

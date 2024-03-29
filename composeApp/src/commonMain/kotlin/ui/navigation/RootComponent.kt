@@ -7,6 +7,7 @@ import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
+import com.arkivanov.decompose.router.stack.popTo
 import com.arkivanov.decompose.router.stack.pushNew
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
@@ -59,7 +60,9 @@ class RootComponent(
     private var gameScreenDestinationStatus = "UNKN"
     private var gameScreenTime = 50.0
 
-    val childStack = childStack(
+    private var namesScreenSubmitButtonEnabled = false
+
+    var childStack = childStack(
         source = navigation,
         serializer = Configuration.serializer(),
         initialConfiguration = Configuration.TitleScreen,
@@ -80,6 +83,7 @@ class RootComponent(
                         },
                         onNavigateToNamesGameStartScreen = {
                             setCEOAndCompanyNames("","","")
+                            setNamesSelectScreenIsButtonEnabled(true)
                             navigation.pushNew(Configuration.NamesSelectScreen)
                         }
                     ),
@@ -136,8 +140,10 @@ class RootComponent(
                     onClickButton5 = {},
                     onClickButton6 = {},
                     onNavigateBackToTitleScreen = {
-                        navigation.pop()
-                        navigation.pop()
+                        //RESET INFO IN NAMES SCREEN AFTER LEAVING
+                        //RESET INFO IN FACIAL SCAN SCREEN AFTER LEAVING
+                        setCEOAndCompanyNames("","","")
+                        navigation.popTo(0)
                     }
                 ),
             )
@@ -146,6 +152,7 @@ class RootComponent(
                 NamesSelectScreenComponent(
                     componentContext = context,
                     onNavigateToFacialScanScreen = {
+                        setNamesSelectScreenIsButtonEnabled(false)
                         setGameScreenData(
                             eventMessage = "Welcome $gameCeoFirstname $gameCeoLastName, you are the new CEO of $gameCompanyName. You have come into power at a very exciting time!",
                             eventImage = Res.drawable.red_rocket_art1,
@@ -184,6 +191,7 @@ class RootComponent(
                         )
                         navigation.pushNew(Configuration.FacialScanScreen)
                     },
+                    namesScreenSubmitButtonEnabled,
                     this
                 ),
             )
@@ -274,6 +282,10 @@ class RootComponent(
         gameCeoFirstname = ceoFirstname
         gameCeoLastName = ceoLastName
         gameCompanyName = companyName
+    }
+
+    fun setNamesSelectScreenIsButtonEnabled(isButtonEnabled:Boolean){
+        namesScreenSubmitButtonEnabled = isButtonEnabled
     }
 
     sealed class Child {

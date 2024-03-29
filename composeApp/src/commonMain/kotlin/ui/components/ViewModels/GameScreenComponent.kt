@@ -327,39 +327,43 @@ class GameScreenComponent(
                 onClickButton5()
             }
             is GameScreenEvent.ClickButton6 -> {
-                GameScreenComponentEventController().handleNextEvent(
-                    _eventMessage,
-                    _eventImage,
-                    _eventType,
-                    _eventLocation,
-                    _button1Text,
-                    _button2Text,
-                    _button3Text,
-                    _button4Text,
-                    _button5Text,
-                    _button6Text,
-                    _button1Enabled,
-                    _button2Enabled,
-                    _button3Enabled,
-                    _button4Enabled,
-                    _button5Enabled,
-                    _button6Enabled,
-                    _button1NextEvent,
-                    _button2NextEvent,
-                    _button3NextEvent,
-                    _button4NextEvent,
-                    _button5NextEvent,
-                    _button6NextEvent,
-                    _nextEvent,
-                    _companyFinances,
-                    _gameStatus,
-                    _gameCrewStatus,
-                    _gameTime,
-                    _gameShipHull,
-                    _gameShipEngines,
-                    _gameShipSensors,
-                    this
-                )
+                if (_nextEvent.value!=-1) {
+                    GameScreenComponentEventController().handleNextEvent(
+                        _eventMessage,
+                        _eventImage,
+                        _eventType,
+                        _eventLocation,
+                        _button1Text,
+                        _button2Text,
+                        _button3Text,
+                        _button4Text,
+                        _button5Text,
+                        _button6Text,
+                        _button1Enabled,
+                        _button2Enabled,
+                        _button3Enabled,
+                        _button4Enabled,
+                        _button5Enabled,
+                        _button6Enabled,
+                        _button1NextEvent,
+                        _button2NextEvent,
+                        _button3NextEvent,
+                        _button4NextEvent,
+                        _button5NextEvent,
+                        _button6NextEvent,
+                        _nextEvent,
+                        _companyFinances,
+                        _gameStatus,
+                        _gameCrewStatus,
+                        _gameTime,
+                        _gameShipHull,
+                        _gameShipEngines,
+                        _gameShipSensors,
+                        this
+                    )
+                } else {
+                    handleGameOver()
+                }
 
                 onClickButton6()
             }

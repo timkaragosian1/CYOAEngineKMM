@@ -43,7 +43,7 @@ fun FacialScanScreen(component: FacialScanComponent) {
 
     var timer = CoroutineScope(EmptyCoroutineContext).launch {
         var count = 0
-        repeat(10) {
+        repeat(1) {
             count++
             delay(500)
             if (_bottom1Text.value.length < 25) {
@@ -57,7 +57,6 @@ fun FacialScanScreen(component: FacialScanComponent) {
                 _bottom2Text.value = bottom2Text.value + "COMPLETE!"
             } else {
                 delay(800)
-
                 component.onTimerEnd()
             }
         }

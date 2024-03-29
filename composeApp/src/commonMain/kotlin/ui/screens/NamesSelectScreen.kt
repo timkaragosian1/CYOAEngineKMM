@@ -16,7 +16,7 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import cyoaenginekmm.composeapp.generated.resources.Res
-import cyoaenginekmm.composeapp.generated.resources.*
+import cyoaenginekmm.composeapp.generated.resources.usa_business_bkg
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ui.components.NameSelectScreen.NameSelectScreenUIComponents
@@ -27,6 +27,7 @@ fun NamesSelectScreen(component: NamesSelectScreenComponent) {
     val gameCEOFirstname by component.gameCEOFirstname.subscribeAsState()
     val gameCEOLastname by component.gameCEOLastname.subscribeAsState()
     val gameCompanyName by component.gameCompanyName.subscribeAsState()
+    val isButtonEnabled by component.isButtonEnabled.subscribeAsState()
     val nameSelectScreenUIComponents = NameSelectScreenUIComponents()
 
     Box (modifier = Modifier
@@ -47,7 +48,8 @@ fun NamesSelectScreen(component: NamesSelectScreenComponent) {
                 component,
                 gameCEOFirstname,
                 gameCEOLastname,
-                gameCompanyName
+                gameCompanyName,
+                isButtonEnabled
             )
         }
     }

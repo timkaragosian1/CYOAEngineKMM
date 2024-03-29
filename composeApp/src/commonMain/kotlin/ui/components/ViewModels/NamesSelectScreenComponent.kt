@@ -10,7 +10,8 @@ import ui.navigation.RootComponent
 class NamesSelectScreenComponent(
     componentContext: ComponentContext,
     private val onNavigateToFacialScanScreen: () -> Unit,
-    val rootComponent: RootComponent
+    isButtonEnabled: Boolean,
+    private val rootComponent: RootComponent
 ): ComponentContext by componentContext {
 
     private var _gameCEOFirstname = MutableValue("")
@@ -21,6 +22,9 @@ class NamesSelectScreenComponent(
 
     private var _gameCompanyName = MutableValue("")
     var gameCompanyName: Value<String> = _gameCompanyName
+
+    private var _isButtonEnabled = MutableValue(isButtonEnabled)
+    var isButtonEnabled: Value<Boolean> = _isButtonEnabled
 
     fun onEvent(event: NamesSelectScreenEvent){
         if (gameCEOFirstname.value.isNotEmpty() &&
@@ -35,6 +39,10 @@ class NamesSelectScreenComponent(
                 NamesSelectScreenEvent.ClickSubmitNamesButton -> onNavigateToFacialScanScreen()
             }
         }
+    }
+
+    fun setIsButtonEnabled(isButtonEnabled:Boolean){
+        _isButtonEnabled.value = isButtonEnabled
     }
 
     fun getRandomFirstName(){
