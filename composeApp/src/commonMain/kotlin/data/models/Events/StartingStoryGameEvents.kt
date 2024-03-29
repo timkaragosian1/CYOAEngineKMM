@@ -81,7 +81,7 @@ class StartingStoryGameEvents {
             eventId = 0,
             eventLocation = "earth",
             eventImage = Res.drawable.penic_device,
-            eventMessage = "You are using the P.E.N.I.C. or Personal Effortless Network Interface Communicator device. You will be able to get quick, fast visualization and information to make decisions.",
+            eventMessage = "You are using the CEO Comm device. You will be able to get quick, fast visualization and information to make decisions from anywhere in our solar system! That will be important for later!",
             eventDecision1 = EventDecision(
                 decisionButtonId = 1,
                 decisionName = "Button 1",
