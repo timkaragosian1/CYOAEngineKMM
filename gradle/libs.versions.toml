@@ -19,6 +19,15 @@ extensionsComposeJetbrains = "2.1.4-compose-experimental"
 decompose = "2.2.0-alpha03"
 kotlinxSerializationJson = "1.6.1"
 firebasePerfKtx = "20.5.2"
+datadog-android-logs = "2.4.0"
+datadog-android-rum = "2.4.0"
+datadog-android-gradle = "1.12.0"
+ktor = "2.3.7"
+sql-delight = "2.0.1"
+kotlinx-serialization = "1.6.2"
+kotlin-serialization-plugin = "1.9.21"
+sqliter = "1.3.1"
+statelyCommon = "2.0.5"
 
 [libraries]
 decompose-jetbrains = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "extensionsComposeJetbrains" }
@@ -36,12 +45,30 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = 
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
 firebase-perf-ktx = { group = "com.google.firebase", name = "firebase-perf-ktx", version.ref = "firebasePerfKtx" }
+
+#SQLDelight
+sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sql-delight"}
+sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sql-delight"}
+sqldelight-common = { module = "app.cash.sqldelight:runtime", version.ref = "sql-delight"}
+sqliter = { module = "co.touchlab:sqliter-driver", version.ref = "sqliter" }
+stately-common = { module = "co.touchlab:stately-common", version.ref = "statelyCommon" }
+
+#Datadog
+datadog-android-logs = {module = "com.datadoghq:dd-sdk-android-logs", version.ref = "datadog-android-logs"}
+datadog-android-rum = {module = "com.datadoghq:dd-sdk-android-rum", version.ref = "datadog-android-rum"}
+datadog-android-gradle = {module = "com.datadoghq:dd-sdk-android-gradle-plugin", version.ref = "datadog-android-gradle"}
+
+#Ktor (Networking)
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-serialization-plugin"}
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sql-delight"}

@@ -5,7 +5,20 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.sqldelight)
 }
+
+
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("db")
+            srcDirs.setFrom("src/commonMain/kotlin/sql")
+        }
+    }
+}
+
 
 kotlin {
     androidTarget {
@@ -32,7 +45,20 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+
+            //Decompose
             implementation(libs.decompose)
+
+            //Datadog
+            implementation(libs.datadog.android.rum)
+            implementation(libs.datadog.android.gradle)
+            implementation(libs.datadog.android.logs)
+
+            //SQLDelight
+            implementation(libs.sqldelight.android)
+
+            //KTOR
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -42,9 +68,26 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             @OptIn(ExperimentalComposeLibrary::class)
+            //implementation(libs.kotlinx.serialization.json)
+
+            //Decompose
             implementation(libs.decompose)
             implementation(libs.decompose.jetbrains)
-            implementation(libs.kotlinx.serialization.json)
+
+            //SQLDelight
+            implementation(libs.sqldelight.common)
+
+            //Serialization
+            implementation(libs.kotlin.serialization)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+
+            //SQLDelight
+            api(libs.sqldelight.native)
+            implementation(libs.stately.common)
+            implementation(libs.sqliter)
         }
     }
 }
