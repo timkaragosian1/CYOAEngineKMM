@@ -22,7 +22,7 @@ import org.jetbrains.compose.resources.painterResource
 import ui.components.GameScreen.GameScreenDecisionButtonsRow
 import ui.components.GameScreen.GameScreenImageStatusRow
 import ui.components.GameScreen.GameScreenTextRow
-import ui.components.ViewModels.GameScreenComponent
+import ui.components.GameScreen.GameScreenComponent
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable

@@ -19,7 +19,7 @@ import cyoaenginekmm.composeapp.generated.resources.open_screen_bkg1
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ui.components.TitleScreen.TitleScreenButtons
-import ui.components.ViewModels.TitleScreenComponent
+import ui.components.TitleScreen.TitleScreenComponent
 import ui.components.TitleScreen.TitleScreenTitleText
 
 @Composable

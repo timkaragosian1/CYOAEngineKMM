@@ -20,7 +20,7 @@ import cyoaenginekmm.composeapp.generated.resources.usa_business_bkg
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ui.components.NameSelectScreen.NameSelectScreenUIComponents
-import ui.components.ViewModels.NamesSelectScreenComponent
+import ui.components.NameSelectScreen.NamesSelectScreenComponent
 
 @Composable
 fun NamesSelectScreen(component: NamesSelectScreenComponent) {

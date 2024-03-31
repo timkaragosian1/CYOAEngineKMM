@@ -12,15 +12,15 @@ import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
-import kotlinx.coroutines.delay
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.ViewModels.CreditsScreenComponent
-import ui.components.ViewModels.FacialScanComponent
-import ui.components.ViewModels.GameScreenComponent
-import ui.components.ViewModels.NamesSelectScreenComponent
-import ui.components.ViewModels.TitleScreenComponent
+import ui.LoadingScreenComponent
+import ui.components.CreditsScreen.CreditsScreenComponent
+import ui.components.FacialScan.FacialScanComponent
+import ui.components.GameScreen.GameScreenComponent
+import ui.components.NameSelectScreen.NamesSelectScreenComponent
+import ui.components.TitleScreen.TitleScreenComponent
 
 class RootComponent(
     componentContext: ComponentContext
@@ -69,7 +69,7 @@ class RootComponent(
     var childStack = childStack(
         source = navigation,
         serializer = Configuration.serializer(),
-        initialConfiguration = Configuration.TitleScreen,
+        initialConfiguration = Configuration.LoadingScreen,
         handleBackButton = true,
         childFactory = ::createChild
     )
@@ -208,6 +208,15 @@ class RootComponent(
                     }
                 ),
             )
+
+            is Configuration.LoadingScreen -> Child.LoadingScreen(
+                LoadingScreenComponent(
+                    componentContext = context,
+                    onLoadComplete = {
+                        navigation.pushNew(Configuration.TitleScreen)
+                    }
+                )
+            )
         }
     }
 
@@ -298,6 +307,7 @@ class RootComponent(
         data class GameScreen(val component: GameScreenComponent):Child()
         data class NamesSelectScreen(val component: NamesSelectScreenComponent):Child()
         data class FacialScanScreen(val component: FacialScanComponent):Child()
+        data class LoadingScreen(val component: LoadingScreenComponent):Child()
     }
 
     @Serializable
@@ -316,5 +326,7 @@ class RootComponent(
 
         @Serializable
         data object FacialScanScreen: Configuration()
+        @Serializable
+        data object LoadingScreen: Configuration()
     }
 }

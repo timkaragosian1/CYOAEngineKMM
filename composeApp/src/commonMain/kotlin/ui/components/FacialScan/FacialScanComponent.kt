@@ -1,4 +1,4 @@
-package ui.components.ViewModels
+package ui.components.FacialScan
 
 import com.arkivanov.decompose.ComponentContext
 

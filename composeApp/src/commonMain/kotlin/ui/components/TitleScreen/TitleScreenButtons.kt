@@ -19,7 +19,6 @@ import cyoaenginekmm.composeapp.generated.resources.titlescreen_credits_button
 import cyoaenginekmm.composeapp.generated.resources.titlescreen_start_game_button
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
-import ui.components.ViewModels.TitleScreenComponent
 
 @Composable
 fun TitleScreenButtons(component: TitleScreenComponent) {

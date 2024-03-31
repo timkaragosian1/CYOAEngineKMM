@@ -11,6 +11,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stac
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import ui.LoadingScreen
 import ui.navigation.RootComponent
 import ui.screens.CreditsScreen
 import ui.screens.FacialScanScreen
@@ -31,11 +32,20 @@ fun App(root: RootComponent) {
         ){
             child ->
             when(val instance = child.instance){
-                is RootComponent.Child.CreditsScreen -> CreditsScreen(instance.component)
+                // Need a Loading Screen first
+                // Loading screen will:
+                //  - Wait until a value becomes true before navigating to the next screen
+                //  - Have some sort of progress bar (mocked progress on a timer at first)
+                //  - Hit API with any user Actions to upload (mocked at first with timer) and returns with DB ver #
+                //  - If DB ver # is higher than the current, then start handleDBDownload
+                //  - handleDBDownload downloads the new DB and builds the tables correctly
+                //  - Complete loading screen and delay for .3 seconds to fade to TitleScreen
+                is RootComponent.Child.LoadingScreen -> LoadingScreen(instance.component)
                 is RootComponent.Child.TitleScreen -> TitleScreen(instance.component)
-                is RootComponent.Child.GameScreen -> GameScreen(instance.component)
+                is RootComponent.Child.CreditsScreen -> CreditsScreen(instance.component)
                 is RootComponent.Child.NamesSelectScreen -> NamesSelectScreen(instance.component)
                 is RootComponent.Child.FacialScanScreen -> FacialScanScreen(instance.component)
+                is RootComponent.Child.GameScreen -> GameScreen(instance.component)
             }
         }
         /**

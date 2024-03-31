@@ -1,7 +1,7 @@
 @file:OptIn(ExperimentalResourceApi::class
 )
 
-package ui.components.ViewModels
+package ui.components.GameScreen
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue

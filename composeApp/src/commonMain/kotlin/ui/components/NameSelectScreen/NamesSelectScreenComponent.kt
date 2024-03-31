@@ -1,10 +1,8 @@
-package ui.components.ViewModels
+package ui.components.NameSelectScreen
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import ui.components.NameSelectScreen.NamesScreenValues
-import ui.components.NameSelectScreen.NamesSelectScreenEvent
 import ui.navigation.RootComponent
 
 class NamesSelectScreenComponent(

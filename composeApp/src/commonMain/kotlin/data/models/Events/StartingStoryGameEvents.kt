@@ -11,7 +11,7 @@ import cyoaenginekmm.composeapp.generated.resources.usa_resource_company
 import data.models.EventDecision
 import data.models.GameEvent
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.ViewModels.GameScreenComponent
+import ui.components.GameScreen.GameScreenComponent
 
 class StartingStoryGameEvents {
     fun getStartingGameEvent(component: GameScreenComponent): GameEvent {

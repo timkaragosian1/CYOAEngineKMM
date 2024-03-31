@@ -36,7 +36,6 @@ import ui.Values.GameColors
 import ui.Values.GameDimensions
 import ui.Values.GameFontSizes
 import ui.Values.GameShapes
-import ui.components.ViewModels.NamesSelectScreenComponent
 
 class NameSelectScreenUIComponents {
     val gameColors = GameColors()

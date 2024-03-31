@@ -68,7 +68,6 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             @OptIn(ExperimentalComposeLibrary::class)
-            //implementation(libs.kotlinx.serialization.json)
 
             //Decompose
             implementation(libs.decompose)
@@ -79,6 +78,8 @@ kotlin {
 
             //Serialization
             implementation(libs.kotlin.serialization)
+            //implementation(libs.kotlinx.serialization.json)
+
         }
 
         iosMain.dependencies {

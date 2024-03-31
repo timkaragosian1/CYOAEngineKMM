@@ -5,7 +5,7 @@ package data.models.Events
 import com.arkivanov.decompose.value.MutableValue
 import data.models.GameEvent
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.ViewModels.GameScreenComponent
+import ui.components.GameScreen.GameScreenComponent
 
 class SpaceEvents {
     fun getEventFromId(nextEventId: MutableValue<Int>, component: GameScreenComponent): GameEvent {

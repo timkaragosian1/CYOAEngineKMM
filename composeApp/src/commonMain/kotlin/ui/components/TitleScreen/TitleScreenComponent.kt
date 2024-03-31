@@ -1,4 +1,4 @@
-package ui.components.ViewModels
+package ui.components.TitleScreen
 
 import com.arkivanov.decompose.ComponentContext
 import ui.components.TitleScreen.TitleScreenEvent

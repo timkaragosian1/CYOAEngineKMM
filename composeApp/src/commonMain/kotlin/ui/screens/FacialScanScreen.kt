@@ -27,7 +27,7 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ui.Values.GameColors
 import ui.Values.GameFontSizes
-import ui.components.ViewModels.FacialScanComponent
+import ui.components.FacialScan.FacialScanComponent
 import kotlin.coroutines.EmptyCoroutineContext
 
 private var _bottom1Text = MutableValue("Please Wait")
@@ -42,9 +42,6 @@ fun FacialScanScreen(component: FacialScanComponent) {
 
 
     var timer = CoroutineScope(EmptyCoroutineContext).launch {
-        var count = 0
-        repeat(1) {
-            count++
             delay(500)
             if (_bottom1Text.value.length < 25) {
                 _bottom1Text.value = bottom1Text.value + "."
@@ -61,7 +58,6 @@ fun FacialScanScreen(component: FacialScanComponent) {
                 _bottom2Text.value = ""
 
                 component.onTimerEnd()
-            }
         }
     }
 

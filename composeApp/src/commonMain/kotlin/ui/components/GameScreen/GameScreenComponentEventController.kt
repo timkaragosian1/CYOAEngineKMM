@@ -9,7 +9,6 @@ import data.models.Events.SpaceEvents
 import data.models.GameEvent
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.ViewModels.GameScreenComponent
 
 class GameScreenComponentEventController {
     fun setupSpaceEventUI(

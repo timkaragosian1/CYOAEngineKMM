@@ -1,7 +1,6 @@
-package ui.components.ViewModels
+package ui.components.CreditsScreen
 
 import com.arkivanov.decompose.ComponentContext
-import ui.components.CreditsScreenEvent
 
 class CreditsScreenComponent(
     componentContext: ComponentContext,

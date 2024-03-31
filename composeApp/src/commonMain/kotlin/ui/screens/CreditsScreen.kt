@@ -37,8 +37,8 @@ import cyoaenginekmm.composeapp.generated.resources.generic_back_button_text
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import ui.components.ViewModels.CreditsScreenComponent
-import ui.components.CreditsScreenEvent
+import ui.components.CreditsScreen.CreditsScreenComponent
+import ui.components.CreditsScreen.CreditsScreenEvent
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
