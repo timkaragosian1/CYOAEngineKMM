@@ -20,6 +20,7 @@ import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.facial_scan
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -40,8 +41,11 @@ fun FacialScanScreen(component: FacialScanComponent) {
     var bottom1Text:Value<String> = _bottom1Text
     var bottom2Text:Value<String> = _bottom2Text
 
+    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+        throwable.printStackTrace()
+    }
 
-    var timer = CoroutineScope(EmptyCoroutineContext).launch {
+    CoroutineScope(EmptyCoroutineContext).launch(coroutineExceptionHandler) {
             delay(500)
             if (_bottom1Text.value.length < 25) {
                 _bottom1Text.value = bottom1Text.value + "."
@@ -59,9 +63,7 @@ fun FacialScanScreen(component: FacialScanComponent) {
 
                 component.onTimerEnd()
         }
-    }
-
-    timer.start()
+    }.start()
 
     val brush = Brush.radialGradient(listOf(Color.Red, Color.Black))
     Box(
