@@ -12,13 +12,15 @@ import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
+import data.models.GameHistory
+import data.models.UserActions
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.LoadingScreen.LoadingScreenComponent
 import ui.components.CreditsScreen.CreditsScreenComponent
 import ui.components.FacialScan.FacialScanComponent
 import ui.components.GameScreen.GameScreenComponent
+import ui.components.LoadingScreen.LoadingScreenComponent
 import ui.components.NameSelectScreen.NamesSelectScreenComponent
 import ui.components.TitleScreen.TitleScreenComponent
 
@@ -148,7 +150,10 @@ class RootComponent(
                         //RESET INFO IN FACIAL SCAN SCREEN AFTER LEAVING
                         setCEOAndCompanyNames("","","")
                         navigation.popTo(0)
-                    }
+                    },
+                    gameEventHistory = "",
+                    gameHistoryList = ArrayList<GameHistory>(),
+                    gameUserActionsList = ArrayList<UserActions>(),
                 ),
             )
 

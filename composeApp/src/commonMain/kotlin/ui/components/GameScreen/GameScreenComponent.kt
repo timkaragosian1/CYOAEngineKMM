@@ -8,6 +8,7 @@ import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import data.models.GameHistory
 import data.models.UserActions
+import kotlinx.datetime.Clock
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 
@@ -56,6 +57,7 @@ class GameScreenComponent(
     private val onClickButton6: () -> Unit,
     private val gameHistoryList: ArrayList<GameHistory>,
     private val gameUserActionsList: ArrayList<UserActions>,
+    private val gameEventHistory: String,
     private val onNavigateBackToTitleScreen: () -> Unit
 ): ComponentContext by componentContext {
     private var _eventMessage = MutableValue(gameEventMessage)
@@ -139,6 +141,10 @@ class GameScreenComponent(
 
     private var _historyList = MutableValue(gameHistoryList)
     var historyList:Value<ArrayList<GameHistory>> = _historyList
+
+    private var _eventHistory = MutableValue(gameEventHistory)
+    var eventHistory:Value<String> = _eventHistory
+
     private var _userActionsList = MutableValue(gameUserActionsList)
     var userActionsList:Value<ArrayList<UserActions>> = _userActionsList
 
@@ -185,6 +191,7 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
                 )
                 onClickButton1()
@@ -221,6 +228,7 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
                 )
                 onClickButton2()
@@ -257,6 +265,7 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
                 )
                     onClickButton3()
@@ -293,6 +302,7 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
                 )
                 onClickButton4()
@@ -329,6 +339,7 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
                 )
                 onClickButton5()
@@ -366,6 +377,7 @@ class GameScreenComponent(
                         _gameShipHull,
                         _gameShipEngines,
                         _gameShipSensors,
+                        _eventHistory,
                         this
                     )
                 } else {
@@ -375,5 +387,32 @@ class GameScreenComponent(
                 onClickButton6()
             }
         }
+    }
+
+    fun addUserActionData(
+        gameStatus:String,
+        currentEventId:Int,
+        nextEventId: Int,
+        notes:String
+        ){
+        _userActionsList.value.add(
+            UserActions(
+                isStartOfGame = gameStatus == "start of game",
+                isEndOfGame = gameStatus == "end of game",
+                eventIdCurrent = currentEventId,
+                eventIdNext = nextEventId,
+                timestamp = Clock.System.now().epochSeconds,
+                notes = notes
+            )
+        )
+    }
+
+    fun addGameEventHistoryData(eventHistory:String, inGameDate: Long){
+        _historyList.value.add(
+            GameHistory(
+            history = eventHistory,
+            inGameDate = inGameDate
+        )
+        )
     }
 }

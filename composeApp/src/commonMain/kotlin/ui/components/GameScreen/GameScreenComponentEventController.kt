@@ -165,8 +165,28 @@ class GameScreenComponentEventController {
         gameShipHull: MutableValue<Int>,
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
+        eventHistory:MutableValue<String>,
         component: GameScreenComponent
     ) {
+        if (eventType.value == "decision"
+            || gameStatus.value == "end of game"
+            || gameStatus.value == "start of game") {
+            component.addUserActionData(
+                gameStatus.value,
+                component.nextEvent.value,
+                nextEvent.value,
+                notes = if (eventHistory.value.isNotEmpty()){
+                    eventHistory.value
+                } else {
+                    ""
+                }
+            )
+        }
+
+        if (eventHistory.value.isNotEmpty()){
+            component.addGameEventHistoryData(eventHistory.value, 0)
+        }
+
         setupSpaceEventUI(
             SpaceEvents().getEventFromId(nextEvent, component),
             eventMessage,

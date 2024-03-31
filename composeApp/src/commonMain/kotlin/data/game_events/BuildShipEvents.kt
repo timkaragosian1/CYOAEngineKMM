@@ -73,6 +73,7 @@ class BuildShipEvents {
                 nextEventId = -1,
                 enabled = false,
             ),
+            gameHistory = null
         )
     }
 
@@ -137,6 +138,8 @@ class BuildShipEvents {
                 nextEventId = 54,
                 enabled = true,
             ),
+            gameHistory = null
+
         )
     }
 
@@ -203,6 +206,8 @@ class BuildShipEvents {
                 nextEventId = -1,
                 enabled = true,
             ),
+            gameHistory = null
+
         )
     }
 
@@ -266,6 +271,8 @@ class BuildShipEvents {
                 nextEventId = 56,
                 enabled = true,
             ),
+            gameHistory = null
+
         )
     }
 
@@ -330,6 +337,8 @@ class BuildShipEvents {
                 nextEventId = -1,
                 enabled = true,
             ),
+            gameHistory = null
+
         )
     }
 }

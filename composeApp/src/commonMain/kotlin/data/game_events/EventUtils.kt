@@ -83,6 +83,8 @@ class EventUtils {
                 nextEventId = -1,
                 enabled = false,
             ),
+            gameHistory = null
+
         )
     }
 }

@@ -72,6 +72,7 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = "gamestart",
+            gameHistory = null
         )
     }
 
@@ -133,6 +134,7 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
+            gameHistory = null
         )
     }
 
@@ -194,6 +196,7 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
+            gameHistory = null
         )
     }
 
@@ -255,6 +258,7 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
+            gameHistory = null
         )
     }
 
@@ -316,6 +320,7 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
+            gameHistory = null
         )
     }
 }

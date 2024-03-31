@@ -69,6 +69,9 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             @OptIn(ExperimentalComposeLibrary::class)
 
+            //datetime
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.0-RC.2")
+
             //Decompose
             implementation(libs.decompose)
             implementation(libs.decompose.jetbrains)
