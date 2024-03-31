@@ -1,4 +1,4 @@
-package ui
+package ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ui.components.LoadingScreen.LoadingScreenComponent
 import kotlin.coroutines.EmptyCoroutineContext
 
 @Composable
@@ -39,5 +40,12 @@ fun LoadingScreen(component: LoadingScreenComponent) {
         verticalArrangement = Arrangement.Center
     ){
         Text(text = "Loading Screen")
+        Text(text = "We'll have your data soon!")
+        Text(text = "Tasks being mocked:")
+        Text(text = "Upload User Data and onComplete returns DB ver number")
+        Text(text = "Check against current DB Ver Number")
+        Text(text = "If newer, download and load new DB")
+        Text(text = "If same or older, do nothing")
+        Text(text = "Navigate to Title Screen")
     }
 }

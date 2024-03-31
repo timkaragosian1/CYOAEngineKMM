@@ -27,5 +27,7 @@ data class GameEvent(
     var eventDecision3: EventDecision,
     var eventDecision4: EventDecision,
     var eventDecision5: EventDecision,
-    var eventDecision6: EventDecision
+    var eventDecision6: EventDecision,
+
+    var gameHistory: String?
 )

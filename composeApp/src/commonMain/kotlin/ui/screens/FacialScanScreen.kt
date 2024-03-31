@@ -26,8 +26,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import ui.Values.GameColors
-import ui.Values.GameFontSizes
+import ui.values.GameColors
+import ui.values.GameFontSizes
 import ui.components.FacialScan.FacialScanComponent
 import kotlin.coroutines.EmptyCoroutineContext
 

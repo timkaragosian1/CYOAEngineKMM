@@ -5,7 +5,7 @@ package ui.components.GameScreen
 import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
-import data.models.Events.SpaceEvents
+import data.game_events.SpaceEvents
 import data.models.GameEvent
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi

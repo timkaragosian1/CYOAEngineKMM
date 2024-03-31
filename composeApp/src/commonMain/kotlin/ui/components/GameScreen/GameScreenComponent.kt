@@ -6,10 +6,10 @@ package ui.components.GameScreen
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
+import data.models.GameHistory
+import data.models.UserActions
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.GameScreen.GameScreenComponentEventController
-import ui.components.GameScreen.GameScreenEvent
 
 @ExperimentalResourceApi
 class GameScreenComponent(
@@ -54,6 +54,8 @@ class GameScreenComponent(
     private val onClickButton4: () -> Unit,
     private val onClickButton5: () -> Unit,
     private val onClickButton6: () -> Unit,
+    private val gameHistoryList: ArrayList<GameHistory>,
+    private val gameUserActionsList: ArrayList<UserActions>,
     private val onNavigateBackToTitleScreen: () -> Unit
 ): ComponentContext by componentContext {
     private var _eventMessage = MutableValue(gameEventMessage)
@@ -134,6 +136,11 @@ class GameScreenComponent(
 
     var _crewSpecialAbilities = MutableValue(ArrayList<String>())
     var crewSpecialAbilities:Value<ArrayList<String>> = _crewSpecialAbilities
+
+    private var _historyList = MutableValue(gameHistoryList)
+    var historyList:Value<ArrayList<GameHistory>> = _historyList
+    private var _userActionsList = MutableValue(gameUserActionsList)
+    var userActionsList:Value<ArrayList<UserActions>> = _userActionsList
 
     fun updateNextEvent(nextEvent:Int){
         _nextEvent.value = nextEvent

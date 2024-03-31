@@ -11,7 +11,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stac
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import ui.LoadingScreen
+import ui.screens.LoadingScreen
 import ui.navigation.RootComponent
 import ui.screens.CreditsScreen
 import ui.screens.FacialScanScreen

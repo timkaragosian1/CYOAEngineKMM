@@ -15,7 +15,7 @@ import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.LoadingScreenComponent
+import ui.components.LoadingScreen.LoadingScreenComponent
 import ui.components.CreditsScreen.CreditsScreenComponent
 import ui.components.FacialScan.FacialScanComponent
 import ui.components.GameScreen.GameScreenComponent

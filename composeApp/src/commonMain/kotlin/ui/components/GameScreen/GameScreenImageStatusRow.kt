@@ -21,10 +21,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ui.Values.GameColors
-import ui.Values.GameDimensions
-import ui.Values.GameFontSizes
-import ui.Values.GameShapes
+import ui.values.GameColors
+import ui.values.GameDimensions
+import ui.values.GameFontSizes
+import ui.values.GameShapes
 
 @Composable
     fun GameScreenImageStatusRow(
