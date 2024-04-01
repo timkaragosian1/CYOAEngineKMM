@@ -1,4 +1,4 @@
-package ui.values
+package ui.ui_values
 
 import androidx.compose.ui.graphics.Color
 

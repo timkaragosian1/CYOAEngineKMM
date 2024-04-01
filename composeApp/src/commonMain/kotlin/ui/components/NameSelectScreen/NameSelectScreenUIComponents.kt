@@ -32,10 +32,10 @@ import cyoaenginekmm.composeapp.generated.resources.nameselectscreen_subtitle_te
 import cyoaenginekmm.composeapp.generated.resources.nameselectscreen_title_text
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
-import ui.values.GameColors
-import ui.values.GameDimensions
-import ui.values.GameFontSizes
-import ui.values.GameShapes
+import ui.ui_values.GameColors
+import ui.ui_values.GameDimensions
+import ui.ui_values.GameFontSizes
+import ui.ui_values.GameShapes
 
 class NameSelectScreenUIComponents {
     val gameColors = GameColors()

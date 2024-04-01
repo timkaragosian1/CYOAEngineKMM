@@ -81,7 +81,17 @@ class RootComponent(
         context: ComponentContext
     ): Child {
         return when(config){
-            Configuration.TitleScreen -> Child.TitleScreen(
+            Configuration.LoadingScreen -> Child.LoadingScreen(
+                LoadingScreenComponent(
+                    componentContext = context,
+                    onLoadingComplete = {
+                        setNamesSelectScreenIsButtonEnabled(true)
+                        navigation.pushNew(Configuration.TitleScreen)
+                    }
+                )
+            )
+
+            is Configuration.TitleScreen -> Child.TitleScreen(
                     TitleScreenComponent(
                         componentContext = context,
                         onNavigateToCreditsScreen = {
@@ -109,13 +119,13 @@ class RootComponent(
                     gameEventMessage = gameEventMessage,
                     gameEventImage = gameEventImage,
                     gameEventLocation = gameEventLocation,
-                    gameNextEvent  = gameNextEvent,
-                    gameButton1Text  = gameButton1Text,
-                    gameButton2Text   = gameButton2Text,
-                    gameButton3Text   = gameButton3Text,
-                    gameButton4Text   = gameButton4Text,
-                    gameButton5Text       = gameButton5Text,
-                    gameButton6Text       = gameButton6Text,
+                    gameNextEvent = gameNextEvent,
+                    gameButton1Text = gameButton1Text,
+                    gameButton2Text = gameButton2Text,
+                    gameButton3Text = gameButton3Text,
+                    gameButton4Text = gameButton4Text,
+                    gameButton5Text = gameButton5Text,
+                    gameButton6Text = gameButton6Text,
                     gameButton1Enabled = gameButton1Enabled,
                     gameButton2Enabled = gameButton2Enabled,
                     gameButton3Enabled = gameButton3Enabled,
@@ -161,7 +171,6 @@ class RootComponent(
                 NamesSelectScreenComponent(
                     componentContext = context,
                     onNavigateToFacialScanScreen = {
-                        setNamesSelectScreenIsButtonEnabled(false)
                         setGameScreenData(
                             eventMessage = "Welcome $gameCeoFirstname $gameCeoLastName, you are the new CEO of $gameCompanyName. You have come into power at a very exciting time!",
                             eventImage = Res.drawable.red_rocket_art1,
@@ -212,15 +221,6 @@ class RootComponent(
                         navigation.pushNew(Configuration.GameSpaceScreen)
                     }
                 ),
-            )
-
-            is Configuration.LoadingScreen -> Child.LoadingScreen(
-                LoadingScreenComponent(
-                    componentContext = context,
-                    onLoadComplete = {
-                        navigation.pushNew(Configuration.TitleScreen)
-                    }
-                )
             )
         }
     }

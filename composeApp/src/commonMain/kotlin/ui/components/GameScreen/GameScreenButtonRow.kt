@@ -19,10 +19,10 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.values.GameColors
-import ui.values.GameDimensions
-import ui.values.GameFontSizes
-import ui.values.GameShapes
+import ui.ui_values.GameColors
+import ui.ui_values.GameDimensions
+import ui.ui_values.GameFontSizes
+import ui.ui_values.GameShapes
 
 
 @Composable

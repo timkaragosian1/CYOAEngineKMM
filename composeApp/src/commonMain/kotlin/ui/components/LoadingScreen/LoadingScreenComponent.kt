@@ -5,10 +5,9 @@ import com.arkivanov.decompose.ComponentContext
 
 class LoadingScreenComponent(
     componentContext: ComponentContext,
-    private val onLoadComplete: () -> Unit,
+    private val onLoadingComplete: () -> Unit
 ): ComponentContext by componentContext {
-
     fun onLoadDataComplete(){
-        onLoadComplete()
+        onLoadingComplete()
     }
 }
