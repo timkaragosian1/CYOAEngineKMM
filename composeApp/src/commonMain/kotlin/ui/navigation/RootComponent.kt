@@ -27,8 +27,8 @@ import ui.components.TitleScreen.TitleScreenComponent
 class RootComponent(
     componentContext: ComponentContext
 ): ComponentContext by componentContext {
-
     private val navigation = StackNavigation<Configuration>()
+
     private var gameCeoFirstname = ""
     private var gameCeoLastName = ""
     private var gameCompanyName = ""
@@ -87,11 +87,12 @@ class RootComponent(
                     onLoadingComplete = {
                         setNamesSelectScreenIsButtonEnabled(true)
                         navigation.pushNew(Configuration.TitleScreen)
-                    }
+                    },
+                    startingLoadProgressText = "Please Wait"
                 )
             )
 
-            is Configuration.TitleScreen -> Child.TitleScreen(
+            Configuration.TitleScreen -> Child.TitleScreen(
                     TitleScreenComponent(
                         componentContext = context,
                         onNavigateToCreditsScreen = {
@@ -104,7 +105,7 @@ class RootComponent(
                         }
                     ),
                 )
-            is Configuration.CreditsScreen -> Child.CreditsScreen(
+            Configuration.CreditsScreen -> Child.CreditsScreen(
                 CreditsScreenComponent(
                     componentContext = context,
                     onNavigateBackToTitleScreen = {
@@ -112,7 +113,7 @@ class RootComponent(
                     }
                 ),
             )
-            is Configuration.GameSpaceScreen -> Child.GameScreen(
+            Configuration.GameScreen -> Child.GameScreen(
                 GameScreenComponent(
                     componentContext = context,
                     gameEventType = gameEventType,
@@ -159,7 +160,7 @@ class RootComponent(
                         //RESET INFO IN NAMES SCREEN AFTER LEAVING
                         //RESET INFO IN FACIAL SCAN SCREEN AFTER LEAVING
                         setCEOAndCompanyNames("","","")
-                        navigation.popTo(0)
+                        navigation.popTo(1)
                     },
                     gameEventHistory = "",
                     gameHistoryList = ArrayList<GameHistory>(),
@@ -167,7 +168,7 @@ class RootComponent(
                 ),
             )
 
-            is Configuration.NamesSelectScreen -> Child.NamesSelectScreen(
+            Configuration.NamesSelectScreen -> Child.NamesSelectScreen(
                 NamesSelectScreenComponent(
                     componentContext = context,
                     onNavigateToFacialScanScreen = {
@@ -214,11 +215,11 @@ class RootComponent(
                 ),
             )
 
-            is Configuration.FacialScanScreen -> Child.FacialScanScreen(
+            Configuration.FacialScanScreen -> Child.FacialScanScreen(
                 FacialScanComponent(
                     componentContext = context,
                     onNavigateToGameScreen = {
-                        navigation.pushNew(Configuration.GameSpaceScreen)
+                        navigation.pushNew(Configuration.GameScreen)
                     }
                 ),
             )
@@ -318,6 +319,9 @@ class RootComponent(
     @Serializable
     sealed class Configuration {
         @Serializable
+        data object LoadingScreen: Configuration()
+
+        @Serializable
         data object TitleScreen: Configuration()
 
         @Serializable
@@ -327,11 +331,9 @@ class RootComponent(
         data object NamesSelectScreen: Configuration()
 
         @Serializable
-        data object GameSpaceScreen: Configuration()
+        data object FacialScanScreen: Configuration()
 
         @Serializable
-        data object FacialScanScreen: Configuration()
-        @Serializable
-        data object LoadingScreen: Configuration()
+        data object GameScreen: Configuration()
     }
 }
