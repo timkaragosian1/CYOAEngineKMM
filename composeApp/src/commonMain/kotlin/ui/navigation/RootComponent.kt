@@ -19,6 +19,7 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import ui.components.CreditsScreen.CreditsScreenComponent
 import ui.components.FacialScan.FacialScanComponent
+import ui.components.GameOverStory.GameOverStoryComponent
 import ui.components.GameScreen.GameScreenComponent
 import ui.components.LoadingScreen.LoadingScreenComponent
 import ui.components.NameSelectScreen.NamesSelectScreenComponent
@@ -160,7 +161,7 @@ class RootComponent(
                         //RESET INFO IN NAMES SCREEN AFTER LEAVING
                         //RESET INFO IN FACIAL SCAN SCREEN AFTER LEAVING
                         setCEOAndCompanyNames("","","")
-                        navigation.popTo(1)
+                        navigation.pushNew(Configuration.GameOverStoryScreen)
                     },
                     gameEventHistory = "",
                     gameHistoryList = ArrayList<GameHistory>(),
@@ -220,6 +221,16 @@ class RootComponent(
                     componentContext = context,
                     onNavigateToGameScreen = {
                         navigation.pushNew(Configuration.GameScreen)
+                    }
+                ),
+            )
+
+            Configuration.GameOverStoryScreen -> Child.GameOverStoryScreen(
+                GameOverStoryComponent(
+                    componentContext = context,
+                    onNavigateBackToTitleScreen = {
+                        setCEOAndCompanyNames("","","")
+                        navigation.popTo(1)
                     }
                 ),
             )
@@ -308,12 +319,14 @@ class RootComponent(
     }
 
     sealed class Child {
+        data class LoadingScreen(val component: LoadingScreenComponent):Child()
         data class TitleScreen(val component: TitleScreenComponent):Child()
         data class CreditsScreen(val component: CreditsScreenComponent):Child()
-        data class GameScreen(val component: GameScreenComponent):Child()
         data class NamesSelectScreen(val component: NamesSelectScreenComponent):Child()
         data class FacialScanScreen(val component: FacialScanComponent):Child()
-        data class LoadingScreen(val component: LoadingScreenComponent):Child()
+        data class GameScreen(val component: GameScreenComponent):Child()
+        data class GameOverStoryScreen(val component: GameOverStoryComponent):Child()
+
     }
 
     @Serializable
@@ -335,5 +348,7 @@ class RootComponent(
 
         @Serializable
         data object GameScreen: Configuration()
+        @Serializable
+        data object GameOverStoryScreen: Configuration()
     }
 }

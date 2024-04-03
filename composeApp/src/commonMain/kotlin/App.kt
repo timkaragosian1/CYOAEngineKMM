@@ -11,11 +11,12 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stac
 import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import ui.screens.LoadingScreen
 import ui.navigation.RootComponent
 import ui.screens.CreditsScreen
 import ui.screens.FacialScanScreen
+import ui.screens.GameOverStoryScreen
 import ui.screens.GameScreen
+import ui.screens.LoadingScreen
 import ui.screens.NamesSelectScreen
 import ui.screens.TitleScreen
 
@@ -46,6 +47,7 @@ fun App(root: RootComponent) {
                 is RootComponent.Child.NamesSelectScreen -> NamesSelectScreen(instance.component)
                 is RootComponent.Child.FacialScanScreen -> FacialScanScreen(instance.component)
                 is RootComponent.Child.GameScreen -> GameScreen(instance.component)
+                is RootComponent.Child.GameOverStoryScreen -> GameOverStoryScreen(instance.component)
             }
         }
         /**
