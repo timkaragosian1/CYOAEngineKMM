@@ -13,7 +13,7 @@ import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import data.models.GameHistory
-import data.models.UserActions
+import data.models.UserAction
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -68,6 +68,10 @@ class RootComponent(
     private var namesScreenSubmitButtonEnabled = false
     private var nameScreenProgressText1 = MutableValue("")
     private var nameScreenProgressText2 = MutableValue("")
+    private var gameHistoryList = ArrayList<GameHistory>()
+    private var gameUserActionsList = ArrayList<UserAction>()
+    private var gameHistory = MutableValue(GameHistory("",0))
+    private var userAction = MutableValue(UserAction(false,false,0,0,"",0))
 
     var childStack = childStack(
         source = navigation,
@@ -164,8 +168,12 @@ class RootComponent(
                         navigation.pushNew(Configuration.GameOverStoryScreen)
                     },
                     gameEventHistory = "",
-                    gameHistoryList = ArrayList<GameHistory>(),
-                    gameUserActionsList = ArrayList<UserActions>(),
+                    gameGameHistory = gameHistory.value,
+                    gameUserAction = userAction.value,
+                    onAddGameHistory = { addGameHistory(gameHistory = gameHistory.value) },
+                    onAddUserAction = {
+                        addUserAction(it)
+                    }
                 ),
             )
 
@@ -231,7 +239,9 @@ class RootComponent(
                     onNavigateBackToTitleScreen = {
                         setCEOAndCompanyNames("","","")
                         navigation.popTo(1)
-                    }
+                    },
+                    gameUserActionsList = gameUserActionsList ,
+                    gameHistoryList = gameHistoryList
                 ),
             )
         }
@@ -316,6 +326,14 @@ class RootComponent(
 
     fun setNamesSelectScreenIsButtonEnabled(isButtonEnabled:Boolean){
         namesScreenSubmitButtonEnabled = isButtonEnabled
+    }
+
+    fun addGameHistory(gameHistory: GameHistory){
+        gameHistoryList.add(gameHistory)
+    }
+
+    fun addUserAction(userAction: UserAction){
+        gameUserActionsList.add(userAction)
     }
 
     sealed class Child {

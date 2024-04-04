@@ -71,7 +71,7 @@ class StartingStoryGameEvents {
             gameShipSensorsChange = null,
             gameShipHullChange = null,
             gameCrewStatusChange = null,
-            gameStatusChange = "gamestart",
+            gameStatusChange = "story",
             gameHistory = null
         )
     }

@@ -1,6 +1,6 @@
 package data.models
 
-data class UserActions (
+data class UserAction (
     var isStartOfGame: Boolean = true,
     var isEndOfGame: Boolean = false,
     var eventIdCurrent: Int,

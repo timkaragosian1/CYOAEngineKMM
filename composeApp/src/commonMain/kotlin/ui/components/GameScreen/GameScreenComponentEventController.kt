@@ -13,6 +13,7 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 class GameScreenComponentEventController {
     fun setupSpaceEventUI(
         spaceEvent: GameEvent,
+        eventName: MutableValue<String>,
         eventMessage: MutableValue<String>,
         eventImage: MutableValue<DrawableResource>,
         eventType: MutableValue<String>,
@@ -43,6 +44,7 @@ class GameScreenComponentEventController {
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
     ) {
+        eventName.value = spaceEvent.eventName
         eventMessage.value = spaceEvent.eventMessage
         eventImage.value = spaceEvent.eventImage
         eventType.value = spaceEvent.eventType
@@ -135,6 +137,7 @@ class GameScreenComponentEventController {
     }
 
     fun handleNextEvent(
+        eventName:MutableValue<String>,
         eventMessage: MutableValue<String>,
         eventImage: MutableValue<DrawableResource>,
         eventType: MutableValue<String>,
@@ -170,25 +173,22 @@ class GameScreenComponentEventController {
     ) {
         if (eventType.value == "decision"
             || gameStatus.value == "end of game"
-            || gameStatus.value == "start of game") {
-            component.addUserActionData(
-                gameStatus.value,
-                component.nextEvent.value,
-                nextEvent.value,
-                notes = if (eventHistory.value.isNotEmpty()){
-                    eventHistory.value
-                } else {
-                    ""
-                }
+            || eventType.value == "gamestart") {
+
+            component.onEvent(
+                GameScreenEvent.AddUserAction, nextEvent.value
             )
         }
 
         if (eventHistory.value.isNotEmpty()){
-            component.addGameEventHistoryData(eventHistory.value, 0)
+            component.onEvent(
+                GameScreenEvent.AddGameHistory, nextEvent.value
+            )
         }
 
         setupSpaceEventUI(
             SpaceEvents().getEventFromId(nextEvent, component),
+            eventName,
             eventMessage,
             eventImage,
             eventType,
