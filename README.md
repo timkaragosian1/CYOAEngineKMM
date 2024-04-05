@@ -13,11 +13,11 @@
 ## 30-60-90 Day Milestone Experiment
 - First 30 validates feasibility of concept
 - Second 30 validates if it will work end-to-end
-- Final 30 days is polishing the MVP and feedback from users for if development should continue
+- Final 30 days is polishing the MVP and feedback from users to determine if there's value in continuing development
 - Repeat final 30-day task of polishing and feedback from users/audience to continue growth
 
 ## Productive Tooling Used
-Productivity tooling so far has been Google and Jetbrains Android and KMM docs and training, DALL-E for AI Image generation for art, ChatGPT for quick information I don't know and resource searches, Trello and Google Drive docs for organization, sharing, structure, and priority of work. 
+Productivity tooling so far has been Google and Jetbrains Android and KMM docs and training, DALL-E for AI Image generation for art, ChatGPT for quick information I don't know and resource searches, Trello and Google Drive docs for organization, sharing, structure, and priority of work. I am searching for more and will add as I discover them. Even tools that only increase productivity a little (0.01%) are considered as the more productive the tools can make me, the better prepared I will be for more efficient work.
 
 ## How It Works/Will Work
 - User Opens Application
