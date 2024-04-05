@@ -1,23 +1,23 @@
-#cCommerce: Cosmic Capitalism
-###A Space Travel & Resource Gathering Space Choose Your Own Adventure Game
+# cCommerce: Cosmic Capitalism
+### A Space Travel & Resource Gathering Space Choose Your Own Adventure Game
 
-##Latest Updates
+## Latest Updates
 4/2/24 Currently working through capturing User Actions and Overall Game Story to be relayed back to the user on the final screen. Also need cleanup of existing code not following a secure access pattern of getters/setters.
 
-##Introduction
+## Introduction
 -Work in progress from previous project CYOA Template (https://github.com/timkaragosian1/CYOATemplate)
 -Goal is to make and have an MVP in 90 days
 -First game developing, first time attempting 30-60-90 milestone experiment
 
-##30-60-90 Day Milestone Experiment
+## 30-60-90 Day Milestone Experiment
 
-##Productive Tooling Used
+## Productive Tooling Used
 
-##How It Works
+## How It Works
 
-##How This Can Be Used
+## How This Can Be Used
 
-##Additional Information
+## Additional Information
 Video journal detailing first 30-days of work: https://youtu.be/xQfu1FhggGg
 
 This is a Kotlin Multiplatform project targeting Android, iOS.
