@@ -1,5 +1,5 @@
 # cCommerce: Cosmic Capitalism
-### A Space Travel & Resource Gathering Space Choose Your Own Adventure Game
+### A Space Travel & Resource Gathering Choose Your Own Adventure Game
 
 ## Latest Updates
 4/2/24 Currently working through capturing User Actions and Overall Game Story to be relayed back to the user on the final screen. Also need cleanup of existing code not following a secure access pattern of getters/setters.
