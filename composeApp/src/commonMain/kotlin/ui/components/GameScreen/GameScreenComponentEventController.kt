@@ -176,7 +176,13 @@ class GameScreenComponentEventController {
             || eventType.value == "gamestart") {
 
             component.onEvent(
-                GameScreenEvent.AddUserAction, nextEvent.value
+                GameScreenEvent.AddUserAction,
+                nextEvent.value
+            )
+
+            component.onEvent(
+                GameScreenEvent.AddGameHistory,
+                nextEvent.value
             )
         }
 

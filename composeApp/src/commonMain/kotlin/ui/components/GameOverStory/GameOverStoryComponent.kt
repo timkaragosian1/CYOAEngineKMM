@@ -51,7 +51,7 @@ class GameOverStoryComponent(
             )
         for (gameHistory in historyList){
             Text(
-                text = gameHistory.history,
+                text = "history" + gameHistory.history,
                 color = Color.White,
                 fontWeight = FontWeight.Normal,
                 fontSize = 18.sp,

@@ -170,7 +170,7 @@ class RootComponent(
                     gameEventHistory = "",
                     gameGameHistory = gameHistory.value,
                     gameUserAction = userAction.value,
-                    onAddGameHistory = { addGameHistory(gameHistory = gameHistory.value) },
+                    onAddGameHistory = { addGameHistory(it) },
                     onAddUserAction = {
                         addUserAction(it)
                     }

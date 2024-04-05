@@ -151,10 +151,8 @@ class GameScreenComponent(
     }
 
     private var _gameHistory = MutableValue(gameGameHistory)
-    val gameHistory: Value<GameHistory> = _gameHistory
 
     private var _userAction = MutableValue(gameUserAction)
-    //val userAction: Value<UserAction> = _userAction
 
     fun handleGameOver() {
         onNavigateBackToTitleScreen()
@@ -444,13 +442,9 @@ class GameScreenComponent(
                 )
                 onClickButton6()
             }
-            is GameScreenEvent.AddGameHistory -> onAddGameHistory(
-                GameHistory(
-                    history = _eventHistory.value,
-                    inGameDate = 0
-                )
-            )
+
             is GameScreenEvent.AddUserAction -> onAddUserAction(_userAction.value)
+            is GameScreenEvent.AddGameHistory -> onAddGameHistory(_gameHistory.value)
         }
     }
 }
