@@ -5,18 +5,19 @@
 4/2/24 Currently working through capturing User Actions and Overall Game Story to be relayed back to the user on the final screen. Also need cleanup of existing code not following a secure access pattern of getters/setters.
 
 ## Introduction
--Work in progress from previous project CYOA Template (https://github.com/timkaragosian1/CYOATemplate)
--Goal is to make and have an MVP in 90 days
--First game developing, first time attempting 30-60-90 milestone experiment
+- Work in progress from previous project CYOA Template (https://github.com/timkaragosian1/CYOATemplate)
+- Created in Android Studio and builds an iOS and Android application via Kotlin Multiplatform Mobile.
+- Goal is to make and have an MVP in 90 days
+- First game developing, first time attempting 30-60-90 milestone experiment
 
 ## 30-60-90 Day Milestone Experiment
--First 30 validates feasibility of concept
--Second 30 validates if it will work end-to-end
--Final 30 days is polishing the MVP and feedback from users for if development should continue
--Repeat final 30-day task of polishing and feedback from users/audience to continue growth
+- First 30 validates feasibility of concept
+- Second 30 validates if it will work end-to-end
+- Final 30 days is polishing the MVP and feedback from users for if development should continue
+- Repeat final 30-day task of polishing and feedback from users/audience to continue growth
 
 ## Productive Tooling Used
-Productivity tooling so far has been Google and Jetbrains Android and KMM docs and training, DALL-E for AI Image generation for art, ChatGPT for quick information I don't know and resource searches, Trello and Google Drive docs for organization, sharing, structure, and priority of work. It's created in Android Studio and builds an iOS and Android application
+Productivity tooling so far has been Google and Jetbrains Android and KMM docs and training, DALL-E for AI Image generation for art, ChatGPT for quick information I don't know and resource searches, Trello and Google Drive docs for organization, sharing, structure, and priority of work. 
 
 ## How It Works/Will Work
 - User Opens Application
