@@ -10,12 +10,42 @@
 -First game developing, first time attempting 30-60-90 milestone experiment
 
 ## 30-60-90 Day Milestone Experiment
+-First 30 validates feasibility of concept
+-Second 30 validates if it will work end-to-end
+-Final 30 days is polishing the MVP and feedback from users for if development should continue
+-Repeat final 30-day task of polishing and feedback from users/audience to continue growth
 
 ## Productive Tooling Used
+Productivity tooling so far has been Google and Jetbrains Android and KMM docs and training, DALL-E for AI Image generation for art, ChatGPT for quick information I don't know and resource searches, Trello and Google Drive docs for organization, sharing, structure, and priority of work. It's created in Android Studio and builds an iOS and Android application
 
-## How It Works
+## How It Works/Will Work
+- User Opens Application
+- One Time Functionality: Application checks for updates while uploading user actions on previous adventures, if ver is different, downloads and applies new game events
+- Title screen to start game
+- User CEO Name and Company Name
+- Facial Scan Screen
+- Game event starts and all the magic happens. Driven from Event and decision objects. Events are the most complex thing and have to have their data accessible from a number of levels to pass between screens. Event type will determine if the user action and story elements are captured.
+- Game over user is treated to a story of their adventure
+- Goes back to title screen and the loop can begin again
 
 ## How This Can Be Used
+- Driven by Events and decisions, can be easily replaced with anything
+- Removing the event folder and redoing the UI for the first few screen could make this into an entire different thing. Could be a biz app showing product solutions for various issues that can drill them down into.
+- Anything that's a flowchart can be applied and made into this.
+- I could craft thousands of adventures from this
+- If this is successful, the future versions of this will have animations, sound, and more cinematic interactivity as I expand my capabilities 
+
+## High Level Development Plan
+* Establish Structure - DONE
+* Prove out gameplay - DONE
+* Organize with "Core" resources - DONE
+* Audio Functionality - DONE
+* End Game Features (Story Screen)
+* Intial Story Events to Prove Out Positive End Game Path (time runs out without ship lost)
+* Intial Story Events to Prove Out Negative End Game Path (ship lost)
+* Refinement of Features & Tech debt
+* Story Event Expansion and Developnment
+* Interactivity Feature Updates
 
 ## Additional Information
 Video journal detailing first 30-days of work: https://youtu.be/xQfu1FhggGg
