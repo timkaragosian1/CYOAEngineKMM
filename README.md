@@ -2,7 +2,7 @@
 ### A Space Travel & Resource Gathering Choose Your Own Adventure Game
 
 ## Quick Start
-This can be opened, built, and run with Android Studio and Xcode. For Android Studio, open the CYOAEngineKMM folder and run the composeApp. If you have Xcode and a Simulator device installed on a Mac, you can also run the iosApp from Android Studio. Alternatively, you can run the iosApp through Xcode by opening iosApp.xcodeproj in the iosApp folder of the project.
+To use this application, clone this repsitory to a local directory and open and build using Android Studio. Open the CYOAEngineKMM folder and run the composeApp. If you have Xcode and a Simulator device installed on a Mac computer, you can also run the iosApp from Android Studio. Alternatively, you can run the iosApp through Xcode by opening iosApp.xcodeproj in the iosApp folder of the project.
 
 ## Latest Updates
 4/2/24 Currently working through capturing User Actions and Overall Game Story to be relayed back to the user on the final screen. Also need cleanup of existing code not following a secure access pattern of getters/setters. iOS build currently does not move past Facial Scan Screen.
