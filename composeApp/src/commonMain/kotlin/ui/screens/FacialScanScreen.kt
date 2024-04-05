@@ -43,23 +43,26 @@ fun FacialScanScreen(component: FacialScanComponent) {
     var bottom2Text:Value<String> = _bottom2Text
 
     CoroutineScope(EmptyCoroutineContext).launch() {
-            delay(500)
-            if (_bottom1Text.value.length < 25) {
-                _bottom1Text.value = bottom1Text.value + "."
-            } else if (_bottom1Text.value.length == 25) {
-                _bottom1Text.value = bottom1Text.value + "COMPLETE!"
-                _bottom2Text.value = "Downloading User Data"
-            } else if (_bottom2Text.value.length < 32) {
-                _bottom2Text.value = bottom2Text.value + "."
-            } else if (_bottom2Text.value.length == 32) {
-                _bottom2Text.value = bottom2Text.value + "COMPLETE!"
-                delay(800)
-                _bottom1Text.value = "Please Wait"
-                _bottom2Text.value = ""
-
-                withContext(Dispatchers.Main) {
-                    component.onTimerEnd()
+        repeat(10) {
+            delay(200)
+            withContext(Dispatchers.Main) {
+                if (_bottom1Text.value.length < 25) {
+                    _bottom1Text.value = bottom1Text.value + "."
+                } else if (_bottom1Text.value.length == 25) {
+                    _bottom1Text.value = bottom1Text.value + "COMPLETE!"
+                    _bottom2Text.value = "Downloading User Data"
+                } else if (_bottom2Text.value.length < 32) {
+                    _bottom2Text.value = bottom2Text.value + "."
+                } else if (_bottom2Text.value.length == 32) {
+                    _bottom2Text.value = bottom2Text.value + "COMPLETE!"
+                    delay(800)
+                    _bottom1Text.value = "Please Wait"
+                    _bottom2Text.value = ""
                 }
+            }
+        }
+        withContext(Dispatchers.Main) {
+            component.onTimerEnd()
         }
     }.start()
 
