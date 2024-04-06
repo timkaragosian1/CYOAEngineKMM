@@ -45,20 +45,18 @@ fun FacialScanScreen(component: FacialScanComponent) {
     CoroutineScope(EmptyCoroutineContext).launch() {
         repeat(10) {
             delay(200)
-            withContext(Dispatchers.Main) {
-                if (_bottom1Text.value.length < 25) {
-                    _bottom1Text.value = bottom1Text.value + "."
-                } else if (_bottom1Text.value.length == 25) {
-                    _bottom1Text.value = bottom1Text.value + "COMPLETE!"
-                    _bottom2Text.value = "Downloading User Data"
-                } else if (_bottom2Text.value.length < 32) {
-                    _bottom2Text.value = bottom2Text.value + "."
-                } else if (_bottom2Text.value.length == 32) {
-                    _bottom2Text.value = bottom2Text.value + "COMPLETE!"
-                    delay(800)
-                    _bottom1Text.value = "Please Wait"
-                    _bottom2Text.value = ""
-                }
+            if (_bottom1Text.value.length < 25) {
+                _bottom1Text.value = bottom1Text.value + "."
+            } else if (_bottom1Text.value.length == 25) {
+                _bottom1Text.value = bottom1Text.value + "COMPLETE!"
+                _bottom2Text.value = "Downloading User Data"
+            } else if (_bottom2Text.value.length < 32) {
+                _bottom2Text.value = bottom2Text.value + "."
+            } else if (_bottom2Text.value.length == 32) {
+                _bottom2Text.value = bottom2Text.value + "COMPLETE!"
+                delay(400)
+                _bottom1Text.value = "Please Wait"
+                _bottom2Text.value = ""
             }
         }
         withContext(Dispatchers.Main) {
@@ -89,18 +87,20 @@ fun FacialScanScreen(component: FacialScanComponent) {
                 alpha = .15f,
                 contentDescription = null
             )
-            Text(
+            /*Text(
                 text = _bottom1Text.value,
                 fontSize = gameFontSizes.normalLarge,
                 color = gameColors.TextWhite,
                 textAlign = TextAlign.Center,
-            )
+            )*/
+            component.getSimulationFacialScanTextProgress()
             Text(
                 text = _bottom2Text.value,
                 fontSize = gameFontSizes.normalLarge,
                 color = gameColors.TextWhite,
                 textAlign = TextAlign.Center,
             )
+            component.getSimulationDownloadUserDataTextProgress()
         }
     }
 }
