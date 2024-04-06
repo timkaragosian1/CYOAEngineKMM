@@ -73,7 +73,7 @@ class BuildShipEvents {
                 nextEventId = -1,
                 enabled = false,
             ),
-            gameStoryText = null
+            gameStoryText = "null"
         )
     }
 
@@ -138,8 +138,7 @@ class BuildShipEvents {
                 nextEventId = 54,
                 enabled = true,
             ),
-            gameStoryText = null
-
+            gameStoryText = "null"
         )
     }
 
@@ -206,8 +205,7 @@ class BuildShipEvents {
                 nextEventId = -1,
                 enabled = true,
             ),
-            gameStoryText = null
-
+            gameStoryText = "null"
         )
     }
 
@@ -271,8 +269,7 @@ class BuildShipEvents {
                 nextEventId = 56,
                 enabled = true,
             ),
-            gameStoryText = null
-
+            gameStoryText = "null"
         )
     }
 
@@ -337,8 +334,7 @@ class BuildShipEvents {
                 nextEventId = -1,
                 enabled = true,
             ),
-            gameStoryText = null
-
+            gameStoryText = "null"
         )
     }
 }

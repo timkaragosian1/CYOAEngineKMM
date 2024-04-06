@@ -150,7 +150,7 @@ class GameScreenComponent(
         _nextEvent.value = nextEvent
     }
 
-    private var _gameStory = MutableValue(gameGameStory)
+    private var _gameStory = MutableValue(GameStory(eventStory.value,0))
     val gameStory: Value<GameStory> = _gameStory
 
     private var _userAction = MutableValue(gameUserAction)
@@ -197,6 +197,7 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _eventStory,
+                    _gameStory,
                     this
                 )
                 _userAction.value = UserAction(
@@ -243,6 +244,7 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _eventStory,
+                    _gameStory,
                     this
                 )
                 _userAction.value = UserAction(
@@ -289,6 +291,7 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _eventStory,
+                    _gameStory,
                     this
                 )
                 _userAction.value = UserAction(
@@ -335,6 +338,7 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _eventStory,
+                    _gameStory,
                     this
                 )
                 _userAction.value = UserAction(
@@ -381,6 +385,7 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _eventStory,
+                    _gameStory,
                     this
                 )
                 _userAction.value = UserAction(
@@ -428,6 +433,7 @@ class GameScreenComponent(
                         _gameShipEngines,
                         _gameShipSensors,
                         _eventStory,
+                        _gameStory,
                         this
                     )
                 } else {

@@ -46,6 +46,18 @@ fun GameOverStoryScreen(component: GameOverStoryComponent) {
             verticalArrangement = Arrangement.Center,
 
             ) {
+
+            Text(
+                text = "You and your company have written some interesting history for humankind!",
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 30.sp,
+            )
+            Spacer(
+                modifier = Modifier
+                    .padding(top = 10.dp)
+            )
+            component.getCompanyCEOStory()
             Text(
                 text = "User Actions",
                 color = Color.White,
@@ -61,17 +73,6 @@ fun GameOverStoryScreen(component: GameOverStoryComponent) {
                 modifier = Modifier
                     .padding(top = 25.dp)
             )
-            Text(
-                text = "Company & CEO Story",
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 30.sp,
-            )
-            Spacer(
-                modifier = Modifier
-                    .padding(top = 10.dp)
-            )
-            component.getCompanyCEOStory()
             Spacer(
                 modifier = Modifier
                     .padding(top = 25.dp)

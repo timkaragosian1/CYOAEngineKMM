@@ -7,6 +7,7 @@ import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import data.game_events.SpaceEvents
 import data.models.GameEvent
+import data.models.GameStory
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 
@@ -43,6 +44,7 @@ class GameScreenComponentEventController {
         gameShipHull: MutableValue<Int>,
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
+        gameStory:MutableValue<GameStory>
     ) {
         eventName.value = spaceEvent.eventName
         eventMessage.value = spaceEvent.eventMessage
@@ -68,6 +70,9 @@ class GameScreenComponentEventController {
         button5NextEvent.value = spaceEvent.eventDecision5.nextEventId
         button6NextEvent.value = spaceEvent.eventDecision6.nextEventId
 
+        if (spaceEvent.gameStoryText!!.isNotEmpty()) {
+            gameStory.value = GameStory(spaceEvent.gameStoryText!!, 0)
+        }
         if (spaceEvent.eventType.equals("change_stats")) {
             if (!spaceEvent.gameStatusChange.isNullOrEmpty()) {
                 gameStatus.value = spaceEvent.gameStatusChange.orEmpty()
@@ -169,6 +174,7 @@ class GameScreenComponentEventController {
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
         eventStory:MutableValue<String>,
+        story: MutableValue<GameStory>,
         component: GameScreenComponent
     ) {
         if (eventType.value == "decision"
@@ -224,6 +230,7 @@ class GameScreenComponentEventController {
             gameShipHull,
             gameShipEngines,
             gameShipSensors,
+            story
         )
     }
 }
