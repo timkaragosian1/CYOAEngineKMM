@@ -1,7 +1,7 @@
 # cCommerce: Cosmic Capitalism
 ### A Space Travel & Resource Gathering Choose Your Own Adventure Game
 
-[https://github.com/timkaragosian1/CYOAEngineKMM/](https://github.com/timkaragosian1/CYOAEngineKMM/blob/main/composeApp/src/commonMain/composeResources/drawable/open_screen_bkg1.jpeg)
+![alt text](https://github.com/timkaragosian1/CYOAEngineKMM/blob/main/composeApp/src/commonMain/composeResources/drawable/open_screen_bkg1.jpeg)
 
 ## Quick Start
 To use this application, clone this repsitory to a local directory and open and build using Android Studio. Open the CYOAEngineKMM folder and run the composeApp. If you have Xcode and a Simulator device installed on a Mac computer, you can also run the iosApp from Android Studio. Alternatively, you can run the iosApp through Xcode by opening iosApp.xcodeproj in the iosApp folder of the project.
@@ -20,6 +20,8 @@ To use this application, clone this repsitory to a local directory and open and 
 - Second 30 validates if it will work end-to-end
 - Final 30 days is polishing the MVP and feedback from users to determine if there's value in continuing development
 - Repeat final 30-day task of polishing and feedback from users/audience to continue growth
+
+![alt text](https://github.com/timkaragosian1/CYOAEngineKMM/blob/main/composeApp/src/commonMain/composeResources/drawable/considering_rockets.jpeg)
 
 ## Productive Tooling Used
 Productivity tooling so far has been Google and Jetbrains Android and KMM docs and training (https://developer.android.com/jetpack, https://developer.android.com/courses, https://developer.android.com/courses, https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-getting-started.html), DALL-E for AI Image generation for art (https://create.microsoft.com/en-us/features/ai-image-generator), ChatGPT for quick information I don't know and resource searches (https://chat.openai.com/), Trello and Google Drive docs for organization, sharing, structure, and priority of work(https://trello.com/, https://www.google.com/drive/). I have also been leaning on the teachings of Philipp Lackner YT (https://www.youtube.com/@UCKNTZMRHPLXfqlbdOI7mCkg).
@@ -42,6 +44,8 @@ I am searching for more and will add as I discover them. Even tools that only in
 - I could craft thousands of adventures from this
 - If this is successful, the future versions of this will have animations, sound, and more cinematic interactivity as I expand my capabilities 
 
+![alt text](https://github.com/timkaragosian1/CYOAEngineKMM/blob/main/composeApp/src/commonMain/composeResources/drawable/rocket_blueprint.jpeg)
+
 ## High Level Development Plan
 * Establish Structure - DONE
 * Prove out gameplay - DONE
@@ -58,6 +62,8 @@ I am searching for more and will add as I discover them. Even tools that only in
 Email me to discuss anything at timkaragosian@gmail.com.
 
 Video journal detailing first 30-days of work: https://youtu.be/xQfu1FhggGg
+
+![alt text](https://github.com/timkaragosian1/CYOAEngineKMM/blob/main/composeApp/src/commonMain/composeResources/drawable/usa_resource_company.jpeg)
 
 This is a Kotlin Multiplatform project targeting Android, iOS.
 
