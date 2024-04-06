@@ -12,7 +12,7 @@ import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
-import data.models.GameHistory
+import data.models.GameStory
 import data.models.UserAction
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
@@ -68,9 +68,9 @@ class RootComponent(
     private var namesScreenSubmitButtonEnabled = false
     private var nameScreenProgressText1 = MutableValue("")
     private var nameScreenProgressText2 = MutableValue("")
-    private var gameHistoryList = ArrayList<GameHistory>()
+    private var gameStoryList = ArrayList<GameStory>()
     private var gameUserActionsList = ArrayList<UserAction>()
-    private var gameHistory = MutableValue(GameHistory("",0))
+    private var gameStory = MutableValue(GameStory("",0))
     private var userAction = MutableValue(UserAction(false,false,0,0,"",0))
 
     var childStack = childStack(
@@ -167,10 +167,10 @@ class RootComponent(
                         setCEOAndCompanyNames("","","")
                         navigation.pushNew(Configuration.GameOverStoryScreen)
                     },
-                    gameEventHistory = "",
-                    gameGameHistory = gameHistory.value,
+                    gameEventStory = "",
+                    gameGameStory = gameStory.value,
                     gameUserAction = userAction.value,
-                    onAddGameHistory = { addGameHistory(it) },
+                    onAddGameStory = { addGameStory(it) },
                     onAddUserAction = {
                         addUserAction(it)
                     }
@@ -241,7 +241,7 @@ class RootComponent(
                         navigation.popTo(1)
                     },
                     gameUserActionsList = gameUserActionsList ,
-                    gameHistoryList = gameHistoryList
+                    gameStoryList = gameStoryList
                 ),
             )
         }
@@ -328,8 +328,8 @@ class RootComponent(
         namesScreenSubmitButtonEnabled = isButtonEnabled
     }
 
-    fun addGameHistory(gameHistory: GameHistory){
-        gameHistoryList.add(gameHistory)
+    fun addGameStory(gameStory: GameStory){
+        gameStoryList.add(gameStory)
     }
 
     fun addUserAction(userAction: UserAction){

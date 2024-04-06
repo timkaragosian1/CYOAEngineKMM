@@ -168,7 +168,7 @@ class GameScreenComponentEventController {
         gameShipHull: MutableValue<Int>,
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
-        eventHistory:MutableValue<String>,
+        eventStory:MutableValue<String>,
         component: GameScreenComponent
     ) {
         if (eventType.value == "decision"
@@ -181,14 +181,14 @@ class GameScreenComponentEventController {
             )
 
             component.onEvent(
-                GameScreenEvent.AddGameHistory,
+                GameScreenEvent.AddGameStory,
                 nextEvent.value
             )
         }
 
-        if (eventHistory.value.isNotEmpty()){
+        if (eventStory.value.isNotEmpty()){
             component.onEvent(
-                GameScreenEvent.AddGameHistory, nextEvent.value
+                GameScreenEvent.AddGameStory, nextEvent.value
             )
         }
 

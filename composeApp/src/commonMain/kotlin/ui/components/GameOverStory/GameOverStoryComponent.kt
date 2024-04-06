@@ -9,17 +9,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.arkivanov.decompose.ComponentContext
-import data.models.GameHistory
+import data.models.GameStory
 import data.models.UserAction
 
 class GameOverStoryComponent(
     componentContext: ComponentContext,
     gameUserActionsList: ArrayList<UserAction>,
-    gameHistoryList: ArrayList<GameHistory>,
+    gameStoryList: ArrayList<GameStory>,
     private val onNavigateBackToTitleScreen: () -> Unit
 ): ComponentContext by componentContext {
     val userActionsList = gameUserActionsList
-    val historyList = gameHistoryList
+    val storyList = gameStoryList
 
     @Composable
     fun getUserActions() {
@@ -49,9 +49,9 @@ class GameOverStoryComponent(
             fontSize = 18.sp,
             modifier = Modifier.padding(5.dp)
             )
-        for (gameHistory in historyList){
+        for (story in storyList){
             Text(
-                text = "history" + gameHistory.history,
+                text = "story: " + story.storyText,
                 color = Color.White,
                 fontWeight = FontWeight.Normal,
                 fontSize = 18.sp,

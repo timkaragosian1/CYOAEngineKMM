@@ -1,6 +1,6 @@
 package data.models
 
-data class GameHistory(
-    var history:String,
+data class GameStory(
+    var storyText:String,
     var inGameDate: Long
 )

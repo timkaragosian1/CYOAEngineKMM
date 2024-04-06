@@ -13,16 +13,16 @@ class NamesSelectScreenComponent(
 ): ComponentContext by componentContext {
 
     private var _gameCEOFirstname = MutableValue("")
-    var gameCEOFirstname: Value<String> = _gameCEOFirstname
+    val gameCEOFirstname: Value<String> = _gameCEOFirstname
 
     private var _gameCEOLastname = MutableValue("")
-    var gameCEOLastname: Value<String> = _gameCEOLastname
+    val gameCEOLastname: Value<String> = _gameCEOLastname
 
     private var _gameCompanyName = MutableValue("")
-    var gameCompanyName: Value<String> = _gameCompanyName
+    val gameCompanyName: Value<String> = _gameCompanyName
 
     private var _isButtonEnabled = MutableValue(isButtonEnabled)
-    var isButtonEnabled: Value<Boolean> = _isButtonEnabled
+    val isButtonEnabled: Value<Boolean> = _isButtonEnabled
 
     fun onEvent(event: NamesSelectScreenEvent){
         if (gameCEOFirstname.value.isNotEmpty() &&
