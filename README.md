@@ -6,8 +6,10 @@
 ## Quick Start
 To use this application, clone this repsitory to a local directory and open and build using Android Studio. Open the CYOAEngineKMM folder and run the composeApp. If you have Xcode and a Simulator device installed on a Mac computer, you can also run the iosApp from Android Studio. Alternatively, you can run the iosApp through Xcode by opening iosApp.xcodeproj in the iosApp folder of the project.
 
+Main branch will be the last stable feature update. An unmerged branch will be the current "work-in-progress" branch and may not be stable.
+
 ## Latest Updates
-4/2/24 Currently working through capturing User Actions and Overall Game Story to be relayed back to the user on the final screen. Also need cleanup of existing code not following a secure access pattern of getters/setters. iOS build currently does not move past Facial Scan Screen.
+4/6/24 Currently putting polish on how to capture the correct data for User Actions and Game Story.
 
 ## Introduction
 - Work in progress from previous project CYOA Template (https://github.com/timkaragosian1/CYOATemplate) and the CYOATemplate concept came from a Text-Based Adventure Tutorial (https://www.youtube.com/watch?v=_NRVn2JJ1JM&list=PL_QPQmz5C6WVWGhGVlT25UGYFUt7k9DGX).
