@@ -1,6 +1,8 @@
 # cCommerce: Cosmic Capitalism
 ### A Space Travel & Resource Gathering Choose Your Own Adventure Game
 
+[https://github.com/timkaragosian1/CYOAEngineKMM/](https://github.com/timkaragosian1/CYOAEngineKMM/blob/main/composeApp/src/commonMain/composeResources/drawable/open_screen_bkg1.jpeg)
+
 ## Quick Start
 To use this application, clone this repsitory to a local directory and open and build using Android Studio. Open the CYOAEngineKMM folder and run the composeApp. If you have Xcode and a Simulator device installed on a Mac computer, you can also run the iosApp from Android Studio. Alternatively, you can run the iosApp through Xcode by opening iosApp.xcodeproj in the iosApp folder of the project.
 
