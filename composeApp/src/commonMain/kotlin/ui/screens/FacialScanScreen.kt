@@ -87,20 +87,18 @@ fun FacialScanScreen(component: FacialScanComponent) {
                 alpha = .15f,
                 contentDescription = null
             )
-            /*Text(
+            Text(
                 text = _bottom1Text.value,
                 fontSize = gameFontSizes.normalLarge,
                 color = gameColors.TextWhite,
                 textAlign = TextAlign.Center,
-            )*/
-            component.getSimulationFacialScanTextProgress()
+            )
             Text(
                 text = _bottom2Text.value,
                 fontSize = gameFontSizes.normalLarge,
                 color = gameColors.TextWhite,
                 textAlign = TextAlign.Center,
             )
-            component.getSimulationDownloadUserDataTextProgress()
         }
     }
 }
