@@ -8,19 +8,20 @@ To use this application, clone this repsitory to a local directory and open and 
 4/2/24 Currently working through capturing User Actions and Overall Game Story to be relayed back to the user on the final screen. Also need cleanup of existing code not following a secure access pattern of getters/setters. iOS build currently does not move past Facial Scan Screen.
 
 ## Introduction
-- Work in progress from previous project CYOA Template (https://github.com/timkaragosian1/CYOATemplate)
+- Work in progress from previous project CYOA Template (https://github.com/timkaragosian1/CYOATemplate) and the CYOATemplate concept came from a Text-Based Adventure Tutorial (https://www.youtube.com/watch?v=_NRVn2JJ1JM&list=PL_QPQmz5C6WVWGhGVlT25UGYFUt7k9DGX).
 - Created in Android Studio and builds an iOS and Android application via Kotlin Multiplatform Mobile.
-- Goal is to make and have an MVP in 90 days
+- Goal is to make and have an MVP in 90 days with an option of continuing development further
 - First game developing, first time attempting 30-60-90 milestone experiment
 
 ## 30-60-90 Day Milestone Experiment
-- First 30 validates feasibility of concept
+- First 30 validates feasibility of concept (30-day Milestone Video: https://youtu.be/xQfu1FhggGg)
 - Second 30 validates if it will work end-to-end
 - Final 30 days is polishing the MVP and feedback from users to determine if there's value in continuing development
 - Repeat final 30-day task of polishing and feedback from users/audience to continue growth
 
 ## Productive Tooling Used
-Productivity tooling so far has been Google and Jetbrains Android and KMM docs and training, DALL-E for AI Image generation for art, ChatGPT for quick information I don't know and resource searches, Trello and Google Drive docs for organization, sharing, structure, and priority of work. I am searching for more and will add as I discover them. Even tools that only increase productivity a little (0.01%) are considered as the more productive the tools can make me, the better prepared I will be for more efficient work.
+Productivity tooling so far has been Google and Jetbrains Android and KMM docs and training (https://developer.android.com/jetpack, https://developer.android.com/courses, https://developer.android.com/courses, https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-getting-started.html), DALL-E for AI Image generation for art (https://create.microsoft.com/en-us/features/ai-image-generator), ChatGPT for quick information I don't know and resource searches (https://chat.openai.com/), Trello and Google Drive docs for organization, sharing, structure, and priority of work(https://trello.com/, https://www.google.com/drive/). I have also been leaning on the teachings of Philipp Lackner YT (https://www.youtube.com/@UCKNTZMRHPLXfqlbdOI7mCkg).
+I am searching for more and will add as I discover them. Even tools that only increase productivity a little (0.01%) are considered as the more productive the tools can make me, the better prepared I will be for more efficient work.
 
 ## How It Works/Will Work
 - User Opens Application
@@ -52,6 +53,8 @@ Productivity tooling so far has been Google and Jetbrains Android and KMM docs a
 * Interactivity Feature Updates
 
 ## Additional Information
+Email me to discuss anything at timkaragosian@gmail.com.
+
 Video journal detailing first 30-days of work: https://youtu.be/xQfu1FhggGg
 
 This is a Kotlin Multiplatform project targeting Android, iOS.
