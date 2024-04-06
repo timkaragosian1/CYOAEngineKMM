@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalResourceApi::class)
 
-package data.models.Events
+package data.game_events
 
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.earth_resources_limited
@@ -71,7 +71,8 @@ class StartingStoryGameEvents {
             gameShipSensorsChange = null,
             gameShipHullChange = null,
             gameCrewStatusChange = null,
-            gameStatusChange = "gamestart",
+            gameStatusChange = "story",
+            gameHistory = null
         )
     }
 
@@ -133,6 +134,7 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
+            gameHistory = null
         )
     }
 
@@ -194,6 +196,7 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
+            gameHistory = null
         )
     }
 
@@ -255,6 +258,7 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
+            gameHistory = null
         )
     }
 
@@ -316,6 +320,7 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
+            gameHistory = null
         )
     }
 }

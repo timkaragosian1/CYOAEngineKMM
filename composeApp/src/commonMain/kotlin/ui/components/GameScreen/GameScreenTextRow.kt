@@ -11,10 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import ui.Values.GameColors
-import ui.Values.GameDimensions
-import ui.Values.GameFontSizes
-import ui.Values.GameShapes
+import ui.ui_values.GameColors
+import ui.ui_values.GameDimensions
+import ui.ui_values.GameFontSizes
+import ui.ui_values.GameShapes
 
 @Composable
 fun GameScreenTextRow(eventMessage: String) {

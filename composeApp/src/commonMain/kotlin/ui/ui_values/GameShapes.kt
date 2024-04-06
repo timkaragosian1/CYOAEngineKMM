@@ -1,4 +1,4 @@
-package ui.Values
+package ui.ui_values
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.graphics.Shape

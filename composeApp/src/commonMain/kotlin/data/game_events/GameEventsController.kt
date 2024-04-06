@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalResourceApi::class, ExperimentalResourceApi::class)
 
-package data.models.Events
+package data.game_events
 
 import com.arkivanov.decompose.value.MutableValue
 import data.models.GameEvent

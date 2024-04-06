@@ -5,7 +5,7 @@ package ui.components.GameScreen
 import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
-import data.models.Events.SpaceEvents
+import data.game_events.SpaceEvents
 import data.models.GameEvent
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -13,6 +13,7 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 class GameScreenComponentEventController {
     fun setupSpaceEventUI(
         spaceEvent: GameEvent,
+        eventName: MutableValue<String>,
         eventMessage: MutableValue<String>,
         eventImage: MutableValue<DrawableResource>,
         eventType: MutableValue<String>,
@@ -43,6 +44,7 @@ class GameScreenComponentEventController {
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
     ) {
+        eventName.value = spaceEvent.eventName
         eventMessage.value = spaceEvent.eventMessage
         eventImage.value = spaceEvent.eventImage
         eventType.value = spaceEvent.eventType
@@ -135,6 +137,7 @@ class GameScreenComponentEventController {
     }
 
     fun handleNextEvent(
+        eventName:MutableValue<String>,
         eventMessage: MutableValue<String>,
         eventImage: MutableValue<DrawableResource>,
         eventType: MutableValue<String>,
@@ -165,10 +168,33 @@ class GameScreenComponentEventController {
         gameShipHull: MutableValue<Int>,
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
+        eventHistory:MutableValue<String>,
         component: GameScreenComponent
     ) {
+        if (eventType.value == "decision"
+            || gameStatus.value == "end of game"
+            || eventType.value == "gamestart") {
+
+            component.onEvent(
+                GameScreenEvent.AddUserAction,
+                nextEvent.value
+            )
+
+            component.onEvent(
+                GameScreenEvent.AddGameHistory,
+                nextEvent.value
+            )
+        }
+
+        if (eventHistory.value.isNotEmpty()){
+            component.onEvent(
+                GameScreenEvent.AddGameHistory, nextEvent.value
+            )
+        }
+
         setupSpaceEventUI(
             SpaceEvents().getEventFromId(nextEvent, component),
+            eventName,
             eventMessage,
             eventImage,
             eventType,

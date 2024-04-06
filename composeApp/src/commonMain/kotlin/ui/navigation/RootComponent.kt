@@ -12,21 +12,24 @@ import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
+import data.models.GameHistory
+import data.models.UserAction
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.LoadingScreenComponent
 import ui.components.CreditsScreen.CreditsScreenComponent
 import ui.components.FacialScan.FacialScanComponent
+import ui.components.GameOverStory.GameOverStoryComponent
 import ui.components.GameScreen.GameScreenComponent
+import ui.components.LoadingScreen.LoadingScreenComponent
 import ui.components.NameSelectScreen.NamesSelectScreenComponent
 import ui.components.TitleScreen.TitleScreenComponent
 
 class RootComponent(
     componentContext: ComponentContext
 ): ComponentContext by componentContext {
-
     private val navigation = StackNavigation<Configuration>()
+
     private var gameCeoFirstname = ""
     private var gameCeoLastName = ""
     private var gameCompanyName = ""
@@ -65,6 +68,10 @@ class RootComponent(
     private var namesScreenSubmitButtonEnabled = false
     private var nameScreenProgressText1 = MutableValue("")
     private var nameScreenProgressText2 = MutableValue("")
+    private var gameHistoryList = ArrayList<GameHistory>()
+    private var gameUserActionsList = ArrayList<UserAction>()
+    private var gameHistory = MutableValue(GameHistory("",0))
+    private var userAction = MutableValue(UserAction(false,false,0,0,"",0))
 
     var childStack = childStack(
         source = navigation,
@@ -79,6 +86,17 @@ class RootComponent(
         context: ComponentContext
     ): Child {
         return when(config){
+            Configuration.LoadingScreen -> Child.LoadingScreen(
+                LoadingScreenComponent(
+                    componentContext = context,
+                    onLoadingComplete = {
+                        setNamesSelectScreenIsButtonEnabled(true)
+                        navigation.pushNew(Configuration.TitleScreen)
+                    },
+                    startingLoadProgressText = "Please Wait"
+                )
+            )
+
             Configuration.TitleScreen -> Child.TitleScreen(
                     TitleScreenComponent(
                         componentContext = context,
@@ -92,7 +110,7 @@ class RootComponent(
                         }
                     ),
                 )
-            is Configuration.CreditsScreen -> Child.CreditsScreen(
+            Configuration.CreditsScreen -> Child.CreditsScreen(
                 CreditsScreenComponent(
                     componentContext = context,
                     onNavigateBackToTitleScreen = {
@@ -100,20 +118,20 @@ class RootComponent(
                     }
                 ),
             )
-            is Configuration.GameSpaceScreen -> Child.GameScreen(
+            Configuration.GameScreen -> Child.GameScreen(
                 GameScreenComponent(
                     componentContext = context,
                     gameEventType = gameEventType,
                     gameEventMessage = gameEventMessage,
                     gameEventImage = gameEventImage,
                     gameEventLocation = gameEventLocation,
-                    gameNextEvent  = gameNextEvent,
-                    gameButton1Text  = gameButton1Text,
-                    gameButton2Text   = gameButton2Text,
-                    gameButton3Text   = gameButton3Text,
-                    gameButton4Text   = gameButton4Text,
-                    gameButton5Text       = gameButton5Text,
-                    gameButton6Text       = gameButton6Text,
+                    gameNextEvent = gameNextEvent,
+                    gameButton1Text = gameButton1Text,
+                    gameButton2Text = gameButton2Text,
+                    gameButton3Text = gameButton3Text,
+                    gameButton4Text = gameButton4Text,
+                    gameButton5Text = gameButton5Text,
+                    gameButton6Text = gameButton6Text,
                     gameButton1Enabled = gameButton1Enabled,
                     gameButton2Enabled = gameButton2Enabled,
                     gameButton3Enabled = gameButton3Enabled,
@@ -147,16 +165,22 @@ class RootComponent(
                         //RESET INFO IN NAMES SCREEN AFTER LEAVING
                         //RESET INFO IN FACIAL SCAN SCREEN AFTER LEAVING
                         setCEOAndCompanyNames("","","")
-                        navigation.popTo(0)
+                        navigation.pushNew(Configuration.GameOverStoryScreen)
+                    },
+                    gameEventHistory = "",
+                    gameGameHistory = gameHistory.value,
+                    gameUserAction = userAction.value,
+                    onAddGameHistory = { addGameHistory(it) },
+                    onAddUserAction = {
+                        addUserAction(it)
                     }
                 ),
             )
 
-            is Configuration.NamesSelectScreen -> Child.NamesSelectScreen(
+            Configuration.NamesSelectScreen -> Child.NamesSelectScreen(
                 NamesSelectScreenComponent(
                     componentContext = context,
                     onNavigateToFacialScanScreen = {
-                        setNamesSelectScreenIsButtonEnabled(false)
                         setGameScreenData(
                             eventMessage = "Welcome $gameCeoFirstname $gameCeoLastName, you are the new CEO of $gameCompanyName. You have come into power at a very exciting time!",
                             eventImage = Res.drawable.red_rocket_art1,
@@ -200,22 +224,25 @@ class RootComponent(
                 ),
             )
 
-            is Configuration.FacialScanScreen -> Child.FacialScanScreen(
+            Configuration.FacialScanScreen -> Child.FacialScanScreen(
                 FacialScanComponent(
                     componentContext = context,
                     onNavigateToGameScreen = {
-                        navigation.pushNew(Configuration.GameSpaceScreen)
+                        navigation.pushNew(Configuration.GameScreen)
                     }
                 ),
             )
 
-            is Configuration.LoadingScreen -> Child.LoadingScreen(
-                LoadingScreenComponent(
+            Configuration.GameOverStoryScreen -> Child.GameOverStoryScreen(
+                GameOverStoryComponent(
                     componentContext = context,
-                    onLoadComplete = {
-                        navigation.pushNew(Configuration.TitleScreen)
-                    }
-                )
+                    onNavigateBackToTitleScreen = {
+                        setCEOAndCompanyNames("","","")
+                        navigation.popTo(1)
+                    },
+                    gameUserActionsList = gameUserActionsList ,
+                    gameHistoryList = gameHistoryList
+                ),
             )
         }
     }
@@ -301,17 +328,30 @@ class RootComponent(
         namesScreenSubmitButtonEnabled = isButtonEnabled
     }
 
+    fun addGameHistory(gameHistory: GameHistory){
+        gameHistoryList.add(gameHistory)
+    }
+
+    fun addUserAction(userAction: UserAction){
+        gameUserActionsList.add(userAction)
+    }
+
     sealed class Child {
+        data class LoadingScreen(val component: LoadingScreenComponent):Child()
         data class TitleScreen(val component: TitleScreenComponent):Child()
         data class CreditsScreen(val component: CreditsScreenComponent):Child()
-        data class GameScreen(val component: GameScreenComponent):Child()
         data class NamesSelectScreen(val component: NamesSelectScreenComponent):Child()
         data class FacialScanScreen(val component: FacialScanComponent):Child()
-        data class LoadingScreen(val component: LoadingScreenComponent):Child()
+        data class GameScreen(val component: GameScreenComponent):Child()
+        data class GameOverStoryScreen(val component: GameOverStoryComponent):Child()
+
     }
 
     @Serializable
     sealed class Configuration {
+        @Serializable
+        data object LoadingScreen: Configuration()
+
         @Serializable
         data object TitleScreen: Configuration()
 
@@ -322,11 +362,11 @@ class RootComponent(
         data object NamesSelectScreen: Configuration()
 
         @Serializable
-        data object GameSpaceScreen: Configuration()
+        data object FacialScanScreen: Configuration()
 
         @Serializable
-        data object FacialScanScreen: Configuration()
+        data object GameScreen: Configuration()
         @Serializable
-        data object LoadingScreen: Configuration()
+        data object GameOverStoryScreen: Configuration()
     }
 }

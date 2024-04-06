@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalResourceApi::class)
 
-package data.models.Events
+package data.game_events
 
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.rocket_built
@@ -83,6 +83,8 @@ class EventUtils {
                 nextEventId = -1,
                 enabled = false,
             ),
+            gameHistory = null
+
         )
     }
 }

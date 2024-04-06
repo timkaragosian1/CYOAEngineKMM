@@ -6,10 +6,11 @@ package ui.components.GameScreen
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
+import data.models.GameHistory
+import data.models.UserAction
+import kotlinx.datetime.Clock
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import ui.components.GameScreen.GameScreenComponentEventController
-import ui.components.GameScreen.GameScreenEvent
 
 @ExperimentalResourceApi
 class GameScreenComponent(
@@ -54,8 +55,15 @@ class GameScreenComponent(
     private val onClickButton4: () -> Unit,
     private val onClickButton5: () -> Unit,
     private val onClickButton6: () -> Unit,
-    private val onNavigateBackToTitleScreen: () -> Unit
+    private val gameEventHistory: String,
+    private val onNavigateBackToTitleScreen: () -> Unit,
+    private val onAddUserAction: (UserAction) -> Unit,
+    private val onAddGameHistory: (GameHistory) -> Unit,
+    private val gameGameHistory: GameHistory,
+    private val gameUserAction: UserAction
 ): ComponentContext by componentContext {
+    private var _eventName = MutableValue("")
+    var eventName:Value<String> = _eventName
     private var _eventMessage = MutableValue(gameEventMessage)
     var eventMessage:Value<String> = _eventMessage
     private var _eventImage = MutableValue(gameEventImage)
@@ -135,9 +143,16 @@ class GameScreenComponent(
     var _crewSpecialAbilities = MutableValue(ArrayList<String>())
     var crewSpecialAbilities:Value<ArrayList<String>> = _crewSpecialAbilities
 
+    private var _eventHistory = MutableValue(gameEventHistory)
+    var eventHistory:Value<String> = _eventHistory
+
     fun updateNextEvent(nextEvent:Int){
         _nextEvent.value = nextEvent
     }
+
+    private var _gameHistory = MutableValue(gameGameHistory)
+
+    private var _userAction = MutableValue(gameUserAction)
 
     fun handleGameOver() {
         onNavigateBackToTitleScreen()
@@ -148,6 +163,7 @@ class GameScreenComponent(
         when(event){
             GameScreenEvent.ClickButton1 -> {
                 GameScreenComponentEventController().handleNextEvent(
+                    _eventName,
                     _eventMessage,
                     _eventImage,
                     _eventType,
@@ -178,12 +194,22 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
+                )
+                _userAction.value = UserAction(
+                    isStartOfGame = _gameStatus.value == "gamestart",
+                    isEndOfGame = _gameStatus.value == "gameend",
+                    eventIdCurrent = 0,
+                    eventIdNext = _nextEvent.value,
+                    notes = _eventName.value,
+                    timestamp = Clock.System.now().toEpochMilliseconds()
                 )
                 onClickButton1()
             }
             is GameScreenEvent.ClickButton2 -> {
                 GameScreenComponentEventController().handleNextEvent(
+                    _eventName,
                     _eventMessage,
                     _eventImage,
                     _eventType,
@@ -214,12 +240,22 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
+                )
+                _userAction.value = UserAction(
+                    isStartOfGame = _gameStatus.value == "gamestart",
+                    isEndOfGame = _gameStatus.value == "gameend",
+                    eventIdCurrent = 0,
+                    eventIdNext = _nextEvent.value,
+                    notes = _eventName.value,
+                    timestamp = Clock.System.now().toEpochMilliseconds()
                 )
                 onClickButton2()
             }
             is GameScreenEvent.ClickButton3 -> {
                 GameScreenComponentEventController().handleNextEvent(
+                    _eventName,
                     _eventMessage,
                     _eventImage,
                     _eventType,
@@ -250,12 +286,22 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
+                )
+                _userAction.value = UserAction(
+                    isStartOfGame = _gameStatus.value == "gamestart",
+                    isEndOfGame = _gameStatus.value == "gameend",
+                    eventIdCurrent = 0,
+                    eventIdNext = _nextEvent.value,
+                    notes = _eventName.value,
+                    timestamp = Clock.System.now().toEpochMilliseconds()
                 )
                     onClickButton3()
             }
             is GameScreenEvent.ClickButton4 -> {
                 GameScreenComponentEventController().handleNextEvent(
+                    _eventName,
                     _eventMessage,
                     _eventImage,
                     _eventType,
@@ -286,12 +332,22 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
+                )
+                _userAction.value = UserAction(
+                    isStartOfGame = _gameStatus.value == "gamestart",
+                    isEndOfGame = _gameStatus.value == "gameend",
+                    eventIdCurrent = 0,
+                    eventIdNext = _nextEvent.value,
+                    notes = _eventName.value,
+                    timestamp = Clock.System.now().toEpochMilliseconds()
                 )
                 onClickButton4()
             }
             is GameScreenEvent.ClickButton5 -> {
                 GameScreenComponentEventController().handleNextEvent(
+                    _eventName,
                     _eventMessage,
                     _eventImage,
                     _eventType,
@@ -322,13 +378,23 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
+                    _eventHistory,
                     this
+                )
+                _userAction.value = UserAction(
+                    isStartOfGame = _gameStatus.value == "gamestart",
+                    isEndOfGame = _gameStatus.value == "gameend",
+                    eventIdCurrent = 0,
+                    eventIdNext = _nextEvent.value,
+                    notes = _eventName.value,
+                    timestamp = Clock.System.now().toEpochMilliseconds()
                 )
                 onClickButton5()
             }
             is GameScreenEvent.ClickButton6 -> {
                 if (_nextEvent.value!=-1) {
                     GameScreenComponentEventController().handleNextEvent(
+                        _eventName,
                         _eventMessage,
                         _eventImage,
                         _eventType,
@@ -359,14 +425,27 @@ class GameScreenComponent(
                         _gameShipHull,
                         _gameShipEngines,
                         _gameShipSensors,
+                        _eventHistory,
                         this
                     )
                 } else {
                     handleGameOver()
                 }
 
+                _userAction.value = UserAction(
+                    isStartOfGame = _gameStatus.value == "gamestart",
+                    isEndOfGame = _gameStatus.value == "gameend",
+                    eventIdCurrent = 0,
+                    eventIdNext = _nextEvent.value,
+                    notes = _eventName.value,
+                    timestamp = Clock.System.now().toEpochMilliseconds()
+                )
                 onClickButton6()
             }
+
+            is GameScreenEvent.AddUserAction -> onAddUserAction(_userAction.value)
+            is GameScreenEvent.AddGameHistory -> onAddGameHistory(_gameHistory.value)
         }
     }
 }
+

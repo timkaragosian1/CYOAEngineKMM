@@ -20,15 +20,16 @@ import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.facial_scan
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import ui.Values.GameColors
-import ui.Values.GameFontSizes
 import ui.components.FacialScan.FacialScanComponent
+import ui.ui_values.GameColors
+import ui.ui_values.GameFontSizes
 import kotlin.coroutines.EmptyCoroutineContext
 
 private var _bottom1Text = MutableValue("Please Wait")
@@ -41,27 +42,27 @@ fun FacialScanScreen(component: FacialScanComponent) {
     var bottom1Text:Value<String> = _bottom1Text
     var bottom2Text:Value<String> = _bottom2Text
 
-    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
-        throwable.printStackTrace()
-    }
-
-    CoroutineScope(EmptyCoroutineContext).launch(coroutineExceptionHandler) {
-            delay(500)
-            if (_bottom1Text.value.length < 25) {
-                _bottom1Text.value = bottom1Text.value + "."
-            } else if (_bottom1Text.value.length == 25) {
-                _bottom1Text.value = bottom1Text.value + "COMPLETE!"
-                _bottom2Text.value = "Downloading User Data"
-            } else if (_bottom2Text.value.length < 32) {
-                _bottom2Text.value = bottom2Text.value + "."
-            } else if (_bottom2Text.value.length == 32) {
-                _bottom2Text.value = bottom2Text.value + "COMPLETE!"
-            } else {
-                delay(800)
-                _bottom1Text.value = "Please Wait"
-                _bottom2Text.value = ""
-
-                component.onTimerEnd()
+    CoroutineScope(EmptyCoroutineContext).launch() {
+        repeat(10) {
+            delay(200)
+            withContext(Dispatchers.Main) {
+                if (_bottom1Text.value.length < 25) {
+                    _bottom1Text.value = bottom1Text.value + "."
+                } else if (_bottom1Text.value.length == 25) {
+                    _bottom1Text.value = bottom1Text.value + "COMPLETE!"
+                    _bottom2Text.value = "Downloading User Data"
+                } else if (_bottom2Text.value.length < 32) {
+                    _bottom2Text.value = bottom2Text.value + "."
+                } else if (_bottom2Text.value.length == 32) {
+                    _bottom2Text.value = bottom2Text.value + "COMPLETE!"
+                    delay(800)
+                    _bottom1Text.value = "Please Wait"
+                    _bottom2Text.value = ""
+                }
+            }
+        }
+        withContext(Dispatchers.Main) {
+            component.onTimerEnd()
         }
     }.start()
 

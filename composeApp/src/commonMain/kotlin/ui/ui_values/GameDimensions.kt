@@ -1,4 +1,4 @@
-package ui.Values
+package ui.ui_values
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp

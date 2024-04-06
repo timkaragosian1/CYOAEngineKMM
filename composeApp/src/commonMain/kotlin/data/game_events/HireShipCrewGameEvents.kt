@@ -1,4 +1,4 @@
-package data.models.Events
+package data.game_events
 
 class HireShipCrewGameEvents {
 }
