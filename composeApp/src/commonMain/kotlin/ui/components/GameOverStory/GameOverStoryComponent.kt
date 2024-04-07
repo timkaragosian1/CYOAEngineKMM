@@ -18,6 +18,9 @@ class GameOverStoryComponent(
     componentContext: ComponentContext,
     gameUserActionsList: ArrayList<UserAction>,
     gameStoryList: ArrayList<GameStory>,
+    companyName:String,
+    ceoFirstName:String,
+    ceoLastName:String,
     private val onNavigateBackToTitleScreen: () -> Unit
 ): ComponentContext by componentContext {
     val userActionsList = gameUserActionsList
@@ -26,6 +29,9 @@ class GameOverStoryComponent(
     val gameDateUtils = GameDateUtils()
 
     var gameTime = MutableValue(gameDateUtils.gameTimeMillis)
+    val ceoFirst = ceoFirstName
+    val ceoLast = ceoLastName
+    val compName = companyName
 
     @Composable
     fun getUserActions() {

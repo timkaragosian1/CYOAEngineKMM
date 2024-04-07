@@ -48,7 +48,7 @@ fun GameOverStoryScreen(component: GameOverStoryComponent) {
             ) {
 
             Text(
-                text = "You and your company have written some interesting history for humankind!",
+                text = "${component.compName}'s CEO, ${component.ceoFirst} ${component.ceoLast}, History",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
