@@ -73,7 +73,7 @@ class BuildShipEvents {
                 nextEventId = -1,
                 enabled = false,
             ),
-            gameStoryText = "null"
+            gameStoryText = "From the blueprint, there are a few ways to craft the ship with varying costs and benefits. As CEO, choose which you think is best from these options."
         )
     }
 
@@ -138,7 +138,7 @@ class BuildShipEvents {
                 nextEventId = 54,
                 enabled = true,
             ),
-            gameStoryText = "null"
+            gameStoryText = "You have logically chosen that even though there is a high cost, there is also a high benefit along with it."
         )
     }
 
@@ -205,7 +205,7 @@ class BuildShipEvents {
                 nextEventId = -1,
                 enabled = true,
             ),
-            gameStoryText = "null"
+            gameStoryText = "Your ship is built with the best Hull, Sensors, and Engines earth currently has to offer."
         )
     }
 
@@ -269,7 +269,7 @@ class BuildShipEvents {
                 nextEventId = 56,
                 enabled = true,
             ),
-            gameStoryText = "null"
+            gameStoryText = "You have decided that it's best to get a lot of value out of your ship and went with a Satisfactory option. The engineering team begins work right away."
         )
     }
 
@@ -334,7 +334,7 @@ class BuildShipEvents {
                 nextEventId = -1,
                 enabled = true,
             ),
-            gameStoryText = "null"
+            gameStoryText = "Your ship is built with a decent Hull, Sensors, and Engines earth."
         )
     }
 }

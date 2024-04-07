@@ -9,6 +9,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.value.MutableValue
+import data.GameDateUtils
 import data.models.GameStory
 import data.models.UserAction
 
@@ -21,14 +23,12 @@ class GameOverStoryComponent(
     val userActionsList = gameUserActionsList
     val storyList = gameStoryList
 
+    val gameDateUtils = GameDateUtils()
+
+    var gameTime = MutableValue(gameDateUtils.gameTimeMillis)
+
     @Composable
     fun getUserActions() {
-        Text(
-            text = "Sample User Action Line",
-            color = Color.White,
-            fontWeight = FontWeight.Normal,
-            fontSize = 18.sp,
-        )
         for (userActions in userActionsList){
             Text(
                 text = "End of game: ${userActions.isEndOfGame}. Start of Game: ${userActions.isStartOfGame}. Next event: ${userActions.eventIdNext}. Notes: ${userActions.notes}, timestamp: ${userActions.timestamp}",
@@ -42,16 +42,9 @@ class GameOverStoryComponent(
 
     @Composable
     fun getCompanyCEOStory() {
-        Text(
-            text = "Sample Company Story Line",
-            color = Color.White,
-            fontWeight = FontWeight.Normal,
-            fontSize = 18.sp,
-            modifier = Modifier.padding(5.dp)
-            )
         for (story in storyList){
             Text(
-                text = "story: " + story.storyText,
+                text = "${gameDateUtils.epochMillisToFormattedString(story.inGameDate)}: ${story.storyText}",
                 color = Color.White,
                 fontWeight = FontWeight.Normal,
                 fontSize = 18.sp,
