@@ -1,7 +1,6 @@
 package ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,10 +18,12 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import cyoaenginekmm.composeapp.generated.resources.Res
-import cyoaenginekmm.composeapp.generated.resources.backgroundSpace_011
+import cyoaenginekmm.composeapp.generated.resources.credits_bkg2
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import ui.components.GameOverStory.GameOverStoryComponent
@@ -29,11 +31,14 @@ import ui.components.GameOverStory.GameOverStoryComponent
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun GameOverStoryScreen(component: GameOverStoryComponent) {
-    Box(
+    var companyName = component.compName.subscribeAsState()
+
+    Surface(
+        color = Color.Black.copy(.70f),
         modifier = Modifier
             .fillMaxSize()
             .paint(
-                painter = painterResource(Res.drawable.backgroundSpace_011),
+                painter = painterResource(Res.drawable.credits_bkg2),
                 contentScale = ContentScale.FillBounds
             )
     ) {
@@ -46,6 +51,20 @@ fun GameOverStoryScreen(component: GameOverStoryComponent) {
             verticalArrangement = Arrangement.Center,
 
             ) {
+
+            Text(
+                text = "${companyName.value}'s CEO, ${component.ceoFirst.value} ${component.ceoLast.value}, History",
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 30.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(top = 20.dp)
+            )
+            Spacer(
+                modifier = Modifier
+                    .padding(top = 10.dp)
+            )
+            component.getCompanyCEOStory()
             Text(
                 text = "User Actions",
                 color = Color.White,
@@ -61,17 +80,6 @@ fun GameOverStoryScreen(component: GameOverStoryComponent) {
                 modifier = Modifier
                     .padding(top = 25.dp)
             )
-            Text(
-                text = "Company & CEO Story",
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 30.sp,
-            )
-            Spacer(
-                modifier = Modifier
-                    .padding(top = 10.dp)
-            )
-            component.getCompanyCEOStory()
             Spacer(
                 modifier = Modifier
                     .padding(top = 25.dp)

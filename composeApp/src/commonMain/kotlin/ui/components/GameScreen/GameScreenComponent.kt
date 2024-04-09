@@ -150,7 +150,7 @@ class GameScreenComponent(
         _nextEvent.value = nextEvent
     }
 
-    private var _gameStory = MutableValue(gameGameStory)
+    private var _gameStory = MutableValue(GameStory(eventStory.value,0))
     val gameStory: Value<GameStory> = _gameStory
 
     private var _userAction = MutableValue(gameUserAction)
@@ -158,6 +158,10 @@ class GameScreenComponent(
 
     fun handleGameOver() {
         onNavigateBackToTitleScreen()
+    }
+
+    fun setGameStoryValue(storyText:String){
+        _gameStory.value.storyText = storyText
     }
 
     fun onEvent(event: GameScreenEvent, nextEvent: Int){
@@ -196,7 +200,8 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
-                    _eventStory,
+                    _gameStory,
+                    _userAction,
                     this
                 )
                 _userAction.value = UserAction(
@@ -242,7 +247,8 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
-                    _eventStory,
+                    _gameStory,
+                    _userAction,
                     this
                 )
                 _userAction.value = UserAction(
@@ -288,7 +294,8 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
-                    _eventStory,
+                    _gameStory,
+                    _userAction,
                     this
                 )
                 _userAction.value = UserAction(
@@ -334,7 +341,8 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
-                    _eventStory,
+                    _gameStory,
+                    _userAction,
                     this
                 )
                 _userAction.value = UserAction(
@@ -380,7 +388,8 @@ class GameScreenComponent(
                     _gameShipHull,
                     _gameShipEngines,
                     _gameShipSensors,
-                    _eventStory,
+                    _gameStory,
+                    _userAction,
                     this
                 )
                 _userAction.value = UserAction(
@@ -427,7 +436,8 @@ class GameScreenComponent(
                         _gameShipHull,
                         _gameShipEngines,
                         _gameShipSensors,
-                        _eventStory,
+                        _gameStory,
+                        _userAction,
                         this
                     )
                 } else {
@@ -446,7 +456,7 @@ class GameScreenComponent(
             }
 
             is GameScreenEvent.AddUserAction -> onAddUserAction(_userAction.value)
-            is GameScreenEvent.AddGameStory -> onAddGameStory(_gameStory.value)
+            is GameScreenEvent.AddGameStory ->  onAddGameStory(_gameStory.value)
         }
     }
 }

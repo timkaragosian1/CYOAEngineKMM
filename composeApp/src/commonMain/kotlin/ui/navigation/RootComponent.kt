@@ -12,6 +12,7 @@ import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
+import data.data_utils.GameDateUtils
 import data.models.GameStory
 import data.models.UserAction
 import kotlinx.serialization.Serializable
@@ -30,9 +31,9 @@ class RootComponent(
 ): ComponentContext by componentContext {
     private val navigation = StackNavigation<Configuration>()
 
-    private var gameCeoFirstname = ""
-    private var gameCeoLastName = ""
-    private var gameCompanyName = ""
+    private var gameCeoFirstname = MutableValue("")
+    private var gameCeoLastName = MutableValue("")
+    private var gameCompanyName = MutableValue("")
     private var gameEventMessage = ""
     private var gameEventImage = Res.drawable.red_rocket_art1
     private var gameEventType = ""
@@ -64,6 +65,7 @@ class RootComponent(
     private var gameScreenShipSensorStatus = 0
     private var gameScreenDestinationStatus = "UNKN"
     private var gameScreenTime = 50.0
+    private var simulatedGameTime:Long = 5206899600000 //set to Jan 1 2135
 
     private var namesScreenSubmitButtonEnabled = false
     private var nameScreenProgressText1 = MutableValue("")
@@ -72,6 +74,9 @@ class RootComponent(
     private var gameUserActionsList = ArrayList<UserAction>()
     private var gameStory = MutableValue(GameStory("",0))
     private var userAction = MutableValue(UserAction(false,false,0,0,"",0))
+
+    private var gameDateUtils = MutableValue(GameDateUtils())
+    //private var gameStoryTime = MutableValue(gameDateUtils.value.gameTimeMillis.value)
 
     var childStack = childStack(
         source = navigation,
@@ -105,6 +110,8 @@ class RootComponent(
                         },
                         onNavigateToNamesGameStartScreen = {
                             setCEOAndCompanyNames("","","")
+                            gameUserActionsList.clear()
+                            gameStoryList.clear()
                             setNamesSelectScreenIsButtonEnabled(true)
                             navigation.pushNew(Configuration.NamesSelectScreen)
                         }
@@ -152,9 +159,9 @@ class RootComponent(
                     gameShipSensorStatus = gameScreenShipSensorStatus,
                     gameDestinationStatus  = gameScreenDestinationStatus,
                     gameGameTime = gameScreenTime,
-                    gameCeoFirstname = gameCeoFirstname,
-                    gameCeoLastName = gameCeoLastName,
-                    gameCompanyName = gameCompanyName,
+                    gameCeoFirstname = gameCeoFirstname.value,
+                    gameCeoLastName = gameCeoLastName.value,
+                    gameCompanyName = gameCompanyName.value,
                     onClickButton1 = {},
                     onClickButton2 = {},
                     onClickButton3 = {},
@@ -164,10 +171,9 @@ class RootComponent(
                     onNavigateBackToTitleScreen = {
                         //RESET INFO IN NAMES SCREEN AFTER LEAVING
                         //RESET INFO IN FACIAL SCAN SCREEN AFTER LEAVING
-                        setCEOAndCompanyNames("","","")
                         navigation.pushNew(Configuration.GameOverStoryScreen)
                     },
-                    gameEventStory = "",
+                    gameEventStory = gameStory.value.storyText,
                     gameGameStory = gameStory.value,
                     gameUserAction = userAction.value,
                     onAddGameStory = { addGameStory(it) },
@@ -182,7 +188,7 @@ class RootComponent(
                     componentContext = context,
                     onNavigateToFacialScanScreen = {
                         setGameScreenData(
-                            eventMessage = "Welcome $gameCeoFirstname $gameCeoLastName, you are the new CEO of $gameCompanyName. You have come into power at a very exciting time!",
+                            eventMessage = "Welcome ${gameCeoFirstname.value} ${gameCeoLastName.value}, you are the new CEO of ${gameCompanyName.value}. You have come into power at a very exciting time!",
                             eventImage = Res.drawable.red_rocket_art1,
                             eventType = "gamestart",
                             eventLocation = "earth",
@@ -241,7 +247,10 @@ class RootComponent(
                         navigation.popTo(1)
                     },
                     gameUserActionsList = gameUserActionsList ,
-                    gameStoryList = gameStoryList
+                    gameStoryList = gameStoryList,
+                    ceoFirstName = gameCeoFirstname.value,
+                    ceoLastName = gameCeoLastName.value,
+                    companyName = gameCompanyName.value
                 ),
             )
         }
@@ -314,14 +323,11 @@ class RootComponent(
         gameScreenShipSensorStatus = shipSensorStatus
         gameScreenDestinationStatus = destinationStatus
         gameScreenTime = gameTime
-        gameCeoFirstname = ceoFirstname
-        gameCeoLastName = ceoLastName
-        gameCompanyName = companyName
     }
     fun setCEOAndCompanyNames(ceoFirstname:String, ceoLastName:String, companyName:String){
-        gameCeoFirstname = ceoFirstname
-        gameCeoLastName = ceoLastName
-        gameCompanyName = companyName
+        gameCeoFirstname.value = ceoFirstname
+        gameCeoLastName.value = ceoLastName
+        gameCompanyName.value = companyName
     }
 
     fun setNamesSelectScreenIsButtonEnabled(isButtonEnabled:Boolean){
@@ -329,7 +335,13 @@ class RootComponent(
     }
 
     fun addGameStory(gameStory: GameStory){
-        gameStoryList.add(gameStory)
+        gameDateUtils.value.setStartAdventureGameTime()
+        gameStoryList.add(
+            GameStory(
+                gameStory.storyText,
+                gameDateUtils.value.gameTimeMillis.value
+            )
+        )
     }
 
     fun addUserAction(userAction: UserAction){
