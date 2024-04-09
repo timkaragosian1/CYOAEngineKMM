@@ -27,9 +27,8 @@ class GameOverStoryComponent(
     val userActionsList = gameUserActionsList
     val storyList = gameStoryList
 
-    val gameDateUtils = GameDateUtils()
+    val gameDateUtils = GameDateUtils() //will be removed later as these values should already be in gameStoryList elements
 
-    var gameTime = MutableValue(gameDateUtils.gameTimeMillis)
     val ceoFirst = MutableValue(ceoFirstName)
     val ceoLast = MutableValue(ceoLastName)
 
@@ -58,14 +57,6 @@ class GameOverStoryComponent(
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
                 modifier = Modifier.padding(20.dp),
-                /*style = TextStyle.Default.copy(
-                    fontSize = 18.sp,
-                    drawStyle = Stroke(
-                        miter = 10f,
-                        width = 5f,
-                        join = StrokeJoin.Round
-                    )
-                )*/
             )
         }
     }
