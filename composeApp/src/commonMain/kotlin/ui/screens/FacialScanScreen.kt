@@ -43,14 +43,16 @@ fun FacialScanScreen(component: FacialScanComponent) {
     var bottom2Text:Value<String> = _bottom2Text
 
     CoroutineScope(EmptyCoroutineContext).launch() {
-        repeat(10) {
-            delay(200)
+        repeat(1) {
             if (_bottom1Text.value.length < 25) {
+                delay(800)
                 _bottom1Text.value = bottom1Text.value + "."
             } else if (_bottom1Text.value.length == 25) {
+                delay(800)
                 _bottom1Text.value = bottom1Text.value + "COMPLETE!"
                 _bottom2Text.value = "Downloading User Data"
             } else if (_bottom2Text.value.length < 32) {
+                delay(800)
                 _bottom2Text.value = bottom2Text.value + "."
             } else if (_bottom2Text.value.length == 32) {
                 _bottom2Text.value = bottom2Text.value + "COMPLETE!"
@@ -58,6 +60,7 @@ fun FacialScanScreen(component: FacialScanComponent) {
                 _bottom1Text.value = "Please Wait"
                 _bottom2Text.value = ""
             }
+            delay(1000)
         }
         withContext(Dispatchers.Main) {
             component.onTimerEnd()
