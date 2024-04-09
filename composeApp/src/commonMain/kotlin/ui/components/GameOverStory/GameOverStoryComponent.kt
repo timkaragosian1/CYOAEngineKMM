@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.sp
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import data.GameDateUtils
+import data.data_utils.GameDateUtils
 import data.models.GameStory
 import data.models.UserAction
 
@@ -44,7 +44,7 @@ class GameOverStoryComponent(
                 color = Color.White,
                 fontWeight = FontWeight.Normal,
                 fontSize = 18.sp,
-                modifier = Modifier.padding(5.dp)
+                modifier = Modifier.padding(10.dp)
             )
         }
     }
@@ -55,9 +55,17 @@ class GameOverStoryComponent(
             Text(
                 text = "${gameDateUtils.epochMillisToFormattedString(story.inGameDate)}: ${story.storyText}",
                 color = Color.White,
-                fontWeight = FontWeight.Normal,
+                fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
-                modifier = Modifier.padding(5.dp)
+                modifier = Modifier.padding(20.dp),
+                /*style = TextStyle.Default.copy(
+                    fontSize = 18.sp,
+                    drawStyle = Stroke(
+                        miter = 10f,
+                        width = 5f,
+                        join = StrokeJoin.Round
+                    )
+                )*/
             )
         }
     }

@@ -12,7 +12,7 @@ import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.MutableValue
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
-import data.GameDateUtils
+import data.data_utils.GameDateUtils
 import data.models.GameStory
 import data.models.UserAction
 import kotlinx.serialization.Serializable
@@ -110,6 +110,8 @@ class RootComponent(
                         },
                         onNavigateToNamesGameStartScreen = {
                             setCEOAndCompanyNames("","","")
+                            gameUserActionsList.clear()
+                            gameStoryList.clear()
                             setNamesSelectScreenIsButtonEnabled(true)
                             navigation.pushNew(Configuration.NamesSelectScreen)
                         }

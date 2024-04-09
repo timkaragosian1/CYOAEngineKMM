@@ -1,4 +1,4 @@
-package data
+package data.data_utils
 
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
@@ -30,8 +30,9 @@ class GameDateUtils {
         _gameTimeMillis.value = getLossyTime(5212207700000, 2)
     }
 
-    fun incrementGameTime(){
-
+    fun incrementGameTime(months:Int = 6) {
+        val incrementAmount = months.times(monthMillis)
+        _gameTimeMillis.value = _gameTimeMillis.value + incrementAmount
     }
 
     fun getLossyTime(millisTime:Long, months:Int? = 1):Long{
