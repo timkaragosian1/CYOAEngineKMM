@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
+import com.arkivanov.decompose.value.Value
 import data.GameDateUtils
 import data.models.GameStory
 import data.models.UserAction
@@ -18,7 +19,7 @@ class GameOverStoryComponent(
     componentContext: ComponentContext,
     gameUserActionsList: ArrayList<UserAction>,
     gameStoryList: ArrayList<GameStory>,
-    companyName:String,
+    private val companyName:String,
     ceoFirstName:String,
     ceoLastName:String,
     private val onNavigateBackToTitleScreen: () -> Unit
@@ -29,9 +30,11 @@ class GameOverStoryComponent(
     val gameDateUtils = GameDateUtils()
 
     var gameTime = MutableValue(gameDateUtils.gameTimeMillis)
-    val ceoFirst = ceoFirstName
-    val ceoLast = ceoLastName
-    val compName = companyName
+    val ceoFirst = MutableValue(ceoFirstName)
+    val ceoLast = MutableValue(ceoLastName)
+
+    private var _compName = MutableValue(companyName)
+    val compName:Value<String> = _compName
 
     @Composable
     fun getUserActions() {

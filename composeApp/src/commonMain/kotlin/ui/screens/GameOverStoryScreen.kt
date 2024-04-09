@@ -20,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.backgroundSpace_011
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -29,6 +30,8 @@ import ui.components.GameOverStory.GameOverStoryComponent
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun GameOverStoryScreen(component: GameOverStoryComponent) {
+    var companyName = component.compName.subscribeAsState()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -48,7 +51,7 @@ fun GameOverStoryScreen(component: GameOverStoryComponent) {
             ) {
 
             Text(
-                text = "${component.compName}'s CEO, ${component.ceoFirst} ${component.ceoLast}, History",
+                text = "${companyName.value}'s CEO, ${component.ceoFirst.value} ${component.ceoLast.value}, History",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
