@@ -53,7 +53,8 @@ I am searching for more and will add as I discover them. Even tools that only in
 * Prove out gameplay - DONE
 * Organize with "Core" resources - DONE
 * Audio Functionality - DONE
-* End Game Features (Story Screen)
+* End Game Features (Screen & Dates System) - DONE
+* Capture User Actions in DB 
 * Intial Story Events to Prove Out Positive End Game Path (time runs out without ship lost)
 * Intial Story Events to Prove Out Negative End Game Path (ship lost)
 * Refinement of Features & Tech debt
