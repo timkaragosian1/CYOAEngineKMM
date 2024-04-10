@@ -9,7 +9,7 @@ To use this application, clone this repsitory to a local directory and open and 
 Main branch will be the last stable feature update. An unmerged branch will be the current "work-in-progress" branch and may not be stable.
 
 ## Latest Updates
-4/6/24 Currently putting polish on how to capture the correct data for User Actions and Game Story.
+4/10/24 Merged game story functionality into main screen. Starting on User Action functionality now. Will be using SQL Delight as it is KMM compatible and I have resources and examples I trust.
 
 ## Introduction
 - Work in progress from previous project CYOA Template (https://github.com/timkaragosian1/CYOATemplate) and the CYOATemplate concept came from a Text-Based Adventure Tutorial (https://www.youtube.com/watch?v=_NRVn2JJ1JM&list=PL_QPQmz5C6WVWGhGVlT25UGYFUt7k9DGX).
