@@ -73,7 +73,7 @@ class RootComponent(
     private var gameStoryList = ArrayList<GameStory>()
     private var gameUserActionsList = ArrayList<UserAction>()
     private var gameStory = MutableValue(GameStory("",0))
-    private var userAction = MutableValue(UserAction(false,false,0,0,"",0))
+    private var userAction = MutableValue(UserAction(0,"",0L))
 
     private var gameDateUtils = MutableValue(GameDateUtils())
     //private var gameStoryTime = MutableValue(gameDateUtils.value.gameTimeMillis.value)

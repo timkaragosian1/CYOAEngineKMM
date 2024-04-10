@@ -6,6 +6,8 @@ import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.rocket_built
 import data.models.EventDecision
 import data.models.GameEvent
+import data.models.UserAction
+import kotlinx.datetime.Clock
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 class EventUtils {
@@ -83,8 +85,12 @@ class EventUtils {
                 nextEventId = -1,
                 enabled = false,
             ),
-            gameStoryText = null
-
+            gameStoryText = null,
+            gameUserAction = UserAction(
+                currentEventId = 0,
+                notes = "",
+                timestamp = Clock.System.now().toEpochMilliseconds()
+            )
         )
     }
 }

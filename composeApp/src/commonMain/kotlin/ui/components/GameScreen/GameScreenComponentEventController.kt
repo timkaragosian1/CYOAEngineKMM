@@ -179,12 +179,10 @@ class GameScreenComponentEventController {
         component: GameScreenComponent
     ) {
 
-        if(!(userAction.value.eventIdNext == null && userAction.value.isEndOfGame)) {
-            component.onEvent(
-                GameScreenEvent.AddUserAction,
-                nextEvent.value
-            )
-        }
+        component.onEvent(
+            GameScreenEvent.AddUserAction,
+            nextEvent.value
+        )
 
         if(!story.value.storyText.isNullOrBlank()) {
             component.onEvent(

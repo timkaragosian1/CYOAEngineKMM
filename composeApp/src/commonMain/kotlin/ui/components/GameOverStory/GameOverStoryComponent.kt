@@ -39,7 +39,7 @@ class GameOverStoryComponent(
     fun getUserActions() {
         for (userActions in userActionsList){
             Text(
-                text = "End of game: ${userActions.isEndOfGame}. Start of Game: ${userActions.isStartOfGame}. Next event: ${userActions.eventIdNext}. Notes: ${userActions.notes}, timestamp: ${userActions.timestamp}",
+                text = "Current event: ${userActions.currentEventId}. Notes: ${userActions.notes}, timestamp: ${userActions.timestamp}",
                 color = Color.White,
                 fontWeight = FontWeight.Normal,
                 fontSize = 18.sp,

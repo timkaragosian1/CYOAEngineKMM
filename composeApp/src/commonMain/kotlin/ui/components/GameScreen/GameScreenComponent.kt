@@ -8,7 +8,6 @@ import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import data.models.GameStory
 import data.models.UserAction
-import kotlinx.datetime.Clock
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 
@@ -204,14 +203,6 @@ class GameScreenComponent(
                     _userAction,
                     this
                 )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
-                )
                 onClickButton1()
             }
             is GameScreenEvent.ClickButton2 -> {
@@ -250,14 +241,6 @@ class GameScreenComponent(
                     _gameStory,
                     _userAction,
                     this
-                )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
                 )
                 onClickButton2()
             }
@@ -298,14 +281,6 @@ class GameScreenComponent(
                     _userAction,
                     this
                 )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
-                )
                     onClickButton3()
             }
             is GameScreenEvent.ClickButton4 -> {
@@ -345,14 +320,6 @@ class GameScreenComponent(
                     _userAction,
                     this
                 )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
-                )
                 onClickButton4()
             }
             is GameScreenEvent.ClickButton5 -> {
@@ -391,14 +358,6 @@ class GameScreenComponent(
                     _gameStory,
                     _userAction,
                     this
-                )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
                 )
                 onClickButton5()
             }
@@ -443,15 +402,6 @@ class GameScreenComponent(
                 } else {
                     handleGameOver()
                 }
-
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
-                )
                 onClickButton6()
             }
 
