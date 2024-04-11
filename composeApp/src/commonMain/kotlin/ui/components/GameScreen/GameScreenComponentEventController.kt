@@ -45,7 +45,8 @@ class GameScreenComponentEventController {
         gameShipHull: MutableValue<Int>,
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
-        gameStory:MutableValue<GameStory>
+        gameStory:MutableValue<GameStory>,
+        gameUserAction: MutableValue<UserAction>
     ) {
         eventName.value = spaceEvent.eventName
         eventMessage.value = spaceEvent.eventMessage
@@ -71,9 +72,14 @@ class GameScreenComponentEventController {
         button5NextEvent.value = spaceEvent.eventDecision5.nextEventId
         button6NextEvent.value = spaceEvent.eventDecision6.nextEventId
 
+        if (spaceEvent.gameUserAction.notes.isNotEmpty()){
+            gameUserAction.value = spaceEvent.gameUserAction
+        }
+
         if (spaceEvent.gameStoryText!!.isNotEmpty()) {
             gameStory.value = GameStory(spaceEvent.gameStoryText!!, 0)
         }
+
         if (spaceEvent.eventType.equals("change_stats")) {
             if (!spaceEvent.gameStatusChange.isNullOrEmpty()) {
                 gameStatus.value = spaceEvent.gameStatusChange.orEmpty()
@@ -175,8 +181,8 @@ class GameScreenComponentEventController {
         gameShipEngines: MutableValue<Int>,
         gameShipSensors: MutableValue<Int>,
         story: MutableValue<GameStory>,
-        userAction: MutableValue<UserAction>,
-        component: GameScreenComponent
+        component: GameScreenComponent,
+        gameUserAction: MutableValue<UserAction>
     ) {
 
         component.onEvent(
@@ -223,7 +229,8 @@ class GameScreenComponentEventController {
             gameShipHull,
             gameShipEngines,
             gameShipSensors,
-            story
+            story,
+            gameUserAction
         )
     }
 }

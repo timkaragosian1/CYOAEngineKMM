@@ -200,8 +200,9 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
+                    this,
+                    _userAction
+
                 )
                 onClickButton1()
             }
@@ -239,8 +240,8 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
+                    this,
+                    _userAction
                 )
                 onClickButton2()
             }
@@ -278,8 +279,8 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
+                    this,
+                    _userAction
                 )
                     onClickButton3()
             }
@@ -317,8 +318,8 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
+                    this,
+                    _userAction
                 )
                 onClickButton4()
             }
@@ -356,8 +357,8 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
+                    this,
+                    _userAction
                 )
                 onClickButton5()
             }
@@ -396,8 +397,8 @@ class GameScreenComponent(
                         _gameShipEngines,
                         _gameShipSensors,
                         _gameStory,
-                        _userAction,
-                        this
+                        this,
+                        _userAction
                     )
                 } else {
                     handleGameOver()

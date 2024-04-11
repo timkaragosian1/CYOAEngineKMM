@@ -78,7 +78,7 @@ class BuildShipEvents {
             gameStoryText = "From the blueprint, there are a few ways to craft the ship with varying costs and benefits. As CEO, choose which you think is best from these options.",
             gameUserAction = UserAction(
                 currentEventId = 50,
-                notes = "blueprint screen",
+                notes = "ship build decision, user presented with multiple decisions",
                 timestamp = Clock.System.now().toEpochMilliseconds()
             )
         )
@@ -148,7 +148,7 @@ class BuildShipEvents {
             gameStoryText = "You have logically chosen that even though there is a high cost, there is also a high benefit along with it.",
             gameUserAction = UserAction(
                 currentEventId = 53,
-                notes = "exception ship chosen",
+                notes = "exceptional ship chosen, user pressed next",
                 timestamp = Clock.System.now().toEpochMilliseconds()
             )
         )
@@ -220,7 +220,7 @@ class BuildShipEvents {
             gameStoryText = "Your ship is built with the best Hull, Sensors, and Engines earth currently has to offer.",
             gameUserAction = UserAction(
                 currentEventId = 54,
-                notes = "exceptional ship constructed",
+                notes = "exceptional ship constructed, user pressed next",
                 timestamp = Clock.System.now().toEpochMilliseconds()
             )
         )
@@ -289,7 +289,7 @@ class BuildShipEvents {
             gameStoryText = "You have decided that it's best to get a lot of value out of your ship and went with a Satisfactory option. The engineering team begins work right away.",
             gameUserAction = UserAction(
                 currentEventId = 55,
-                notes = "Satisfactory ship chosen",
+                notes = "Satisfactory ship chosen, user pressed next",
                 timestamp = Clock.System.now().toEpochMilliseconds()
             )
         )
@@ -359,7 +359,7 @@ class BuildShipEvents {
             gameStoryText = "Your ship is built with a decent Hull, Sensors, and Engines earth.",
             gameUserAction = UserAction(
                 currentEventId = 56,
-                notes = "you build a decent ship",
+                notes = "you build a decent ship, user pressed next",
                 timestamp = Clock.System.now().toEpochMilliseconds()
             )
         )

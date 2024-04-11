@@ -15,6 +15,7 @@ import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import data.data_utils.GameDateUtils
 import data.models.GameStory
 import data.models.UserAction
+import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -65,7 +66,6 @@ class RootComponent(
     private var gameScreenShipSensorStatus = 0
     private var gameScreenDestinationStatus = "UNKN"
     private var gameScreenTime = 50.0
-    private var simulatedGameTime:Long = 5206899600000 //set to Jan 1 2135
 
     private var namesScreenSubmitButtonEnabled = false
     private var nameScreenProgressText1 = MutableValue("")
@@ -73,10 +73,14 @@ class RootComponent(
     private var gameStoryList = ArrayList<GameStory>()
     private var gameUserActionsList = ArrayList<UserAction>()
     private var gameStory = MutableValue(GameStory("",0))
-    private var userAction = MutableValue(UserAction(0,"",0L))
-
     private var gameDateUtils = MutableValue(GameDateUtils())
-    //private var gameStoryTime = MutableValue(gameDateUtils.value.gameTimeMillis.value)
+    private var userAction = MutableValue(
+        UserAction(
+            currentEventId = -1,
+            notes = "CEO name chosen: ${gameCeoFirstname.value} ${gameCeoLastName.value}, Company name: ${gameCompanyName.value}",
+            timestamp = Clock.System.now().toEpochMilliseconds()
+        )
+    )
 
     var childStack = childStack(
         source = navigation,
@@ -187,6 +191,7 @@ class RootComponent(
                 NamesSelectScreenComponent(
                     componentContext = context,
                     onNavigateToFacialScanScreen = {
+                        gameDateUtils.value.setStartAdventureGameTime()
                         setGameScreenData(
                             eventMessage = "Welcome ${gameCeoFirstname.value} ${gameCeoLastName.value}, you are the new CEO of ${gameCompanyName.value}. You have come into power at a very exciting time!",
                             eventImage = Res.drawable.red_rocket_art1,
@@ -328,6 +333,7 @@ class RootComponent(
         gameCeoFirstname.value = ceoFirstname
         gameCeoLastName.value = ceoLastName
         gameCompanyName.value = companyName
+        userAction.value.notes = "User has started game with the following names: CEO: ${gameCeoFirstname.value} ${gameCeoLastName.value}, Company: ${gameCompanyName.value}"
     }
 
     fun setNamesSelectScreenIsButtonEnabled(isButtonEnabled:Boolean){
@@ -356,7 +362,6 @@ class RootComponent(
         data class FacialScanScreen(val component: FacialScanComponent):Child()
         data class GameScreen(val component: GameScreenComponent):Child()
         data class GameOverStoryScreen(val component: GameOverStoryComponent):Child()
-
     }
 
     @Serializable
