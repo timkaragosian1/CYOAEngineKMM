@@ -87,6 +87,7 @@ class EventUtils {
             ),
             gameStoryText = null,
             gameUserAction = UserAction(
+                gameUUID = "",
                 currentEventId = 0,
                 notes = "",
                 timestamp = Clock.System.now().toEpochMilliseconds()

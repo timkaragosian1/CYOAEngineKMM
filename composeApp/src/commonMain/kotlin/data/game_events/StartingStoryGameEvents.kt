@@ -76,6 +76,7 @@ class StartingStoryGameEvents {
             gameStatusChange = "story",
             gameStoryText = "You are one of the finest resource gathering companies in the world and the finest in the USA. (Future State will be random generated company and CEO history for 2 slides each).",
             gameUserAction = UserAction(
+                gameUUID = "",
                 currentEventId = 0,
                 notes = "early starting screen, user pressed next",
                 timestamp = Clock.System.now().toEpochMilliseconds()
@@ -143,6 +144,7 @@ class StartingStoryGameEvents {
             gameStatusChange = null,
             gameStoryText = "You are using the CEO Comm device. You will be able to get quick, fast visualization and information to make decisions from anywhere in our solar system! That will be important for later!",
             gameUserAction = UserAction(
+                gameUUID = "",
                 currentEventId = 1,
                 notes = "ceo device explanation, user pressed next",
                 timestamp = Clock.System.now().toEpochMilliseconds()
@@ -210,6 +212,7 @@ class StartingStoryGameEvents {
             gameStatusChange = null,
             gameStoryText = "The Earth had 20 years left of useable resources and mankind must take to the stars to continue thriving, surviving, and most importantly, profiting!",
             gameUserAction = UserAction(
+                gameUUID = "",
                 currentEventId = 2,
                 notes = "earth story, user pressed next",
                 timestamp = Clock.System.now().toEpochMilliseconds()
@@ -277,6 +280,7 @@ class StartingStoryGameEvents {
             gameStatusChange = null,
             gameStoryText = "Your company has been one of many chosen to capitalize on the new celestial market. Where will you go? How much money will you make?",
             gameUserAction = UserAction(
+                gameUUID = "",
                 currentEventId = 3,
                 notes = "company chosen, user pressed next",
                 timestamp = Clock.System.now().toEpochMilliseconds()
@@ -344,6 +348,7 @@ class StartingStoryGameEvents {
             gameStatusChange = null,
             gameStoryText = "The world's finest minds have agreed upon the most effective means of space travel and have shared the design with all the possible companies who could use it.",
             gameUserAction = UserAction(
+                gameUUID = "",
                 currentEventId = 4,
                 notes = "world's finest minds story, user pressed next",
                 timestamp = Clock.System.now().toEpochMilliseconds()

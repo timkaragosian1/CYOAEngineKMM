@@ -1,5 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -67,7 +65,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            @OptIn(ExperimentalComposeLibrary::class)
+
+            implementation ("com.benasher44:uuid:0.8.4")
 
             //datetime
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.0-RC.2")

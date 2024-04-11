@@ -10,6 +10,7 @@ import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.popTo
 import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.MutableValue
+import com.benasher44.uuid.uuid4
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import data.data_utils.GameDateUtils
@@ -74,8 +75,10 @@ class RootComponent(
     private var gameUserActionsList = ArrayList<UserAction>()
     private var gameStory = MutableValue(GameStory("",0))
     private var gameDateUtils = MutableValue(GameDateUtils())
+    private var gameUUID = MutableValue("")
     private var userAction = MutableValue(
         UserAction(
+            gameUUID = gameUUID.value,
             currentEventId = -1,
             notes = "CEO name chosen: ${gameCeoFirstname.value} ${gameCeoLastName.value}, Company name: ${gameCompanyName.value}",
             timestamp = Clock.System.now().toEpochMilliseconds()
@@ -334,6 +337,7 @@ class RootComponent(
         gameCeoLastName.value = ceoLastName
         gameCompanyName.value = companyName
         userAction.value.notes = "User has started game with the following names: CEO: ${gameCeoFirstname.value} ${gameCeoLastName.value}, Company: ${gameCompanyName.value}"
+        gameUUID.value = uuid4().toString()
     }
 
     fun setNamesSelectScreenIsButtonEnabled(isButtonEnabled:Boolean){
@@ -351,7 +355,14 @@ class RootComponent(
     }
 
     fun addUserAction(userAction: UserAction){
-        gameUserActionsList.add(userAction)
+        gameUserActionsList.add(
+            UserAction(
+                gameUUID.value,
+                userAction.currentEventId,
+                userAction.notes,
+                userAction.timestamp
+            )
+        )
     }
 
     sealed class Child {
