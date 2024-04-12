@@ -77,6 +77,7 @@ kotlin {
 
             //SQLDelight
             implementation(libs.sqldelight.common)
+            implementation(libs.coroutines.extensions)
 
             //Serialization
             implementation(libs.kotlin.serialization)

@@ -7,8 +7,8 @@ CREATE TABLE UserActionsEntity (
 );
 
 insertUserAction:
-INSERT INTO UserActionsEntity (gameUuid,notes,eventId,timestamp)
-VALUES (?,?,?,?);
+INSERT INTO UserActionsEntity (id,gameUuid,notes,eventId,timestamp)
+VALUES (?, ?,?,?,?);
 
 getAllUserActions:
 SELECT * FROM UserActionsEntity;
