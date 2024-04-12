@@ -10,7 +10,7 @@ plugins {
 
 sqldelight {
     databases {
-        create("Database") {
+        create("cCommerceDatabase") {
             packageName.set("db")
             srcDirs.setFrom("src/commonMain/kotlin/sql")
         }
