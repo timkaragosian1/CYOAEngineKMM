@@ -184,11 +184,12 @@ class GameScreenComponentEventController {
         component: GameScreenComponent,
         gameUserAction: MutableValue<UserAction>
     ) {
-
-        component.onEvent(
-            GameScreenEvent.AddUserAction,
-            nextEvent.value
-        )
+        if(!gameUserAction.value.notes.isNullOrBlank()) {
+            component.onEvent(
+                GameScreenEvent.AddUserAction,
+                nextEvent.value
+            )
+        }
 
         if(!story.value.storyText.isNullOrBlank()) {
             component.onEvent(
