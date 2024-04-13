@@ -14,8 +14,11 @@ import com.benasher44.uuid.uuid4
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import data.data_utils.GameDateUtils
+import data.db_source.DatabaseDriverFactory
+import data.db_source.UserActionDbDataSource
 import data.models.GameStory
 import data.models.UserAction
+import db.cCommerceDatabase
 import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
@@ -29,7 +32,7 @@ import ui.components.NameSelectScreen.NamesSelectScreenComponent
 import ui.components.TitleScreen.TitleScreenComponent
 
 class RootComponent(
-    componentContext: ComponentContext
+    componentContext: ComponentContext,
 ): ComponentContext by componentContext {
     private val navigation = StackNavigation<Configuration>()
 
@@ -92,6 +95,10 @@ class RootComponent(
         handleBackButton = true,
         childFactory = ::createChild
     )
+
+    var database = cCommerceDatabase()
+    var factory = DatabaseDriverFactory()
+    var dataSource = UserActionDbDataSource()
 
     private fun createChild(
         config: Configuration,
@@ -354,7 +361,7 @@ class RootComponent(
         )
     }
 
-    fun addUserAction(userAction: UserAction){
+    fun addUserAction(userAction: UserAction) {
         gameUserActionsList.add(
             UserAction(
                 gameUUID.value,
@@ -363,6 +370,16 @@ class RootComponent(
                 userAction.timestamp
             )
         )
+        /*CoroutineScope(Dispatchers.IO).launch() {
+            UserActionsDbSourceImplementation(cCommerceDatabase.invoke(SqlDriver))
+            UserActionsDbSource.insertUserAction(
+                id = null,
+                gameUuid = gameUUID.value,
+                eventId = userAction.currentEventId.toLong(),
+                notes = userAction.notes,
+                timestamp = userAction.timestamp
+            )
+        }*/
     }
 
     sealed class Child {
