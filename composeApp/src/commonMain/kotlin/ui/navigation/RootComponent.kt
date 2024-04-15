@@ -18,14 +18,12 @@ import data.db_source.DatabaseDriverFactory
 import data.db_source.UserActionDbDataSource
 import data.db_source.UserActionItem
 import data.db_source.createDatabase
-import data.db_source.toUserActionItem
 import data.models.GameStory
 import data.models.UserAction
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
@@ -434,20 +432,21 @@ class RootComponent(
 
     override suspend fun getAllUserActions(): ArrayList<UserActionItem> {
         var resultList = ArrayList<UserActionItem>()
-        CoroutineScope(Dispatchers.IO).launch {
+        /*CoroutineScope(Dispatchers.IO).launch {
             cCommerceDatabase.userActionsEntityQueries.getAllUserActions().executeAsList().map {
                 resultList.add(it.toUserActionItem())
             }
             withContext(Dispatchers.Main){
                 resultList
             }
-        }.start()
+        }.start()*/
+        //THIS WORKS, BUT NO BACKEND TO CURRENTLY TIE IT TO. WILL BE UNCOMMENTED IN THE FUTURE.
 
         return resultList
     }
 
     override suspend fun insertUserAction(userActionItem: UserActionItem) {
-        CoroutineScope(Dispatchers.IO).launch {
+        /*CoroutineScope(Dispatchers.IO).launch {
             cCommerceDatabase.userActionsEntityQueries.insertUserAction(
                 id = null,
                 gameUuid = userActionItem.uuid,
@@ -455,6 +454,7 @@ class RootComponent(
                 notes = userActionItem.notes,
                 timestamp = Clock.System.now().toEpochMilliseconds()
             )
-        }
+        }*/
+        //THIS WORKS, BUT NO BACKEND TO CURRENTLY TIE IT TO. WILL BE UNCOMMENTED IN THE FUTURE.
     }
 }
