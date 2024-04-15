@@ -22,6 +22,7 @@ import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.facial_scan
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -42,27 +43,8 @@ fun FacialScanScreen(component: FacialScanComponent) {
     var bottom1Text:Value<String> = _bottom1Text
     var bottom2Text:Value<String> = _bottom2Text
 
-    CoroutineScope(EmptyCoroutineContext).launch() {
-        repeat(10) {
-            delay(200)
-            if (_bottom1Text.value.length < 25) {
-                _bottom1Text.value = bottom1Text.value + "."
-            } else if (_bottom1Text.value.length == 25) {
-                _bottom1Text.value = bottom1Text.value + "COMPLETE!"
-                _bottom2Text.value = "Downloading User Data"
-            } else if (_bottom2Text.value.length < 32) {
-                _bottom2Text.value = bottom2Text.value + "."
-            } else if (_bottom2Text.value.length == 32) {
-                _bottom2Text.value = bottom2Text.value + "COMPLETE!"
-                delay(400)
-                _bottom1Text.value = "Please Wait"
-                _bottom2Text.value = ""
-            }
-        }
-        withContext(Dispatchers.Main) {
-            component.onTimerEnd()
-        }
-    }.start()
+    var timerRun = MutableValue(true)
+
 
     val brush = Brush.radialGradient(listOf(Color.Red, Color.Black))
     Box(
@@ -80,7 +62,7 @@ fun FacialScanScreen(component: FacialScanComponent) {
                 fontSize = 25.sp,
                 color = gameColors.TextWhite,
                 textAlign = TextAlign.Center,
-                text = "Facial Scan in Progress"
+                text = "Facial Scan in Progress",
             )
             Image(
                 painter = painterResource(Res.drawable.facial_scan),
@@ -101,4 +83,41 @@ fun FacialScanScreen(component: FacialScanComponent) {
             )
         }
     }
+
+    if (_bottom1Text.value == "Loading CEO Profile"){
+        _bottom1Text.value = "Please Wait"
+        timerRun.value = true
+    }
+
+    CoroutineScope(EmptyCoroutineContext).launch() {
+            while (timerRun.value) {
+                if (_bottom1Text.value != "Loading CEO Profile" &&
+                    _bottom2Text.value != "Thank you for your Patience!"
+                    ){
+                    if (_bottom1Text.value.length < 25) {
+                        delay(300)
+                        _bottom1Text.value = _bottom1Text.value + "."
+                    } else if (_bottom1Text.value.length == 25) {
+                        delay(300)
+                        _bottom1Text.value = _bottom1Text.value + "COMPLETE!"
+                        _bottom2Text.value = "Downloading User Data"
+                    } else if (_bottom1Text.value.length > 35) {
+                        _bottom1Text.value = "Please Wait..............COMPLETE!"
+                    } else if (_bottom2Text.value.length < 32) {
+                        delay(300)
+                        _bottom2Text.value = _bottom2Text.value + "."
+                    } else if (_bottom2Text.value.length >= 32) {
+                        _bottom2Text.value = "Downloading User Data..........COMPLETE!"
+                        timerRun.value = false
+                    }
+                }
+            }
+        delay(800)
+        withContext(Dispatchers.Main) {
+            component.onTimerEnd()
+            _bottom1Text.value = "Loading CEO Profile"
+            _bottom2Text.value = "Thank you for your Patience!"
+            this.cancel()
+        }
+    }.start()
 }

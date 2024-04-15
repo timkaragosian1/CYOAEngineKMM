@@ -1,5 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -12,7 +10,7 @@ plugins {
 
 sqldelight {
     databases {
-        create("Database") {
+        create("cCommerceDatabase") {
             packageName.set("db")
             srcDirs.setFrom("src/commonMain/kotlin/sql")
         }
@@ -67,7 +65,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            @OptIn(ExperimentalComposeLibrary::class)
+
+            implementation ("com.benasher44:uuid:0.8.4")
 
             //datetime
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.0-RC.2")
@@ -78,6 +77,7 @@ kotlin {
 
             //SQLDelight
             implementation(libs.sqldelight.common)
+            implementation(libs.coroutines.extensions)
 
             //Serialization
             implementation(libs.kotlin.serialization)

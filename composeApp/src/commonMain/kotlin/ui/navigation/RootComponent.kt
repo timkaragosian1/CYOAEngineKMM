@@ -10,11 +10,21 @@ import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.popTo
 import com.arkivanov.decompose.router.stack.pushNew
 import com.arkivanov.decompose.value.MutableValue
+import com.benasher44.uuid.uuid4
 import cyoaenginekmm.composeapp.generated.resources.Res
 import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import data.data_utils.GameDateUtils
+import data.db_source.DatabaseDriverFactory
+import data.db_source.UserActionDbDataSource
+import data.db_source.UserActionItem
+import data.db_source.createDatabase
 import data.models.GameStory
 import data.models.UserAction
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -27,8 +37,9 @@ import ui.components.NameSelectScreen.NamesSelectScreenComponent
 import ui.components.TitleScreen.TitleScreenComponent
 
 class RootComponent(
-    componentContext: ComponentContext
-): ComponentContext by componentContext {
+    componentContext: ComponentContext,
+    factoryDriver: DatabaseDriverFactory
+): ComponentContext by componentContext, UserActionDbDataSource {
     private val navigation = StackNavigation<Configuration>()
 
     private var gameCeoFirstname = MutableValue("")
@@ -65,7 +76,6 @@ class RootComponent(
     private var gameScreenShipSensorStatus = 0
     private var gameScreenDestinationStatus = "UNKN"
     private var gameScreenTime = 50.0
-    private var simulatedGameTime:Long = 5206899600000 //set to Jan 1 2135
 
     private var namesScreenSubmitButtonEnabled = false
     private var nameScreenProgressText1 = MutableValue("")
@@ -73,10 +83,16 @@ class RootComponent(
     private var gameStoryList = ArrayList<GameStory>()
     private var gameUserActionsList = ArrayList<UserAction>()
     private var gameStory = MutableValue(GameStory("",0))
-    private var userAction = MutableValue(UserAction(false,false,0,0,"",0))
-
     private var gameDateUtils = MutableValue(GameDateUtils())
-    //private var gameStoryTime = MutableValue(gameDateUtils.value.gameTimeMillis.value)
+    private var gameUUID = MutableValue("")
+    private var userAction = MutableValue(
+        UserAction(
+            gameUUID = gameUUID.value,
+            currentEventId = -1,
+            notes = "CEO name chosen: ${gameCeoFirstname.value} ${gameCeoLastName.value}, Company name: ${gameCompanyName.value}",
+            timestamp = Clock.System.now().toEpochMilliseconds()
+        )
+    )
 
     var childStack = childStack(
         source = navigation,
@@ -85,6 +101,8 @@ class RootComponent(
         handleBackButton = true,
         childFactory = ::createChild
     )
+
+    var cCommerceDatabase = createDatabase(factoryDriver)
 
     private fun createChild(
         config: Configuration,
@@ -187,6 +205,7 @@ class RootComponent(
                 NamesSelectScreenComponent(
                     componentContext = context,
                     onNavigateToFacialScanScreen = {
+                        gameDateUtils.value.setStartAdventureGameTime()
                         setGameScreenData(
                             eventMessage = "Welcome ${gameCeoFirstname.value} ${gameCeoLastName.value}, you are the new CEO of ${gameCompanyName.value}. You have come into power at a very exciting time!",
                             eventImage = Res.drawable.red_rocket_art1,
@@ -250,7 +269,8 @@ class RootComponent(
                     gameStoryList = gameStoryList,
                     ceoFirstName = gameCeoFirstname.value,
                     ceoLastName = gameCeoLastName.value,
-                    companyName = gameCompanyName.value
+                    companyName = gameCompanyName.value,
+                    allUserActions = getUserActions()
                 ),
             )
         }
@@ -328,6 +348,8 @@ class RootComponent(
         gameCeoFirstname.value = ceoFirstname
         gameCeoLastName.value = ceoLastName
         gameCompanyName.value = companyName
+        userAction.value.notes = "User has started game with the following names: CEO: ${gameCeoFirstname.value} ${gameCeoLastName.value}, Company: ${gameCompanyName.value}"
+        gameUUID.value = uuid4().toString()
     }
 
     fun setNamesSelectScreenIsButtonEnabled(isButtonEnabled:Boolean){
@@ -344,8 +366,35 @@ class RootComponent(
         )
     }
 
-    fun addUserAction(userAction: UserAction){
-        gameUserActionsList.add(userAction)
+    fun addUserAction(userAction: UserAction) {
+        gameUserActionsList.add(
+            UserAction(
+                gameUUID.value,
+                userAction.currentEventId,
+                userAction.notes,
+                userAction.timestamp
+            )
+        )
+        CoroutineScope(Dispatchers.IO).launch {
+            insertUserAction(
+                UserActionItem(
+                    id = null,
+                    uuid = userAction.gameUUID,
+                    eventId = userAction.currentEventId.toLong(),
+                    notes = userAction.notes,
+                    timestamp = userAction.timestamp
+                )
+            )
+        }
+    }
+
+    fun getUserActions():ArrayList<UserActionItem> {
+        var returnList = ArrayList<UserActionItem>()
+        CoroutineScope(Dispatchers.IO).launch {
+            returnList = getAllUserActions()
+        }
+
+        return returnList
     }
 
     sealed class Child {
@@ -356,7 +405,6 @@ class RootComponent(
         data class FacialScanScreen(val component: FacialScanComponent):Child()
         data class GameScreen(val component: GameScreenComponent):Child()
         data class GameOverStoryScreen(val component: GameOverStoryComponent):Child()
-
     }
 
     @Serializable
@@ -380,5 +428,33 @@ class RootComponent(
         data object GameScreen: Configuration()
         @Serializable
         data object GameOverStoryScreen: Configuration()
+    }
+
+    override suspend fun getAllUserActions(): ArrayList<UserActionItem> {
+        var resultList = ArrayList<UserActionItem>()
+        /*CoroutineScope(Dispatchers.IO).launch {
+            cCommerceDatabase.userActionsEntityQueries.getAllUserActions().executeAsList().map {
+                resultList.add(it.toUserActionItem())
+            }
+            withContext(Dispatchers.Main){
+                resultList
+            }
+        }.start()*/
+        //THIS WORKS, BUT NO BACKEND TO CURRENTLY TIE IT TO. WILL BE UNCOMMENTED IN THE FUTURE.
+
+        return resultList
+    }
+
+    override suspend fun insertUserAction(userActionItem: UserActionItem) {
+        /*CoroutineScope(Dispatchers.IO).launch {
+            cCommerceDatabase.userActionsEntityQueries.insertUserAction(
+                id = null,
+                gameUuid = userActionItem.uuid,
+                eventId = userActionItem.eventId,
+                notes = userActionItem.notes,
+                timestamp = Clock.System.now().toEpochMilliseconds()
+            )
+        }*/
+        //THIS WORKS, BUT NO BACKEND TO CURRENTLY TIE IT TO. WILL BE UNCOMMENTED IN THE FUTURE.
     }
 }

@@ -10,6 +10,8 @@ import cyoaenginekmm.composeapp.generated.resources.rocket_blueprint
 import cyoaenginekmm.composeapp.generated.resources.usa_resource_company
 import data.models.EventDecision
 import data.models.GameEvent
+import data.models.UserAction
+import kotlinx.datetime.Clock
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import ui.components.GameScreen.GameScreenComponent
 
@@ -72,14 +74,20 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = "story",
-            gameStoryText = "You are one of the finest resource gathering companies in the world and the finest in the USA. (Future State will be random generated company and CEO history for 2 slides each)."
+            gameStoryText = "You are one of the finest resource gathering companies in the world and the finest in the USA. (Future State will be random generated company and CEO history for 2 slides each).",
+            gameUserAction = UserAction(
+                gameUUID = "",
+                currentEventId = 0,
+                notes = "early starting screen, user pressed next",
+                timestamp = Clock.System.now().toEpochMilliseconds()
+            )
         )
     }
 
     fun getStartingSpaceEvent2(): GameEvent {
         return GameEvent(
             eventName = "Start of Game",
-            eventId = 0,
+            eventId = 1,
             eventLocation = "earth",
             eventImage = Res.drawable.penic_device,
             eventMessage = "You are using the CEO Comm device. You will be able to get quick, fast visualization and information to make decisions from anywhere in our solar system! That will be important for later!",
@@ -134,14 +142,20 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
-            gameStoryText = "You are using the CEO Comm device. You will be able to get quick, fast visualization and information to make decisions from anywhere in our solar system! That will be important for later!"
+            gameStoryText = "You are using the CEO Comm device. You will be able to get quick, fast visualization and information to make decisions from anywhere in our solar system! That will be important for later!",
+            gameUserAction = UserAction(
+                gameUUID = "",
+                currentEventId = 1,
+                notes = "ceo device explanation, user pressed next",
+                timestamp = Clock.System.now().toEpochMilliseconds()
+            )
         )
     }
 
     fun getStartingSpaceEvent3(): GameEvent {
         return GameEvent(
             eventName = "Start of Game",
-            eventId = 0,
+            eventId = 2,
             eventLocation = "earth",
             eventImage = Res.drawable.earth_resources_limited,
             eventMessage = "The Earth had 20 years left of useable resources and mankind must take to the stars to continue thriving, surviving, and most importantly, profiting!",
@@ -196,14 +210,20 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
-            gameStoryText = "The Earth had 20 years left of useable resources and mankind must take to the stars to continue thriving, surviving, and most importantly, profiting!"
+            gameStoryText = "The Earth had 20 years left of useable resources and mankind must take to the stars to continue thriving, surviving, and most importantly, profiting!",
+            gameUserAction = UserAction(
+                gameUUID = "",
+                currentEventId = 2,
+                notes = "earth story, user pressed next",
+                timestamp = Clock.System.now().toEpochMilliseconds()
+            )
         )
     }
 
     fun getStartingSpaceEvent4(): GameEvent {
         return GameEvent(
             eventName = "Start of Game",
-            eventId = 0,
+            eventId = 3,
             eventLocation = "earth",
             eventImage = Res.drawable.new_celestial_market,
             eventMessage = "Your company has been one of many chosen to capitalize on the new celestial market. Where will you go? How much money will you make?",
@@ -258,14 +278,20 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
-            gameStoryText = "Your company has been one of many chosen to capitalize on the new celestial market. Where will you go? How much money will you make?"
+            gameStoryText = "Your company has been one of many chosen to capitalize on the new celestial market. Where will you go? How much money will you make?",
+            gameUserAction = UserAction(
+                gameUUID = "",
+                currentEventId = 3,
+                notes = "company chosen, user pressed next",
+                timestamp = Clock.System.now().toEpochMilliseconds()
+            )
         )
     }
 
     fun getStartingSpaceEvent5(): GameEvent {
         return GameEvent(
             eventName = "Start of Game",
-            eventId = 0,
+            eventId = 4,
             eventLocation = "earth",
             eventImage = Res.drawable.rocket_blueprint,
             eventMessage = "The world's finest minds have agreed upon the most effective means of space travel and have shared the design with all the possible companies who could use it.",
@@ -320,7 +346,13 @@ class StartingStoryGameEvents {
             gameShipHullChange = null,
             gameCrewStatusChange = null,
             gameStatusChange = null,
-            gameStoryText = "The world's finest minds have agreed upon the most effective means of space travel and have shared the design with all the possible companies who could use it."
+            gameStoryText = "The world's finest minds have agreed upon the most effective means of space travel and have shared the design with all the possible companies who could use it.",
+            gameUserAction = UserAction(
+                gameUUID = "",
+                currentEventId = 4,
+                notes = "world's finest minds story, user pressed next",
+                timestamp = Clock.System.now().toEpochMilliseconds()
+            )
         )
     }
 }

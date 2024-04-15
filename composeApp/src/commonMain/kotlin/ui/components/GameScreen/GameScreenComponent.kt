@@ -8,7 +8,6 @@ import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import data.models.GameStory
 import data.models.UserAction
-import kotlinx.datetime.Clock
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 
@@ -201,16 +200,9 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
-                )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
+                    this,
+                    _userAction
+
                 )
                 onClickButton1()
             }
@@ -248,16 +240,8 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
-                )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
+                    this,
+                    _userAction
                 )
                 onClickButton2()
             }
@@ -295,16 +279,8 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
-                )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
+                    this,
+                    _userAction
                 )
                     onClickButton3()
             }
@@ -342,16 +318,8 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
-                )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
+                    this,
+                    _userAction
                 )
                 onClickButton4()
             }
@@ -389,16 +357,8 @@ class GameScreenComponent(
                     _gameShipEngines,
                     _gameShipSensors,
                     _gameStory,
-                    _userAction,
-                    this
-                )
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
+                    this,
+                    _userAction
                 )
                 onClickButton5()
             }
@@ -437,21 +397,12 @@ class GameScreenComponent(
                         _gameShipEngines,
                         _gameShipSensors,
                         _gameStory,
-                        _userAction,
-                        this
+                        this,
+                        _userAction
                     )
                 } else {
                     handleGameOver()
                 }
-
-                _userAction.value = UserAction(
-                    isStartOfGame = _gameStatus.value == "gamestart",
-                    isEndOfGame = _gameStatus.value == "gameend",
-                    eventIdCurrent = 0,
-                    eventIdNext = _nextEvent.value,
-                    notes = _eventName.value,
-                    timestamp = Clock.System.now().toEpochMilliseconds()
-                )
                 onClickButton6()
             }
 

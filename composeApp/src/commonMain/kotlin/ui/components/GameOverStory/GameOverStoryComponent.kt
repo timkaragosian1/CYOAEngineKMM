@@ -12,6 +12,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import data.data_utils.GameDateUtils
+import data.db_source.UserActionItem
 import data.models.GameStory
 import data.models.UserAction
 
@@ -22,14 +23,14 @@ class GameOverStoryComponent(
     private val companyName:String,
     ceoFirstName:String,
     ceoLastName:String,
-    private val onNavigateBackToTitleScreen: () -> Unit
+    private val onNavigateBackToTitleScreen: () -> Unit,
+    private val allUserActions: ArrayList<UserActionItem>,
 ): ComponentContext by componentContext {
     val userActionsList = gameUserActionsList
     val storyList = gameStoryList
 
-    val gameDateUtils = GameDateUtils()
+    val gameDateUtils = GameDateUtils() //will be removed later as these values should already be in gameStoryList elements
 
-    var gameTime = MutableValue(gameDateUtils.gameTimeMillis)
     val ceoFirst = MutableValue(ceoFirstName)
     val ceoLast = MutableValue(ceoLastName)
 
@@ -40,14 +41,23 @@ class GameOverStoryComponent(
     fun getUserActions() {
         for (userActions in userActionsList){
             Text(
-                text = "End of game: ${userActions.isEndOfGame}. Start of Game: ${userActions.isStartOfGame}. Next event: ${userActions.eventIdNext}. Notes: ${userActions.notes}, timestamp: ${userActions.timestamp}",
+                text = "Current event: ${userActions.currentEventId}. Notes: ${userActions.notes}, timestamp: ${userActions.timestamp}, Game UUID: ${userActions.gameUUID}",
                 color = Color.White,
                 fontWeight = FontWeight.Normal,
                 fontSize = 18.sp,
                 modifier = Modifier.padding(10.dp)
             )
         }
-    }
+
+        for (userActionItem in allUserActions){
+            Text(
+                text = "Current event: ${userActionItem.eventId}. Notes: ${userActionItem.notes}, timestamp: ${userActionItem.timestamp}, Game UUID: ${userActionItem.uuid}",
+                color = Color.White,
+                fontWeight = FontWeight.Normal,
+                fontSize = 18.sp,
+                modifier = Modifier.padding(10.dp)
+            )
+        }    }
 
     @Composable
     fun getCompanyCEOStory() {
@@ -58,14 +68,6 @@ class GameOverStoryComponent(
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
                 modifier = Modifier.padding(20.dp),
-                /*style = TextStyle.Default.copy(
-                    fontSize = 18.sp,
-                    drawStyle = Stroke(
-                        miter = 10f,
-                        width = 5f,
-                        join = StrokeJoin.Round
-                    )
-                )*/
             )
         }
     }

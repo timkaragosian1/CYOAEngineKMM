@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -51,14 +52,25 @@ fun GameOverStoryScreen(component: GameOverStoryComponent) {
             verticalArrangement = Arrangement.Center,
 
             ) {
-
-            Text(
-                text = "${companyName.value}'s CEO, ${component.ceoFirst.value} ${component.ceoLast.value}, History",
+            Text( //Header
+                text = "${companyName.value}'s Space Age History",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
-                fontSize = 30.sp,
+                fontSize = 32.sp,
                 textAlign = TextAlign.Center,
+                style = TextStyle(
+                    lineHeight = 32.sp
+                ),
                 modifier = Modifier.padding(top = 20.dp)
+            )
+
+            Text( //Sub-Header
+                text = "Led by CEO, ${component.ceoFirst.value} ${component.ceoLast.value}",
+                color = Color.White,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 24.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(top = 5.dp)
             )
             Spacer(
                 modifier = Modifier
@@ -75,7 +87,7 @@ fun GameOverStoryScreen(component: GameOverStoryComponent) {
                 modifier = Modifier
                     .padding(top = 10.dp)
             )
-            component.getUserActions()//SHOW USER ACTIONS AS TEST
+            component.getUserActions()
             Spacer(
                 modifier = Modifier
                     .padding(top = 25.dp)

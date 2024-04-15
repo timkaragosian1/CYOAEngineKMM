@@ -20,14 +20,14 @@ class GameDateUtils {
     private var _gameTimeMillis = MutableValue(0L)
     val gameTimeMillis:Value<Long> = _gameTimeMillis
 
-    val monthMillis: Long = 2629743000
+    val monthMillis: Long = 2415400000
 
     fun epochMillisToFormattedString(millisTime: Long = _gameTimeMillis.value):String{
         return Instant.fromEpochMilliseconds(millisTime).toLocalDateTime(TimeZone.UTC).date.toString()
     }
 
     fun setStartAdventureGameTime(){
-        _gameTimeMillis.value = getLossyTime(5212207700000, 2)
+        _gameTimeMillis.value = getLossyTime(5211997261000, 2)
     }
 
     fun incrementGameTime(months:Int = 6) {

@@ -1,0 +1,20 @@
+CREATE TABLE UserActionsEntity (
+    id INTEGER NOT NULL PRIMARY KEY,
+    gameUuid TEXT NOT NULL,
+    notes TEXT NOT NULL,
+    eventId INTEGER NOT NULL,
+    timestamp INTEGER NOT NULL
+);
+
+insertUserAction:
+INSERT INTO UserActionsEntity (id,gameUuid,notes,eventId,timestamp)
+VALUES (?, ?,?,?,?);
+
+getAllUserActions:
+SELECT * FROM UserActionsEntity;
+
+deleteAllUserActions:
+DELETE FROM UserActionsEntity;
+
+deleteUserActionById:
+DELETE FROM UserActionsEntity WHERE id = :id;
