@@ -12,6 +12,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import data.data_utils.GameDateUtils
+import data.db_source.UserActionItem
 import data.models.GameStory
 import data.models.UserAction
 
@@ -22,7 +23,8 @@ class GameOverStoryComponent(
     private val companyName:String,
     ceoFirstName:String,
     ceoLastName:String,
-    private val onNavigateBackToTitleScreen: () -> Unit
+    private val onNavigateBackToTitleScreen: () -> Unit,
+    private val allUserActions: ArrayList<UserActionItem>,
 ): ComponentContext by componentContext {
     val userActionsList = gameUserActionsList
     val storyList = gameStoryList
@@ -46,7 +48,16 @@ class GameOverStoryComponent(
                 modifier = Modifier.padding(10.dp)
             )
         }
-    }
+
+        for (userActionItem in allUserActions){
+            Text(
+                text = "Current event: ${userActionItem.eventId}. Notes: ${userActionItem.notes}, timestamp: ${userActionItem.timestamp}, Game UUID: ${userActionItem.uuid}",
+                color = Color.White,
+                fontWeight = FontWeight.Normal,
+                fontSize = 18.sp,
+                modifier = Modifier.padding(10.dp)
+            )
+        }    }
 
     @Composable
     fun getCompanyCEOStory() {

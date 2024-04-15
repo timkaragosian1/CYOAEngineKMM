@@ -16,9 +16,16 @@ import cyoaenginekmm.composeapp.generated.resources.red_rocket_art1
 import data.data_utils.GameDateUtils
 import data.db_source.DatabaseDriverFactory
 import data.db_source.UserActionDbDataSource
+import data.db_source.UserActionItem
+import data.db_source.createDatabase
+import data.db_source.toUserActionItem
 import data.models.GameStory
 import data.models.UserAction
-import db.cCommerceDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable
 import org.jetbrains.compose.resources.DrawableResource
@@ -33,7 +40,8 @@ import ui.components.TitleScreen.TitleScreenComponent
 
 class RootComponent(
     componentContext: ComponentContext,
-): ComponentContext by componentContext {
+    factoryDriver: DatabaseDriverFactory
+): ComponentContext by componentContext, UserActionDbDataSource {
     private val navigation = StackNavigation<Configuration>()
 
     private var gameCeoFirstname = MutableValue("")
@@ -96,9 +104,7 @@ class RootComponent(
         childFactory = ::createChild
     )
 
-    var database = cCommerceDatabase()
-    var factory = DatabaseDriverFactory()
-    var dataSource = UserActionDbDataSource()
+    var cCommerceDatabase = createDatabase(factoryDriver)
 
     private fun createChild(
         config: Configuration,
@@ -265,7 +271,8 @@ class RootComponent(
                     gameStoryList = gameStoryList,
                     ceoFirstName = gameCeoFirstname.value,
                     ceoLastName = gameCeoLastName.value,
-                    companyName = gameCompanyName.value
+                    companyName = gameCompanyName.value,
+                    allUserActions = getUserActions()
                 ),
             )
         }
@@ -370,16 +377,26 @@ class RootComponent(
                 userAction.timestamp
             )
         )
-        /*CoroutineScope(Dispatchers.IO).launch() {
-            UserActionsDbSourceImplementation(cCommerceDatabase.invoke(SqlDriver))
-            UserActionsDbSource.insertUserAction(
-                id = null,
-                gameUuid = gameUUID.value,
-                eventId = userAction.currentEventId.toLong(),
-                notes = userAction.notes,
-                timestamp = userAction.timestamp
+        CoroutineScope(Dispatchers.IO).launch {
+            insertUserAction(
+                UserActionItem(
+                    id = null,
+                    uuid = userAction.gameUUID,
+                    eventId = userAction.currentEventId.toLong(),
+                    notes = userAction.notes,
+                    timestamp = userAction.timestamp
+                )
             )
-        }*/
+        }
+    }
+
+    fun getUserActions():ArrayList<UserActionItem> {
+        var returnList = ArrayList<UserActionItem>()
+        CoroutineScope(Dispatchers.IO).launch {
+            returnList = getAllUserActions()
+        }
+
+        return returnList
     }
 
     sealed class Child {
@@ -413,5 +430,31 @@ class RootComponent(
         data object GameScreen: Configuration()
         @Serializable
         data object GameOverStoryScreen: Configuration()
+    }
+
+    override suspend fun getAllUserActions(): ArrayList<UserActionItem> {
+        var resultList = ArrayList<UserActionItem>()
+        CoroutineScope(Dispatchers.IO).launch {
+            cCommerceDatabase.userActionsEntityQueries.getAllUserActions().executeAsList().map {
+                resultList.add(it.toUserActionItem())
+            }
+            withContext(Dispatchers.Main){
+                resultList
+            }
+        }.start()
+
+        return resultList
+    }
+
+    override suspend fun insertUserAction(userActionItem: UserActionItem) {
+        CoroutineScope(Dispatchers.IO).launch {
+            cCommerceDatabase.userActionsEntityQueries.insertUserAction(
+                id = null,
+                gameUuid = userActionItem.uuid,
+                eventId = userActionItem.eventId,
+                notes = userActionItem.notes,
+                timestamp = Clock.System.now().toEpochMilliseconds()
+            )
+        }
     }
 }

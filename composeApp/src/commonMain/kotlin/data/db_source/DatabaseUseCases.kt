@@ -5,7 +5,17 @@ import data.data_utils.Resource
 class DatabaseUseCases(
     private val userActionDbDataSource: UserActionDbDataSource
 ) {
-    suspend fun executeInsert(
+
+    suspend fun executeGetAllUserActions():ArrayList<UserActionItem>{
+        return try {
+            userActionDbDataSource.getAllUserActions()
+        }catch (e:Exception){
+            e.printStackTrace()
+            ArrayList<UserActionItem>()
+        }
+    }
+
+    suspend fun executeUserActionInsert(
         uuid: String,
         eventId: Long,
         notes: String,

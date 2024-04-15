@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalDecomposeApi::class)
+
 package com.timkaragosian.cyoaenginecomposekmm
 
 import App
@@ -7,7 +9,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.retainedComponent
+import data.db_source.DatabaseDriverFactory
 import ui.navigation.RootComponent
 
 class MainActivity : ComponentActivity() {
@@ -18,8 +22,10 @@ class MainActivity : ComponentActivity() {
                 mp -> mp.isLooping = true
         }
 
+        val dbDriverFactory = DatabaseDriverFactory(this)
+
         val root = retainedComponent{
-            RootComponent(it)
+            RootComponent(it, dbDriverFactory)
         }
 
         setContent {
