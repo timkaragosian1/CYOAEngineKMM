@@ -9,13 +9,14 @@ To use this application, clone this repsitory to a local directory and open and 
 Main branch will be the last stable feature update. An unmerged branch will be the current "work-in-progress" branch and may not be stable.
 
 ## Latest Updates
-4/10/24 Merged game story functionality into main screen. Starting on User Action functionality now. Will be using SQL Delight as it is KMM compatible and I have resources and examples I trust.
+4/15/24 Database work is prepared with some fixes for the Facial Scan Screen as well being merged into the Main branch. DB features are currently disabled as there is no API to tie in to at this time. This was enabler patterns and PoC. Next up is creating a new private repo and creating the end-to-end game. This repo will remain open as a code base for reference and as a base template CYOA game engine to create others from or tune to different stories.
 
 ## Introduction
 - Work in progress from previous project CYOA Template (https://github.com/timkaragosian1/CYOATemplate) and the CYOATemplate concept came from a Text-Based Adventure Tutorial (https://www.youtube.com/watch?v=_NRVn2JJ1JM&list=PL_QPQmz5C6WVWGhGVlT25UGYFUt7k9DGX).
 - Created in Android Studio and builds an iOS and Android application via Kotlin Multiplatform Mobile.
 - Goal is to make and have an MVP in 90 days with an option of continuing development further
-- First game developing, first time attempting 30-60-90 milestone experiment
+- First game ever that I'm developing, first time attempting 30-60-90 milestone experiment
+- This repo will continue its existence as a kind of CYOA game engine that I will build complete games from
 
 ## 30-60-90 Day Milestone Experiment
 - First 30 validates feasibility of concept (30-day Milestone Video: https://youtu.be/xQfu1FhggGg)
@@ -54,7 +55,8 @@ I am searching for more and will add as I discover them. Even tools that only in
 * Organize with "Core" resources - DONE
 * Audio Functionality - DONE
 * End Game Features (Screen & Dates System) - DONE
-* Capture User Actions in DB 
+* Capture User Actions in DB - DONE
+### FROM HERE, PROGRESS WILL CONTINUE ON A PRIVATE BRANCH  WITH:
 * Intial Story Events to Prove Out Positive End Game Path (time runs out without ship lost)
 * Intial Story Events to Prove Out Negative End Game Path (ship lost)
 * Refinement of Features & Tech debt
