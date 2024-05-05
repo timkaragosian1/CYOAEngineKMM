@@ -20,7 +20,7 @@ Main branch will be the last stable feature update. An unmerged branch will be t
 
 ## 30-60-90 Day Milestone Experiment
 - First 30 validates feasibility of concept (30-day Milestone Video: https://youtu.be/xQfu1FhggGg)
-- Second 30 validates if it will work end-to-end
+- Second 30 validates if it will work end-to-end (day 31-60 Video Journal: https://youtu.be/REyL-21i8g4)
 - Final 30 days is polishing the MVP and feedback from users to determine if there's value in continuing development
 - Repeat final 30-day task of polishing and feedback from users/audience to continue growth
 
