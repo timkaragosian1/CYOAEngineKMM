@@ -1,4 +1,4 @@
-# cCommerce: Cosmic Capitalism
+# cCommerce: Cosmic Capitalism (now 2135: Resource Crisis)
 ### A Space Travel & Resource Gathering Choose Your Own Adventure Game
 
 ![alt text](https://github.com/timkaragosian1/CYOAEngineKMM/blob/main/composeApp/src/commonMain/composeResources/drawable/open_screen_bkg1.jpeg)
